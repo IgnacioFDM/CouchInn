@@ -1,4 +1,4 @@
-<div class="authform">
+﻿<div class="authform">
   <h3>Edit <%= resource_name.to_s.humanize %></h3>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
     <%= devise_error_messages! %>
@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <fieldset>
-      <p>Leave these fields blank if you don't want to change your password.</p>
+      <p>Dejar en blanco si no deseas modificar tu password.</p>
       <div class="form-group">
         <%= f.label :password %>
         <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
@@ -25,17 +25,17 @@
       </div>
     </fieldset>
     <fieldset>
-      <p>You must enter your current password to make changes.</p>
+      <p>Debes introducir tu password actual para realizar cambios.</p>
       <div class="form-group">
         <%= f.label :current_password %>
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
     </fieldset>
-    <%= f.submit 'Update', :class => 'button right' %>
+    <%= f.submit 'Actualizar', :class => 'button right' %>
   <% end %>
 </div>
 <div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
+<h3>Eliminar cuenta</h3>
+<p>¿Descontento? Lamentamos verte ir.</p>
+<%= button_to "Cancelar mi cuenta", registration_path(resource_name), :data => { :confirm => "¿Estás seguro?" }, :method => :delete, :class => 'button right' %>
 </div>
