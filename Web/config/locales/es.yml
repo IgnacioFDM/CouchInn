@@ -7,7 +7,7 @@ es:
         email: "Email"
         password: "Password"
         password_confirmation: "Confirmar Password"
-        current_password: "Confirmar Password"
+        current_password: "Password Actual"
   date:
     abbr_day_names:
     - dom
