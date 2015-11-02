@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   match '/viewcouch' => 'visitors#viewcouch', :via => :get
   devise_for :users
   resources :users
+  resources :couch_types
 end

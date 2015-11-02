@@ -1,0 +1,16 @@
+﻿<div class="container">
+  <div class="row">
+    <h3>Tipos de Couches</h3>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @couch_types.each do |couch_type| %>
+            <tr>
+              <%= render couch_type %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
