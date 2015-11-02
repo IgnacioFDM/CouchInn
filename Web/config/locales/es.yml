@@ -1,5 +1,9 @@
 ---
 es:
+  gender_enum:
+    male: "Hombre"
+    female: "Mujer"
+    other: "Otro"
   activerecord:
     attributes:
       user:
@@ -8,6 +12,9 @@ es:
         password: "Password"
         password_confirmation: "Confirmar Password"
         current_password: "Password Actual"
+        gender: "Género"
+        birthdate: "Nacimiento"
+        telephone: "Teléfono"
   date:
     abbr_day_names:
     - dom
