@@ -18,6 +18,16 @@
       "value": "changeme",
       "required": true
     },
+    "ADMIN_NAME": {
+      "description": "The administrator's name for display.",
+      "value": "Placeholder",
+      "required": true
+    },
+    "ADMIN_TELEPHONE": {
+      "description": "The administrator's phone number.",
+      "value": "123456789",
+      "required": true
+    },
     "DOMAIN_NAME": {
       "description": "Required for sending mail. Give an app name or use a custom domain.",
       "value": "myapp.herokuapp.com",
