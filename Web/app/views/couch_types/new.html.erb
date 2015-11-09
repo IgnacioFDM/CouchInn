@@ -1,13 +1,8 @@
 <div class="container">
   <div class="row">
-    <h3>Tipos de Couches</h3>
     <div class="column" style="text-align:left">
       <h3>Nuevo tipo de Couch</h3>
-        <%= form_for(@couch_type) do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name, required:true, placeholder:"Ingrese un nombre" %>
-          <%= f.submit 'Guardar' %>
-        <% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>

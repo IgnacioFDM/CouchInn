@@ -18,6 +18,7 @@ class CouchTypesController < ApplicationController
   end
 
   def create
+    authorize CouchType
     permitted = params.require(:couch_type).permit(:name)
     @couch_type = CouchType.create permitted
     if @couch_type
@@ -25,10 +26,15 @@ class CouchTypesController < ApplicationController
     else
       redirect_to couch_types_path, :notice => "No se pudo crear el tipo!"
     end
+  end
+
+  def edit
     authorize CouchType
+    @couch_type = CouchType.find(params[:id])
   end
 
   def update
+    @couch_type.save
     authorize CouchType
   end
 
