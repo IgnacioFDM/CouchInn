@@ -13,6 +13,10 @@ class CouchTypePolicy
   def index?
     @current_user.admin?
   end
+  
+  def create?
+    @current_user.admin?
+  end
 
   def show?
     @current_user.admin?
