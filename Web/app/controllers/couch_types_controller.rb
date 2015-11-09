@@ -21,7 +21,7 @@ class CouchTypesController < ApplicationController
     permitted = params.require(:couch_type).permit(:name)
     @couch_type = CouchType.create permitted
     if @couch_type
-      redirect_to couch_types_path, :notice => "Tipo creado"
+      redirect_to couch_types_path, :notice => "Tipo creado."
     else
       redirect_to couch_types_path, :notice => "No se pudo crear el tipo!"
     end
@@ -34,6 +34,9 @@ class CouchTypesController < ApplicationController
 
   def destroy
     authorize CouchType
+    couch_type = CouchType.find(params[:id])
+    couch_type.destroy
+    redirect_to couch_types_path, :notice => "Tipo eliminado."
   end
 
 end
