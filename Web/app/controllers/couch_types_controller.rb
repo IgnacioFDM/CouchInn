@@ -1,15 +1,20 @@
 class CouchTypesController < ApplicationController
+  before_action :authenticate_user!
+  after_action :verify_authorized
 
   def new
-      @couch_type = CouchType.new
+    @couch_type = CouchType.new
+    authorize CouchType
   end
 
   def index
   	@couch_types = CouchType.all
+    authorize CouchType
   end
 
   def show
   	@couch_type = CouchType.find(params[:id])
+    authorize CouchType
   end
 
   def create
@@ -23,9 +28,11 @@ class CouchTypesController < ApplicationController
   end
 
   def update
+    authorize CouchType
   end
 
   def destroy
+    authorize CouchType
   end
 
 end
