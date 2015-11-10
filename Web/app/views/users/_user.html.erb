@@ -1,12 +1,14 @@
 ﻿<td>
   <%= link_to user.email, user %>
 </td>
-<td>
+
+<td class="col-md-2 text-right">
   <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit 'Cambiar Rol', :class => 'button-xs' %>
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, {}) %>
+    <%= f.submit 'Cambiar Rol', :class => 'button-xs btn-info' %>
   <% end %>
 </td>
-<td>
-  <%= link_to("Borrar usuario", user_path(user), :data => { :confirm => "¿Estás seguro?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
+
+<td class="col-md-1 text-right">
+  <%= link_to("Borrar usuario", user_path(user), :data => { :confirm => "¿Estás seguro?" }, :method => :delete, :class => 'button-xs btn-danger') unless user == current_user %>
 </td>

@@ -1,7 +1,6 @@
 ﻿<%# add navigation links to this file %>
 <% if user_signed_in? %>
   <li><%= link_to 'Editar cuenta', edit_user_registration_path %></li>
-  <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
   <li><%= link_to 'Iniciar sesión', new_user_session_path %></li>
   <li><%= link_to 'Registrarse', new_user_registration_path %></li>
@@ -9,7 +8,10 @@
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) %>
     <li><%= link_to 'Usuarios', users_path %></li>
-    <li><%= link_to 'Panel Admin Upmin', '/admin' %></li>
     <li><%= link_to 'Tipos de Couches', couch_types_path %></li>
+    <li><%= link_to 'Panel Admin Upmin', '/admin' %></li>
   <% end %>
+<% end %>
+<% if user_signed_in? %>
+  <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method=>'delete' %></li>
 <% end %>
