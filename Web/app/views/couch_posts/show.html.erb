@@ -1,6 +1,7 @@
-<h1> show couch post </h1>
-<p>Nombre: <%= @couch_post.title if @couch_post.title %></p>
+<h1>  <%= @couch_post.title if @couch_post.title %></h1>
 <p>Descripción: <%= @couch_post.description if @couch_post.description %></p>
 <p>Tipo: <%= @couch_post.couch_type_id if @couch_post.couch_type_id %></p>
 <p>Dueño: <%= @couch_post.username if @couch_post.username %></p>
 <p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
+<p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
+<p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
