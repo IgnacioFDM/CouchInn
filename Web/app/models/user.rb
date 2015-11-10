@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   enum role: [:user, :premium, :admin]
   enum gender: [:male, :female, :other]
-  
+     has_many :couch_posts
   def self.i18n_genders(hash = {})
     genders.keys.each { |key| hash[I18n.t("gender_enum.#{key}")] = key }
     hash
