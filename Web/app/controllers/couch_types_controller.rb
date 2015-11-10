@@ -20,11 +20,11 @@ class CouchTypesController < ApplicationController
   def create
     authorize CouchType
     permitted = params.require(:couch_type).permit(:name)
-    @couch_type = CouchType.create permitted
-    if @couch_type
+    @couch_type = CouchType.create(permitted)
+    if @couch_type.valid?
       redirect_to couch_types_path, :notice => "Tipo creado."
     else
-      redirect_to couch_types_path, :notice => "No se pudo crear el tipo!"
+      redirect_to couch_types_path, :notice => "No se pudo crear el tipo. Razón: " << @couch_type.errors.full_messages.to_sentence
     end
   end
 
