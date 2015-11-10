@@ -1,6 +1,7 @@
 <%= form_for(@couch_type) do |f| %>
-  Nombre: 
-  <%= f.text_field :name, required:true, placeholder:"Ingrese un nombre" %>
-  <br>
-  <%= f.submit 'Guardar' %>
-<% end %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Guardar', :class => 'button right' %>
+  <% end %>
