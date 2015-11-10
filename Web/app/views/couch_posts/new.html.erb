@@ -1,15 +1,21 @@
-<h1> new couch post</h1>
+<h1> Crear Publicación de Couch</h1>
 
 <%= form_for :couch_post, url: couch_posts_path do |c| %>
 	<p>
-		<%= c.label :title %> <br>
+		<%= c.label :Título %> <br>
 		<%= c.text_field :title %>
 	</p>
 
 	<p>
-		<%= c.label :text %> <br>
-		<%= c.text_area :text %>
+		<%= c.label :Descripción %> <br>
+		<%= c.text_area :description %>
 	</p>
+
+<p>
+		<%= c.label :Dueño %> <br>
+		<%= c.text_area :username %>
+	</p>
+
 
 	<p>
 
