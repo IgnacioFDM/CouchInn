@@ -19,5 +19,5 @@ puts 'CREATED COUCH TYPE: ' << couch_type.name
 couch_type = CouchType.find_or_create_by!(name: 'Casa')
 puts 'CREATED COUCH TYPE: ' << couch_type.name
 
-couch_post = CouchPost.find_or_create_by(title: 'Casa de playa' description: 'Casa a 2 cuadras de la costa' username: 'Coach Finn' rooms:'1' vacants:'2')
+couch_post = CouchPost.find_or_create_by(title: 'Casa de playa', description: 'Casa a 2 cuadras de la costa', username: 'Coach Finn', rooms: 1, vacants: 2)
 puts 'CREATED COUCH POST: ' << couch_post.title

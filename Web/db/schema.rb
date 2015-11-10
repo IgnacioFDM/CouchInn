@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110215441) do
+ActiveRecord::Schema.define(version: 20151110221709) do
 
   create_table "couch_posts", force: :cascade do |t|
     t.string   "title"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151110215441) do
     t.integer  "couch_type_id"
     t.string   "zone"
     t.integer  "rooms"
-    t.integer  "vacant"
+    t.integer  "vacants"
   end
 
   create_table "couch_types", force: :cascade do |t|
