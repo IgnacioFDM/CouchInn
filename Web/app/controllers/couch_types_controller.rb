@@ -34,15 +34,22 @@ class CouchTypesController < ApplicationController
   end
 
   def update
-    @couch_type.save
+    @couch_type = CouchType.find(params[:id])
     authorize CouchType
+    if @couch_type.update_attributes(params.require(:couch_type).permit(:name))
+      redirect_to couch_types_path, :notice => "Tipo actualizado."
+    else
+      redirect_to couch_types_path, :notice => "Error al actualizar."
+    end
   end
 
   def destroy
     authorize CouchType
     couch_type = CouchType.find(params[:id])
     couch_type.destroy
-    redirect_to couch_types_path, :notice => "Tipo eliminado."
+    if couch_type.destroy
+      redirect_to couch_types_path, :notice => "Tipo eliminado."
+    end
   end
 
 end
