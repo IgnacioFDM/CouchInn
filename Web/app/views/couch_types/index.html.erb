@@ -1,18 +1,13 @@
 ﻿<div class="container">
-  <div class="row">
     <h3>Tipos de Couches</h3>
-    <div class="column" style="text-align:left">
-      <table class="table">
+    <table class="table table-striped">
         <tbody>
-          <% @couch_types.each do |couch_type| %>
-            <tr>
-              <%= render couch_type %>
-            </tr>
-          <% end %>
+            <% @couch_types.each do |couch_type| %>
+                <tr>
+                    <%= render couch_type %>
+                </tr>
+            <% end %>
         </tbody>
-
-      </table>
-      <%= link_to("Crear nuevo tipo de Couch", new_couch_type_path , :class => 'button-xs')%>
-    </div>
-  </div>
+    </table>
+    <%= link_to("Crear nuevo tipo de Couch", new_couch_type_path , :class => 'button-xs')%>
 </div>
