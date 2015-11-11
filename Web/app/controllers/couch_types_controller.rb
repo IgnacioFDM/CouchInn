@@ -46,9 +46,12 @@ class CouchTypesController < ApplicationController
   def destroy
     authorize CouchType
     couch_type = CouchType.find(params[:id])
-    couch_type.destroy
-    if couch_type.destroy
-      redirect_to couch_types_path, :notice => "Tipo eliminado."
+    if couch_type.couch_posts.empty?
+      if couch_type.destroy
+        redirect_to couch_types_path, :notice => "Tipo eliminado."
+      end
+    else
+      redirect_to couch_types_path, :alert => "No se puede eliminar, existen Couches de ese tipo."
     end
   end
 
