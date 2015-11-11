@@ -1,0 +1,13 @@
+﻿<div class="container">
+    <h3>Lista de Couches</h3>
+    <table class="table table-striped">
+        <tbody>
+            <% @couch_posts.each do |couch_post| %>
+                <tr>
+                    <%= render couch_post %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= link_to("Crear nueva publicación de Couch", new_couch_post_path , :class => 'button-xs')%>
+</div>

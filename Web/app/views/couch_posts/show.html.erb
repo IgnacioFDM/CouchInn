@@ -1,7 +1,113 @@
-<h1>  <%= @couch_post.title if @couch_post.title %></h1>
-<p>Descripción: <%= @couch_post.description if @couch_post.description %></p>
-<p>Tipo: <%= @couch_post.couch_type_id if @couch_post.couch_type_id %></p>
+<!-- <h1>  <%= @couch_post.title if @couch_post.title %></h1> -->
+<!-- <p>Descripción: <%= @couch_post.description if @couch_post.description %></p> -->
+<!--<p>Tipo: <%= @couch_post.couch_type_id if @couch_post.couch_type_id %></p>-->
+<!--<p>Dueño: <%= @couch_post.username if @couch_post.username %></p>-->
+<!--<p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>-->
+<!--<p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>-->
+<!--<p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>-->
+
+    <div class="container">
+
+        <div class="row">
+
+			<div class="col-md-3">
+				<img class="lead" src="<%= asset_path('logo.png') %>" alt="">
+				<div class="list-group">
+					<a href="#" class="list-group-item">Casas</a>
+					<a href="#" class="list-group-item">Chozas</a>
+					<a href="#" class="list-group-item">Departamentos</a>
+					<a href="#" class="list-group-item active">Cabañas</a>
+				</div>
+			</div>
+
+            <div class="col-md-9">
+
+                <div class="thumbnail">
+                    <img class="img-responsive" src="<%= asset_path('testimage1.jpg') %>" alt="">
+                    <div class="caption-full">
+                        
+                        <h4><a href="#"><%= @couch_post.title if @couch_post.title %></a>
+                        </h4>
+                     <!--   <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p> -->
+                      <!--  <p>Want to make these reviews work? Check out
+                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+                            </strong>over at maxoffsky.com!</p> -->
+                        <p><%= @couch_post.description if @couch_post.description %></p>
+                   <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name if @couch_post.couch_type_id %> </p>
 <p>Dueño: <%= @couch_post.username if @couch_post.username %></p>
 <p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
 <p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
 <p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
+
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">3 opiniones</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 estrellas
+                        </p>
+                    </div>
+                </div>
+
+                <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success">¿Visitaste este Couch? ¡Deja un comentario!</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Doggo
+                            <span class="pull-right">Hace 10 días</span>
+                            <p>Woof woof</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            santlev
+                            <span class="pull-right">Hace 12 días</span>
+                            <p>El mejor Couch al que fui en mi vida, la pasé re bien!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            RamiroRD
+                            <span class="pull-right">Hace 15 días</span>
+                            <p>Excelente lugar, muy recomendable.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
