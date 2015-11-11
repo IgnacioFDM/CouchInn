@@ -59,3 +59,9 @@ footer {
 .post-couch {
     margin-right: 16px;
 }
+
+.truncate-post {
+  height: 58px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
