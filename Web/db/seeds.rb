@@ -19,7 +19,7 @@ user.email = 'ramiro@couchinn.com'
 user.password = 'password'
 user.password_confirmation = 'password'
 user.telephone = '0123456789'
-user.birthdate = Date.new(1994,2,1)
+user.birthdate = Date.new(1970,2,1)
 user.save!
 puts 'CREATED REGULAR USER: ' << user.name
 
@@ -29,7 +29,7 @@ user.email = 'santiago@couchinn.com'
 user.password = 'password'
 user.password_confirmation = 'password'
 user.telephone = '0123456789'
-user.birthdate = Date.new(1994,04,25)
+user.birthdate = Date.new(1970,2,1)
 user.save!
 puts 'CREATED REGULAR USER: ' << user.name
 
@@ -39,7 +39,7 @@ user.email = 'altoke_perro@dogchow.com'
 user.password = 'passwoof'
 user.password_confirmation = 'passwoof'
 user.telephone = '101'
-user.birthdate = Date.new(2005,2,1)
+user.birthdate = Date.new(1970,2,1)
 user.save!
 puts 'CREATED REGULAR USER -kind of-: ' << user.name
 
@@ -125,4 +125,3 @@ couch_post.save!
 couch_post = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: 4, username: 'Bubi el perro', rooms: 1, vacants: 10, zone:'La Plata')
 couch_post.mainpic = File.open("app/assets/images/Choza.jpg")
 couch_post.save!
-
