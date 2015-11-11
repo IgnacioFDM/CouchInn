@@ -24,7 +24,7 @@ class CouchTypesController < ApplicationController
     if @couch_type.valid?
       redirect_to couch_types_path, :notice => "Tipo creado."
     else
-      redirect_to couch_types_path, :notice => "No se pudo crear el tipo. Razón: " << @couch_type.errors.full_messages.to_sentence
+      redirect_to couch_types_path, :alert => "No se pudo crear el tipo. " << @couch_type.errors.full_messages.to_sentence
     end
   end
 
@@ -39,7 +39,7 @@ class CouchTypesController < ApplicationController
     if @couch_type.update_attributes(params.require(:couch_type).permit(:name))
       redirect_to couch_types_path, :notice => "Tipo actualizado."
     else
-      redirect_to couch_types_path, :notice => "Error al actualizar."
+      redirect_to couch_types_path, :alert => "Error al actualizar."
     end
   end
 

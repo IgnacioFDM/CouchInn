@@ -1,48 +1,42 @@
-<h1> Crear Publicación de Couch</h1>
+<div class="authform">
+	<h3>Publicar Couch</h3>
 
-<%= form_for :couch_post, url: couch_posts_path do |c| %>
-	<p>
-		<%= c.label :Título %> <br>
-		<%= c.text_field :title %>
-	</p>
+	<%= form_for :couch_post, url: couch_posts_path do |c| %>
+	<div class="form-group">
+		<%= c.label :title %>
+		<%= c.text_field :title, class: 'form-control' %>
+	</div>
 
-	<p>
-		<%= c.label :Descripción %> <br>
-		<%= c.text_area :description %>
-	</p>
+	<div class="form-group">
+		<%= c.label :description %>
+		<%= c.text_area :description, class: 'form-control' %>
+	</div>
 
-<p>
-		<%= c.label :Tipo %> <br>
-		<%= c.number_field :couch_type_id %>
-	</p>
+	<div class="form-group">
+		<%= c.label :couch_type_id %>
+		<%= c.number_field :couch_type_id, class: 'form-control' %>
+	</div>
 
+	<div class="form-group">
+		<%= c.label :zone %>
+		<%= c.text_field :zone, class: 'form-control' %>
+	</div>
 
-		<p>
-		<%= c.label :Zona %> <br>
-		<%= c.text_field :zone %>
-	</p>
+	<div class="form-group">
+		<%= c.label :rooms %>
+		<%= c.number_field :rooms, class: 'form-control' %>
+	</div>
 
-	<p>
-		<%= c.label :Habitaciones %> <br>
-		<%= c.number_field :rooms %>
-	</p>
+	<div class="form-group">
+		<%= c.label :vacants %>
+		<%= c.number_field :vacants, class: 'form-control' %>
+	</div>
 
-	<p>
-		<%= c.label :Vacantes %> <br>
-		<%= c.number_field :vacants %>
-	</p>
+	<div class="form-group">
+		<%= c.label :mainpic %>
+		<%= c.file_field :mainpic, class: 'form-control' %>
+	</div>
 
-<p>
-		<%= c.label :Dueño %> <br>
-		<%= c.text_field :username %>
-	</p>
-
-<p>
-		<%= c.file_field :mainpic %> <br>
-	</p>
-
-	<p>
-
-		<%= c.submit %>
-	</p>
-	<%end%>
+	<%= c.submit 'Publicar Couch', :class => 'button right' %>
+	<% end %>
+</div>

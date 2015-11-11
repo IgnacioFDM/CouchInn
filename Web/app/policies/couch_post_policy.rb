@@ -7,30 +7,33 @@ class CouchPostPolicy
   end
 
   def new?
-    @current_user.admin?
+    @current_user
   end
 
   def index?
-    @current_user.admin?
+    true
   end
-  
+
   def create?
-    @current_user.admin?
+    @current_user
   end
 
   def show?
-    @current_user.admin?
+    true
   end
 
   def edit?
+    # TODO
     @current_user.admin?
   end
 
   def update?
+    # TODO
     @current_user.admin?
   end
 
   def destroy?
+    # TODO
     @current_user.admin?
   end
 

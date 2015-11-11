@@ -17,6 +17,14 @@ es:
         telephone: "Teléfono"
       couch_type:
         name: "Nombre"
+      couch_post:
+        title: "Título"
+        description: "Descripción"
+        couch_type_id: "Categoria"
+        zone: "Zona"
+        rooms: "Habitaciones"
+        vacants: "Vacantes"
+        mainpic: "Imágen"        
   date:
     abbr_day_names:
     - dom
@@ -27,7 +35,7 @@ es:
     - vie
     - sáb
     abbr_month_names:
-    - 
+    -
     - ene
     - feb
     - mar
@@ -53,7 +61,7 @@ es:
       long: "%A, %d de %B de %Y"
       short: "%d de %b"
     month_names:
-    - 
+    -
     - enero
     - febrero
     - marzo

@@ -1,13 +1,13 @@
 ﻿<div class="panel panel-body">
     <div class="row">
         <div class="col-md-4">
-            <a href="#">
-                <img class="img-responsive" src= <%=couch_post.mainpic.url%> alt="">
-            </a>
+            <%= link_to(couch_post_path(couch_post.id), :method => :get) do%>
+                <img class="img-responsive" src= <%=couch_post.mainpic.url(:couchlist)%> alt="">
+            <% end %>
         </div>
         <div class="col-md-8">
             <h3><%= link_to couch_post.title, couch_post_path(couch_post.id) %></h3>
-            <h4>Couch ofrecido por:  <%=couch_post.username %></h4>
+            <h4><%= couch_post.username %></h4>
             <p class="truncate-post"><%= couch_post.description %> </p>
             <div class="row">
                 <div class="col-md-5">
@@ -25,9 +25,8 @@
 
                 <div class="col-md-7">
                   <%= link_to(couch_post_path(couch_post.id), :method => :get, :class => 'btn btn-primary pull-right') do%>
-             Ver Couch<span class="glyphicon glyphicon-chevron-right"></span>
-             <%end%>
-                    <!--<a class="btn btn-primary pull-right" href="#">Ver Couch<span class="glyphicon glyphicon-chevron-right"></span></a>-->
+                     Ver Couch<span class="glyphicon glyphicon-chevron-right"></span>
+                  <% end %>
                 </div>
             </div>
         </div>
