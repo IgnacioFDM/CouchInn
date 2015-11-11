@@ -1,7 +1,7 @@
 <%= form_for(@couch_type) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+    <%= f.text_field :name, :required => true, :autofocus => true, class: 'form-control' %>
   </div>
   <%= f.submit 'Guardar', :class => 'button right' %>
   <% end %>
