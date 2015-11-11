@@ -1,5 +1,6 @@
 class CouchPost < ActiveRecord::Base
 	belongs_to :couch_type
+	has_attached_file :mainpic
 	#belongs_to :username
 	  # revisar cuando se puedan agregar usuarios a la semilla
 	  validates_presence_of :title
@@ -8,6 +9,7 @@ class CouchPost < ActiveRecord::Base
 	  validates_presence_of :vacants
 	  validates_presence_of :zone
 	  validates_presence_of :couch_type_id
+	  validates_attachment_content_type :mainpic, :content_type =>["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	  # validates_presence_of :username 
 	  # revisar cuando se puedan agregar usuarios a la semilla
 #  validates_uniqueness_of :name

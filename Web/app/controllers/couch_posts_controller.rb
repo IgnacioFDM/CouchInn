@@ -4,6 +4,7 @@ class CouchPostsController < ApplicationController
   end
 
   def create
+    
   #	render plain: params[:couch_post].inspect
   @couch_post = CouchPost.new(couch_post_params)
   @couch_post.save
@@ -29,6 +30,6 @@ class CouchPostsController < ApplicationController
 
   private
   def couch_post_params
-  	params.require(:couch_post).permit(:title, :description, :username)
+  	params.require(:couch_post).permit(:title, :description, :couch_type_id, :username, :zone, :rooms, :vacants, :mainpic)
   end
 end

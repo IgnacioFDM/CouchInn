@@ -12,10 +12,34 @@
 	</p>
 
 <p>
-		<%= c.label :Dueño %> <br>
-		<%= c.text_area :username %>
+		<%= c.label :Tipo %> <br>
+		<%= c.number_field :couch_type_id %>
 	</p>
 
+
+		<p>
+		<%= c.label :Zona %> <br>
+		<%= c.text_field :zone %>
+	</p>
+
+	<p>
+		<%= c.label :Habitaciones %> <br>
+		<%= c.number_field :rooms %>
+	</p>
+
+	<p>
+		<%= c.label :Vacantes %> <br>
+		<%= c.number_field :vacants %>
+	</p>
+
+<p>
+		<%= c.label :Dueño %> <br>
+		<%= c.text_field :username %>
+	</p>
+
+<p>
+		<%= c.file_field :mainpic %> <br>
+	</p>
 
 	<p>
 

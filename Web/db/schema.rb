@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110221709) do
+ActiveRecord::Schema.define(version: 20151111061037) do
 
   create_table "couch_posts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.boolean  "baja"
     t.string   "username"
     t.integer  "couch_type_id"
     t.string   "zone"
     t.integer  "rooms"
     t.integer  "vacants"
+    t.string   "mainpic_file_name"
+    t.string   "mainpic_content_type"
+    t.integer  "mainpic_file_size"
+    t.datetime "mainpic_updated_at"
   end
 
   create_table "couch_types", force: :cascade do |t|
