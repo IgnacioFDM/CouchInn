@@ -47,15 +47,13 @@
             </div>
 
             <div class="row">
-<% @couch_posts.each do |couch_type| %>
+<% @couch_posts.each do |couch_post| %>
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <img src="<%= asset_path('testimage3.jpg') %>" alt="">
                         <div class="caption">
-                            <h4 class="pull-right">$24.99</h4>
-                            <h4><a href="/viewcouch">Alojamiento Asd</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h4><%= link_to couch_post.title, couch_post_path(couch_post.id) %></h4>
+                          <p class="truncate-post"><%= couch_post.description %> </p>
                         </div>
                         <div class="ratings">
                             <p class="pull-right">15 reviews</p>
@@ -69,8 +67,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
+<%end%>
+   <!--             <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <img src="<%= asset_path('testimage4.jpg') %>" alt="">
                         <div class="caption">
@@ -179,6 +177,7 @@
                         </div>
                     </div>
                 </div>
+            -->
 
             </div>
 

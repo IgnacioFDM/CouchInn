@@ -24,8 +24,9 @@
                 </div>
 
                 <div class="col-md-7">
-                  <%= link_to("Ver Couch", couch_post_path(couch_post.id), :method => :get, :class => 'btn btn-primary pull-right') %>
-
+                  <%= link_to(couch_post_path(couch_post.id), :method => :get, :class => 'btn btn-primary pull-right') do%>
+             Ver Couch<span class="glyphicon glyphicon-chevron-right"></span>
+             <%end%>
                     <!--<a class="btn btn-primary pull-right" href="#">Ver Couch<span class="glyphicon glyphicon-chevron-right"></span></a>-->
                 </div>
             </div>
