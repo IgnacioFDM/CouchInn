@@ -1,18 +1,24 @@
-﻿<%# add navigation links to this file %>
- <!-- <li><%= link_to  'Couches'  , couch_posts_path %></li> se ve feo -->
-<% if user_signed_in? %>
-  <li><%= link_to 'Editar cuenta', edit_user_registration_path %></li>
-<% else %>
-  <li><%= link_to 'Iniciar sesión', new_user_session_path %></li>
-  <li><%= link_to 'Registrarse', new_user_registration_path %></li>
-<% end %>
-<% if user_signed_in? %>
-  <% if current_user.try(:admin?) %>
-    <li><%= link_to 'Usuarios', users_path %></li>
-    <li><%= link_to 'Tipos de Couches', couch_types_path %></li>
-    <li><%= link_to 'Panel Admin Upmin', '/admin' %></li>
-  <% end %>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method=>'delete' %></li>
-<% end %>
+﻿<ul class="nav navbar-nav">
+    <!-- <li><%= link_to  'Couches'  , couch_posts_path %></li> se ve feo -->
+    <% if user_signed_in? %>
+      <% if current_user.try(:admin?) %>
+        <li><%= link_to 'Usuarios', users_path %></li>
+        <li><%= link_to 'Tipos de Couches', couch_types_path %></li>
+        <li><%= link_to 'Panel Admin Upmin', '/admin' %></li>
+      <% end %>
+    <% end %>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to edit_user_registration_path do %>
+            <%= current_user.try(:name) %> <span class="glyphicon glyphicon-user"></span>
+        <% end %>
+      </li>
+      <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method=>'delete'%></li>
+
+    <% else %>
+      <li><%= link_to 'Iniciar sesión', new_user_session_path %></li>
+      <li><%= link_to 'Registrarse', new_user_registration_path %></li>
+    <% end %>
+</ul>
