@@ -24,7 +24,7 @@ es:
         zone: "Zona"
         rooms: "Habitaciones"
         vacants: "Vacantes"
-        mainpic: "Imágen"        
+        mainpic: "Imagen"        
   date:
     abbr_day_names:
     - dom
