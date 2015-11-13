@@ -19,8 +19,8 @@ class CouchTypesController < ApplicationController
 
   def create
     authorize CouchType
-
-    unless already_exists?(params["couch_type"]["name"]) 
+    previous = CouchType.where("lower(name) = ?", params["couch_type"]["name"].downcase)
+    if previous.empty?
       @couch_type = CouchType.create(params.require(:couch_type).permit(:name))
       if @couch_type.valid?
         redirect_to couch_types_path, :notice => "Tipo creado."
@@ -28,7 +28,7 @@ class CouchTypesController < ApplicationController
         redirect_to couch_types_path, :alert => "No se pudo crear el tipo. " << @couch_type.errors.full_messages.to_sentence
       end
     else
-        redirect_to couch_types_path, :alert => "Nombre ya esta tomado."
+      redirect_to couch_types_path, :alert => "Nombre tomado."
     end
   end
 
@@ -38,18 +38,18 @@ class CouchTypesController < ApplicationController
   end
 
   def update
-    authorize CouchType
+    authorize CouchType   
+    previous = CouchType.where("lower(name) = ?", params["couch_type"]["name"].downcase)
 
-    unless already_exists?(params["couch_type"]["name"]) 
-      @couch_type = CouchType.find(params[:id])
-      if @couch_type.update_attributes(params.require(:couch_type).permit(:name))
-        redirect_to couch_types_path, :notice => "Tipo actualizado."
+    if not previous.empty?
+      if previous.first.id = params[:id]
+          do_update
       else
-        redirect_to couch_types_path, :alert => "Error al actualizar."
+          redirect_to couch_types_path, :alert => "Nombre tomado."
       end
     else
-        redirect_to couch_types_path, :alert => "Nombre ya esta tomado."
-    end
+      do_update
+    end 
   end
 
   def destroy
@@ -65,8 +65,14 @@ class CouchTypesController < ApplicationController
   end
 
   private
-  def already_exists?(name)
-    CouchType.where("lower(name) = ?", name.downcase).count > 0
+  def do_update
+    @couch_type = CouchType.find(params[:id])
+    if @couch_type.update_attributes(params.require(:couch_type).permit(:name))
+    redirect_to couch_types_path, :notice => "Tipo actualizado."
+    else
+    redirect_to couch_types_path, :alert => "Error al actualizar."
+    end
   end
-
 end
+
+
