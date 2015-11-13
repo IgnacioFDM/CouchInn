@@ -126,7 +126,7 @@ es:
     messages:
       accepted: debe ser aceptado
       blank: no puede estar en blanco
-      present: debe estar en blanco
+      present: debe estar presente
       confirmation: no coincide
       empty: no puede estar vacío
       equal_to: debe ser igual a %{count}
@@ -140,7 +140,7 @@ es:
       less_than_or_equal_to: debe ser menor o igual que %{count}
       not_a_number: no es un número
       not_an_integer: debe ser un entero
-      odd: debe ser un número non
+      odd: debe ser un número impar
       record_invalid: 'La validación falló: %{errors}'
       restrict_dependent_destroy:
         one: No se puede eliminar el registro porque existe un %{record} dependiente
