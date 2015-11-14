@@ -12,23 +12,15 @@ class CouchTypesController < ApplicationController
     authorize CouchType
   end
 
-  def show
-  	@couch_type = CouchType.find(params[:id])
-    authorize CouchType
-  end
-
   def create
     authorize CouchType
-    previous = CouchType.where("lower(name) = ?", params["couch_type"]["name"].downcase)
-    if previous.empty?
-      @couch_type = CouchType.create(params.require(:couch_type).permit(:name))
-      if @couch_type.valid?
-        redirect_to couch_types_path, :notice => "Tipo creado."
-      else
-        redirect_to couch_types_path, :alert => "No se pudo crear el tipo. " << @couch_type.errors.full_messages.to_sentence
-      end
+    parameters = params.require(:couch_type).permit(:name,:disabled)
+    @couch_type = CouchType.find_or_initialize_by(parameters.permit(:name))
+    @couch_type.disabled = parameters[:disabled]
+    if @couch_type.save
+      redirect_to couch_types_path , notice: "Tipo creado o ya existente."
     else
-      redirect_to couch_types_path, :alert => "Nombre tomado."
+      redirect_to couch_types_path , alert: "No se pudo crear tipo."
     end
   end
 
@@ -38,41 +30,32 @@ class CouchTypesController < ApplicationController
   end
 
   def update
-    authorize CouchType   
-    previous = CouchType.where("lower(name) = ?", params["couch_type"]["name"].downcase)
+    authorize CouchType
+    @couch_type = CouchType.find(params[:id])
 
-    if not previous.empty?
-      if previous.first.id = params[:id]
-          do_update
-      else
-          redirect_to couch_types_path, :alert => "Nombre tomado."
-      end
+    if CouchType.where(:name => params[:couch_type][:name].downcase).count > 0 && CouchType.where(:name =>params[:couch_type][:name].downcase).first.id != params[:id].to_i
+      redirect_to @couch_types, notice: "Nombre tomado."
     else
-      do_update
-    end 
+     
+      @couch_type.update_attributes(params.require(:couch_type).permit(:name,:disabled))
+      if @couch_type.valid?
+        redirect_to couch_types_path , notice: "Tipo actualizado"
+      else
+        redirect_to couch_types_path , notice: "Error al actualizar" 
+      end
+    end
+
   end
 
   def destroy
     authorize CouchType
+
     couch_type = CouchType.find(params[:id])
-    if couch_type.couch_posts.empty?
-      if couch_type.destroy
-        redirect_to couch_types_path, :notice => "Tipo eliminado."
-      end
-    else
-      redirect_to couch_types_path, :alert => "No se puede eliminar, existen Couches de ese tipo."
-    end
+    couch_type.destroy!
+    redirect_to couch_types_path , notice: "Tipo eliminado"
   end
 
-  private
-  def do_update
-    @couch_type = CouchType.find(params[:id])
-    if @couch_type.update_attributes(params.require(:couch_type).permit(:name))
-    redirect_to couch_types_path, :notice => "Tipo actualizado."
-    else
-    redirect_to couch_types_path, :alert => "Error al actualizar."
-    end
-  end
+
 end
 
 

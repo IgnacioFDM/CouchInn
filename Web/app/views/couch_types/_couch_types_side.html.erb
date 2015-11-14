@@ -2,7 +2,7 @@
     <img class="lead" src="<%= asset_path('logo.png') %>" alt="">
     <div class="list-group">
         <% CouchType.all.each do |couch_type| %>
-          <%= link_to(couch_type.name, couch_posts_path, :class => "list-group-item") %>
+          <%= link_to(couch_type.name.capitalize, couch_posts_path, :class => "list-group-item") %>
         <% end %>
     </div>
 </div>

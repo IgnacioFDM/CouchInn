@@ -1,16 +1,23 @@
-﻿<td>
-    Nombre: <%= couch_type.name %>
+﻿<% if couch_type.disabled? %>
+  <td class="text-muted">
+    <%= couch_type.name.capitalize %> (Deshabilitado)
+  </td>
+<% else %>
+  <td>
+    <%= couch_type.name.capitalize %>
+  </td>
+<% end %>
+
+<td class="col-md-1 text-right text-muted">
+
 </td>
 
-
-
 <td class="col-md-1 text-right">
-	<% if couch_type.couch_posts.empty?%>
-    <%= link_to("Eliminar", couch_type_path(couch_type), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs pull-left') %>
-    <% end %>
+  <% if couch_type.couch_posts.empty?%>
+  <%= link_to("Eliminar", couch_type_path(couch_type), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs pull-left') %>
+  <% end %>
 </td>
 
-
 <td class="col-md-1 text-right">
-    <%= link_to("Modificar", edit_couch_type_path(couch_type), :method => :get, :class => 'btn btn-info btn-xs pull-right') %>
+  <%= link_to("Modificar", edit_couch_type_path(couch_type), :method => :get, :class => 'btn btn-info btn-xs pull-right') %>
 </td>

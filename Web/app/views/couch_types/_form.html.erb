@@ -2,6 +2,9 @@
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, :required => true, :autofocus => true, class: 'form-control' %>
+    <br>
+    <%= f.check_box :disabled , class:'check_box' %>
+    <%= f.label :disabled %> 
   </div>
-  <%= f.submit 'Guardar', :class => 'button right' %>
-  <% end %>
+  <%= f.submit 'Guardar', class: 'button right' %>
+ <% end %>

@@ -17,6 +17,7 @@ es:
         telephone: "Teléfono"
       couch_type:
         name: "Nombre"
+        disabled: "Deshabilitado"
       couch_post:
         title: "Título"
         description: "Descripción"
