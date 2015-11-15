@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114035149) do
+ActiveRecord::Schema.define(version: 20151115042657) do
 
   create_table "couch_posts", force: :cascade do |t|
     t.string   "title"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20151114035149) do
     t.string   "mainpic_content_type"
     t.integer  "mainpic_file_size"
     t.datetime "mainpic_updated_at"
+  end
+
+  create_table "couch_reservation_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "couch_post_id"
+    t.datetime "responded_at"
+    t.boolean  "accepted"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "couch_types", force: :cascade do |t|

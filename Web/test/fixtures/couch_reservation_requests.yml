@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  couch_post_id: 1
+  responded_at: 2015-11-15 01:26:57
+  accepted: false
+  start_date: 2015-11-15
+  end_date: 2015-11-15
+  amount: 1
+
+two:
+  user_id: 1
+  couch_post_id: 1
+  responded_at: 2015-11-15 01:26:57
+  accepted: false
+  start_date: 2015-11-15
+  end_date: 2015-11-15
+  amount: 1
