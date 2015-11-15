@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :users
   resources :couch_types
   resources :couch_posts
+  resources :couch_reservation_requests
 end
