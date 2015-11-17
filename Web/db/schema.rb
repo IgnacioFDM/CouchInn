@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115042657) do
+ActiveRecord::Schema.define(version: 20151117175745) do
 
   create_table "couch_posts", force: :cascade do |t|
     t.string   "title"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20151115042657) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.boolean  "baja"
-    t.string   "username"
     t.integer  "couch_type_id"
     t.string   "zone"
     t.integer  "rooms"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151115042657) do
     t.string   "mainpic_content_type"
     t.integer  "mainpic_file_size"
     t.datetime "mainpic_updated_at"
+    t.integer  "user_id"
   end
 
   create_table "couch_reservation_requests", force: :cascade do |t|

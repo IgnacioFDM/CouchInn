@@ -1,6 +1,6 @@
 class CouchPost < ActiveRecord::Base
   belongs_to :couch_type
-  belongs_to :username
+  belongs_to :user
   has_many :couch_reservation_requests
 
   has_attached_file :mainpic, styles: { frontpage: "320x150#", couchlist: "300x240#", bigpanoramic: "800x300#"}, default_url: "images/:style/missing.png"
@@ -11,5 +11,4 @@ class CouchPost < ActiveRecord::Base
   validates_presence_of :vacants
   validates_presence_of :zone
   validates_attachment_content_type :mainpic, :content_type =>["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  validates_presence_of :username 
 end
