@@ -1,2 +1,29 @@
-<h1>CouchReservationRequests#new</h1>
-<p>Find me in app/views/couch_reservation_requests/new.html.erb</p>
+<div class="authform">
+	<h3>Pedido de reserva</h3>
+
+	<%= form_for :couch_reservation_request, url: couch_reservation_requests_path do |c| %>
+	Couch: <%= @couch_reservation_request.couch_post.title %>
+	<br>
+	De: <%= @couch_reservation_request.couch_post.user.name %>
+	<br>
+	Capacidad: <%= @couch_reservation_request.couch_post.vacants %>
+	
+	<%= c.hidden_field :couch_post_id, value: @couch_reservation_request.couch_post_id %>
+	<div class="form-group">
+		<%= c.label :start_date %>
+		<%= c.date_field :start_date, required: :true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :end_date %>
+		<%= c.date_field :end_date, required: :true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :amount %>
+		<%= c.number_field :amount, required: :true, min: 1, max: @couch_reservation_request.couch_post.vacants, class: 'form-control' %>
+	</div>
+
+	<%= c.submit 'Hacer pedido de reserva', :class => 'button right' %>
+	<% end %>
+</div>
