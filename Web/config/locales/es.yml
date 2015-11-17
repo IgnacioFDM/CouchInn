@@ -8,7 +8,7 @@ es:
     attributes:
       user:
         name: "Nombre"
-        email: "Email"
+        email: "E-mail"
         password: "Password"
         password_confirmation: "Confirmar Password"
         current_password: "Password Actual"
@@ -21,11 +21,16 @@ es:
       couch_post:
         title: "Título"
         description: "Descripción"
-        couch_type_id: "Categoria"
+        couch_type_id: "Categoría"
         zone: "Zona"
         rooms: "Habitaciones"
         vacants: "Vacantes"
-        mainpic: "Imagen"        
+        mainpic: "Imagen" 
+      couch_reservation_request:
+        couch_post_id: "Couch"
+        start_date: "Fecha de entrada"
+        end_date: "Fecha de salida"
+        amount: "Cantidad de personas"
   date:
     abbr_day_names:
     - dom
