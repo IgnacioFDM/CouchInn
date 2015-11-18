@@ -7,19 +7,19 @@ class CouchReservationRequestPolicy
   end
 
   def new?
-    @current_user.admin?
+    @current_user
   end
 
   def index?
-    @current_user.admin?
+    @current_user
   end
   
   def create?
-    @current_user.admin?
+    @current_user
   end
 
   def show?
-    @current_user.admin?
+    @current_user
   end
 
   def edit?

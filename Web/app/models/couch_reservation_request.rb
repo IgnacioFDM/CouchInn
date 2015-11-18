@@ -5,7 +5,8 @@ class CouchReservationRequest < ActiveRecord::Base
   validates_presence_of :end_date
   validates_presence_of :amount
   validate :state
-  validate :dates
+  validate :date_difference
+  validate :date
   belongs_to :user
   belongs_to :couch_post
 
@@ -15,9 +16,14 @@ class CouchReservationRequest < ActiveRecord::Base
       errors.add :base, 'Pedido inválido. accepted no nulo ssi. responded_at no nulo'
     end
   end
-  def dates
-    if self.end_date < self.start_date
+  def date_difference
+    if self.end_date < self.start_date 
       errors.add :base, 'Fecha de salida no puede ser anterior a la fecha de entrada.'
+    end
+  end
+  def date
+    if self.start_date.past?
+      errors.add :base, 'Fecha de entrada no puede ser anterior ni hoy.'
     end
   end
 end

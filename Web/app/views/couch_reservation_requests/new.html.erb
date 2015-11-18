@@ -2,13 +2,14 @@
 	<h3>Pedido de reserva</h3>
 
 	<%= form_for :couch_reservation_request, url: couch_reservation_requests_path do |c| %>
-	Couch: <%= @couch_reservation_request.couch_post.title %>
+	Couch: <%= link_to @couch_reservation_request.couch_post.title, couch_post_path(@couch_reservation_request.couch_post) %>
 	<br>
-	De: <%= @couch_reservation_request.couch_post.user.name %>
+	De: <%= link_to @couch_reservation_request.couch_post.user.name, user_path(@couch_reservation_request.couch_post.user) %>
 	<br>
 	Capacidad: <%= @couch_reservation_request.couch_post.vacants %>
 	
 	<%= c.hidden_field :couch_post_id, value: @couch_reservation_request.couch_post_id %>
+	
 	<div class="form-group">
 		<%= c.label :start_date %>
 		<%= c.date_field :start_date, required: :true, class: 'form-control' %>
@@ -27,3 +28,4 @@
 	<%= c.submit 'Hacer pedido de reserva', :class => 'button right' %>
 	<% end %>
 </div>
+

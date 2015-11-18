@@ -21,7 +21,8 @@ class CouchReservationRequestsController < ApplicationController
     if success
       redirect_to couch_reservation_requests_path, notice: "Pedido hecho." 
     else
-      redirect_to couch_reservation_requests_path, alert: "No se pudo hacer pedido: " << @couch_reservation_request.errors.full_messages.to_sentence
+      redirect_to "/couch_reservation_requests/new?couch_post_id="<< parameters[:couch_post_id] , :alert =>"No se pudo hacer pedido: " << @couch_reservation_request.errors.full_messages.to_sentence
+      return
     end
 
   end
