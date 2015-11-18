@@ -44,8 +44,7 @@
                  <div class="col-md-50">
 
                             <span>
-
-                        <a class="btn btn-primary">Reservar</a>
+                        <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
                     </span>
                             <span>
                         <a class="btn btn-success">¿Visitaste este Couch? ¡Deja un comentario!</a>
