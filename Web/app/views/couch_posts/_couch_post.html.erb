@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-8">
             <h3><%= link_to couch_post.title, couch_post_path(couch_post.id) %></h3>
-            <h4><%= couch_post.username %></h4>
+            <h4><%= couch_post.user.name %></h4>
             <p class="truncate-post"><%= couch_post.description %> </p>
             <div class="row">
                 <div class="col-md-5">
