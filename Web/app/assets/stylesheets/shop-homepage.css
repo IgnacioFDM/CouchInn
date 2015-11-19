@@ -65,3 +65,12 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.carousel-link {
+  color: white;
+  text-shadow: black 0.0em 0.0em 0.3em;
+}
+
+.carousel-link:hover {
+  color: white;
+}
