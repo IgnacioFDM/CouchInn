@@ -11,7 +11,7 @@ class CouchPostsController < ApplicationController
     authorize CouchPost
     @couch_post = CouchPost.create(couch_post_params)
     if @couch_post.valid?
-      redirect_to @couch_post, :notice => "Tipo creado."
+      redirect_to @couch_post, :notice => "Aviso creado."
     else
       redirect_to new_couch_post_path, :alert => "No se pudo crear el couch. " << @couch_post.errors.full_messages.to_sentence
     end
@@ -38,6 +38,6 @@ class CouchPostsController < ApplicationController
 
   private
   def couch_post_params
-  	params.require(:couch_post).permit(:title, :description, :couch_type_id, :username, :zone, :rooms, :vacants, :mainpic)
+  	params.require(:couch_post).permit(:title, :description, :couch_type_id, :user_id, :zone, :rooms, :vacants, :mainpic)
   end
 end

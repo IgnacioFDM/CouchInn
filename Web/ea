@@ -1,0 +1,96 @@
+********************************* 1. row *********************************
+                    id: 1
+                 email: admin@couchinn.com
+    encrypted_password: $2a$10$IZvKozbWlHeHU30p/dwwh.0K7j.6b.LwKCUnQTg5tW79Ejfr5ZHFW
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+         sign_in_count: 0
+    current_sign_in_at: 
+       last_sign_in_at: 
+    current_sign_in_ip: 
+       last_sign_in_ip: 
+            created_at: 2015-11-19 00:16:58 UTC
+            updated_at: 2015-11-19 00:16:58 UTC
+                  name: Jorge
+                  role: admin
+                gender: 
+             telephone: 123456789
+             birthdate: 1970-01-01
+********************************* 2. row *********************************
+                    id: 2
+                 email: ramiro@couchinn.com
+    encrypted_password: $2a$10$ASF4yn5.WTmKR99Oa580cuL3ryDoGCanC0wj/BBqkhAUgZ1TuA5Oi
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+         sign_in_count: 0
+    current_sign_in_at: 
+       last_sign_in_at: 
+    current_sign_in_ip: 
+       last_sign_in_ip: 
+            created_at: 2015-11-19 00:16:58 UTC
+            updated_at: 2015-11-19 00:16:58 UTC
+                  name: Ramiro
+                  role: user
+                gender: 
+             telephone: 0123456789
+             birthdate: 1970-02-01
+********************************* 3. row *********************************
+                    id: 3
+                 email: santiago@couchinn.com
+    encrypted_password: $2a$10$Rv086EGIp9RgbDGFxHju/uXO.wqj4Y6W9EIIPiVuI0M.2uIGJSY3u
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+         sign_in_count: 1
+    current_sign_in_at: 2015-11-19 00:23:56 UTC
+       last_sign_in_at: 2015-11-19 00:23:56 UTC
+    current_sign_in_ip: 127.0.0.1
+       last_sign_in_ip: 127.0.0.1
+            created_at: 2015-11-19 00:16:58 UTC
+            updated_at: 2015-11-19 00:23:56 UTC
+                  name: Santiago
+                  role: user
+                gender: 
+             telephone: 0123456789
+             birthdate: 1970-02-01
+********************************* 4. row *********************************
+                    id: 4
+                 email: altoke_perro@dogchow.com
+    encrypted_password: $2a$10$h4eKQnyTjj1KNWDjMDBvROGfBqPi3QcGW6vtw5xaIsYiywffcS03u
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+         sign_in_count: 0
+    current_sign_in_at: 
+       last_sign_in_at: 
+    current_sign_in_ip: 
+       last_sign_in_ip: 
+            created_at: 2015-11-19 00:16:58 UTC
+            updated_at: 2015-11-19 00:16:58 UTC
+                  name: Doggo
+                  role: user
+                gender: 
+             telephone: 101
+             birthdate: 1970-02-01
+********************************* 5. row *********************************
+                    id: 5
+                 email: coach_finn@couchinn.com
+    encrypted_password: $2a$10$AyU5rnGKinXwnPCojo8hJOrsHFHRStMmWbRywSpIywrXCWXFoLcKq
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+         sign_in_count: 0
+    current_sign_in_at: 
+       last_sign_in_at: 
+    current_sign_in_ip: 
+       last_sign_in_ip: 
+            created_at: 2015-11-19 00:16:59 UTC
+            updated_at: 2015-11-19 00:16:59 UTC
+                  name: Coach Finn
+                  role: user
+                gender: 
+             telephone: 0123456789
+             birthdate: 1980-02-01
+5 rows in set
