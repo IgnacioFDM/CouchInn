@@ -1,0 +1,2 @@
+module CouchPostFeedbacksHelper
+end

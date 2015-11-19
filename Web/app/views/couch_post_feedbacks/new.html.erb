@@ -1,7 +1,7 @@
 <div class="authform">
-	<h3>Publicar Couch</h3>
+	<h3>Publicar Comentario</h3>
 
-	<%= form_for :couch_post, url: couch_posts_path do |c| %>
+	<%= form_for :couch_post_feedback, url: couch_post_feedbacks_path do |c| %>
 	<div class="form-group">
 		<%= c.label :title %>
 		<%= c.text_field :title, class: 'form-control' %>
@@ -14,7 +14,7 @@
 
 	<div class="form-group">
 		<%= c.label :couch_type_id %>
-		<%= c.collection_select( :couch_type_id, CouchType.all.where(disabled: false) , :id, :name, include_blank: true) %>
+		<%= c.collection_select( :couch_type_id, CouchType.all , :id, :name, include_blank: true) %>
 	</div>
 
 
@@ -30,20 +30,22 @@
 	</div>
 
 	<div class="form-group">
-		<%= c.label :vacants %>
-		<%= c.number_field :vacants, class: 'form-control' %>
+		<%= c.label :score %>
+		<%= c.number_field :score, class: 'form-control' %>
 	</div>
 
 	<div class="form-group" >
 	
-		<%= c.hidden_field :user_id, value: @current_user.id %>
+		<%= c.hidden_field :owner_id, value: @current_user.id %>
 	</div>
 
-	<div class="form-group">
-		<%= c.label :mainpic %>
-		<%= c.file_field :mainpic, class: 'form-control' %>
+	<div class="form-group" >
+	
+		<%= c.hidden_field :target_id, value: @current_couch_post.id %>
 	</div>
 
-	<%= c.submit 'Publicar Couch', :class => 'button right' %>
+
+
+	<%= c.submit 'Publicar Comentario', :class => 'button right' %>
 	<% end %>
 </div>

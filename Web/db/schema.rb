@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117175745) do
+ActiveRecord::Schema.define(version: 20151119133746) do
+
+  create_table "couch_post_feedbacks", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.text     "comment"
+    t.integer  "score"
+    t.integer  "target_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "couch_posts", force: :cascade do |t|
     t.string   "title"

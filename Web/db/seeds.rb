@@ -53,25 +53,25 @@ user4.birthdate = Date.new(1980,2,1)
 user4.save!
 puts 'CREATED REGULAR USER: ' << user4.name
 
-choza = CouchType.find_or_create_by!(name: 'Choza')
+choza = CouchType.find_or_create_by!(name: 'Choza', disabled: false)
 puts 'CREATED COUCH TYPE: ' << choza.name
 
-casa = CouchType.find_or_create_by!(name: 'Casa')
+casa = CouchType.find_or_create_by!(name: 'Casa', disabled: false)
 puts 'CREATED COUCH TYPE: ' << casa.name
 
-carpa = CouchType.find_or_create_by!(name: 'Carpa')
+carpa = CouchType.find_or_create_by!(name: 'Carpa', disabled: false)
 puts 'CREATED COUCH TYPE: ' << carpa.name
 
-monoambiente = CouchType.find_or_create_by!(name: 'Monoambiente')
+monoambiente = CouchType.find_or_create_by!(name: 'Monoambiente', disabled: false)
 puts 'CREATED COUCH TYPE: ' << monoambiente.name
 
-departamento = CouchType.find_or_create_by!(name: 'Departamento')
+departamento = CouchType.find_or_create_by!(name: 'Departamento', disabled: false)
 puts 'CREATED COUCH TYPE: ' << departamento.name
 
-trailer = CouchType.find_or_create_by!(name: 'Trailer')
+trailer = CouchType.find_or_create_by!(name: 'Trailer', disabled: false)
 puts 'CREATED COUCH TYPE: ' << trailer.name
 
-exterior = CouchType.find_or_create_by!(name: 'Exterior')
+exterior = CouchType.find_or_create_by!(name: 'Exterior', disabled: false)
 puts 'CREATED COUCH TYPE: ' << exterior.name
 
 
