@@ -22,6 +22,9 @@ test:
 
 production:
   adapter: postgresql
-  database: couchinn_production
+  host: <%= ENV["COUCHINN_DB_HOST"] %>
+  username: <%= ENV["COUCHINN_DB_USER"] %>
+  password: <%= ENV["COUCHINN_DB_PASSWORD"] %>
+  database: <%= ENV["COUCHINN_DB_DB"] %>
   pool: 5
   timeout: 5000
