@@ -12,7 +12,7 @@
         <div class="panel-body">
           <%= rating_for @user, "rating" , disable_after_rate: false %>
           <br>
-          <%= form_tag({controller: "user_feedback", action: "create"}) do %>
+          <%= form_tag({controller: "user_feedbacks", action: "create"}) do %>
           <div class="form-group">
             <%= label_tag("Comentario") %>
             <br>

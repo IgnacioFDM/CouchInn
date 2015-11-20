@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :couch_types
   resources :couch_posts
   resources :couch_reservation_requests
-  resources :user_feedback
+  resources :user_feedbacks
 end
