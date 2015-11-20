@@ -1,0 +1,14 @@
+﻿<div class="container">
+    <h3>Mis Couches</h3>
+    <table class="table table-striped">
+        <tbody>
+            <% @couch_posts = @couch_posts.where(user_id: @current_user.id) %>
+            <% @couch_posts.each do |my_couch_post| %>
+                <tr>
+                    <%= render my_couch_post %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= link_to("Crear nuevo Aviso de Couch", new_couch_post_path , :class => 'button-xs')%>
+</div>
