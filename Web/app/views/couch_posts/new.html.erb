@@ -4,34 +4,34 @@
 	<%= form_for :couch_post, url: couch_posts_path do |c| %>
 	<div class="form-group">
 		<%= c.label :title %>
-		<%= c.text_field :title, class: 'form-control' %>
+		<%= c.text_field :title, required: :true, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
 		<%= c.label :description %>
-		<%= c.text_area :description, class: 'form-control' %>
+		<%= c.text_area :description, required: :true, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
 		<%= c.label :couch_type_id %>
-		<%= c.collection_select( :couch_type_id, CouchType.all.where(disabled: false) , :id, :name, include_blank: true) %>
+		<%= c.collection_select( :couch_type_id, CouchType.all.where(disabled: false) , :id, :name, {:prompt => 'Elegí una categoría'}, {:required => true}) %>
 	</div>
 
 
 
 	<div class="form-group">
 		<%= c.label :zone %>
-		<%= c.text_field :zone, class: 'form-control' %>
+		<%= c.text_field :zone, required: :true, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
 		<%= c.label :rooms %>
-		<%= c.number_field :rooms, class: 'form-control' %>
+		<%= c.number_field :rooms, required: :true, min: 1, class: 'form-control' %>
 	</div>
 
 	<div class="form-group">
 		<%= c.label :vacants %>
-		<%= c.number_field :vacants, class: 'form-control' %>
+		<%= c.number_field :vacants, required: :true, min: 1, class: 'form-control' %>
 	</div>
 
 	<div class="form-group" >
@@ -41,7 +41,7 @@
 
 	<div class="form-group">
 		<%= c.label :mainpic %>
-		<%= c.file_field :mainpic, class: 'form-control' %>
+		<%= c.file_field :mainpic, required: :true, class: 'form-control' %>
 	</div>
 
 	<%= c.submit 'Publicar Couch', :class => 'button right' %>
