@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   #root to: 'couch_posts#show'

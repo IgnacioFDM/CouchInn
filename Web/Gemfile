@@ -34,3 +34,4 @@ group :production do
 end
 
 gem 'hirb'
+gem 'ratyrate'
