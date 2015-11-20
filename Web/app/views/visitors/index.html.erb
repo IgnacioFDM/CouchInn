@@ -28,7 +28,7 @@
                                 <img class="slide-image" src="<%= couch_post.mainpic.url(:bigpanoramic) %>" alt="">
                                 <div class="carousel-caption">
                                   <h3><%= link_to couch_post.title, couch_post_path(couch_post.id), class: 'carousel-link' %></h3>
-                                  <p><%= link_to couch_post.description, couch_post_path(couch_post.id), class: 'carousel-link hidden-xs' %></p>
+                                  <p><%= link_to couch_post.description.truncate_words(20), couch_post_path(couch_post.id), class: 'carousel-link hidden-xs' %></p>
                                 </div>
                             </div>
                           <% end %>
