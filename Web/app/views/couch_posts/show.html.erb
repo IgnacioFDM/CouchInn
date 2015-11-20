@@ -41,21 +41,28 @@
                 <div class="well">
 
 
-                 <div class="col-md-50">
-
-                            <span>
+                    <div class="row hidden-xs">
+                      <div class="col-md-12">
                         <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
-                    </span>
-                            <span>
                         <a class="btn btn-success">¿Visitaste este Couch? ¡Deja un comentario!</a>
-                   </span>
-                          <span>
                         <a class="btn btn-danger">Reportar Publicación</a>
-                   </span>
+                      </div>
+                    </div>
 
-                </div>
-
-
+                    <div class="row hidden-sm hidden-md hidden-lg">
+                      <div class="col-md-12">
+                        <ul class="list-unstyled">
+                          <li>
+                            <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary mobile-button' %>
+                          </li>
+                          <li>
+                            <a class="btn btn-success mobile-button">Comentar</a>
+                          </li>
+                          <li>
+                            <a class="btn btn-danger mobile-button">Reportar Publicación</a>
+                          </li>
+                      </div>
+                    </div>
                     <hr>
 
                     <div class="row">
