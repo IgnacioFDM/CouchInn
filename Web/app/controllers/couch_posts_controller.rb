@@ -1,7 +1,6 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show]
-  after_action :verify_authorized
-  attr_reader :current_user
+  before_action :authenticate_user!, :except => [:index, :show, :mycouchposts]
+  after_action :verify_authorized, :except => [:mycouchposts]
 
   def new
     authorize CouchPost
@@ -23,8 +22,7 @@ class CouchPostsController < ApplicationController
     @couch_posts = CouchPost.all
   end
 
-    def mycouchposts(current_user)
-    @current_user = current_user
+  def mycouchposts
     @couch_posts = CouchPost.all
   end
 

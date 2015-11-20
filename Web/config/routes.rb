@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   #root to: 'couch_posts#show'
-  get '/mycouchposts' => 'couch_posts#mycouchposts', as: 'mycouchposts'
+  get '/my_couch_posts' => 'couch_posts#mycouchposts', as: 'my_couch_posts'
   devise_for :users
   resources :users
   resources :couch_types
