@@ -1,13 +1,13 @@
-class UserPolicy
+class UserFeedbackPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
     @current_user = current_user
     @user = model
   end
-  
-  def index?
-    @current_user.admin?
+
+  def create?
+    @current_user
   end
 
   def show?
@@ -15,12 +15,11 @@ class UserPolicy
   end
 
   def update?
-    @current_user.admin?
+    @current_user
   end
 
   def destroy?
-    return false if @current_user == @user
-    @current_user.admin?
+    @current_user
   end
 
 end
