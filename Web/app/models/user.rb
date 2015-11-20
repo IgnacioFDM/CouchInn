@@ -20,12 +20,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
-  validates :telephone, :name, :email, :birthdate, presence: true
+  validates :telephone, :name, :birthdate, presence: true
   validates :telephone, numericality: { only_integer:true }
   validate :old_enough
 
   def old_enough
-    if self.birthdate > 18.years.ago
+    if self.birthdate.present? and self.birthdate > 18.years.ago
       errors.add(:birthdate, 'Debes ser mayor de 18 años')
     end
   end
