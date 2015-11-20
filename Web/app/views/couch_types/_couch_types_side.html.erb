@@ -1,5 +1,5 @@
-<div class="col-md-3">
-    <img class="lead" src="<%= asset_path('logo.png') %>" alt="">
+﻿<div class="col-md-3">
+    <a href="/"><img class="lead"  src="<%= asset_path('logo.png') %>" alt=""></a>
     <div class="list-group">
         <% CouchType.all.each do |couch_type| %>
           <%= link_to(couch_type.name.capitalize, couch_posts_path, :class => "list-group-item") %>
