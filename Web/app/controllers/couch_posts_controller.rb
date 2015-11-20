@@ -1,6 +1,6 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show]
-  after_action :verify_authorized
+  before_action :authenticate_user!, :except => [:index, :show, :mycouchposts]
+  after_action :verify_authorized, :except => [:mycouchposts]
 
   def new
     authorize CouchPost
@@ -19,6 +19,10 @@ class CouchPostsController < ApplicationController
 
   def index
     skip_authorization
+    @couch_posts = CouchPost.all
+  end
+
+  def mycouchposts
     @couch_posts = CouchPost.all
   end
 
