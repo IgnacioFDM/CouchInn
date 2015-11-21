@@ -40,7 +40,7 @@ class CouchPostsController < ApplicationController
   end
 
   def mycouchposts
-    @couch_posts = CouchPost.all
+    @my_couch_posts = CouchPost.where(user_id: current_user.id)
   end
 
   def show
