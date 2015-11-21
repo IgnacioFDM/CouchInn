@@ -23,7 +23,7 @@ class CouchPostsController < ApplicationController
     @showingall = true
 
     if params[:s].present?
-      @couch_posts = @couch_posts.where("title LIKE ? OR description LIKE ?", "%#{params[:s]}%", "%#{params[:s]}%")
+      @couch_posts = @couch_posts.where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{params[:s].downcase}%", "%#{params[:s].downcase}%")
       @filter_text = "Buscando \"#{params[:s]}\" "
     else
       @filter_text = "Mostrando todos "
