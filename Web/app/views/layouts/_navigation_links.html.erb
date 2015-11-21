@@ -11,7 +11,7 @@
       <ul class="dropdown-menu">
         <li><%= link_to 'Perfil', edit_user_registration_path %></li>
         <li><%= link_to 'Reservas', couch_reservation_requests_path %></li>
-        <li><%= link_to 'Mis Couches', edit_user_registration_path %></li>
+        <li><%= link_to 'Mis Couches', my_couch_posts_path %></li>
         <% if current_user.try(:admin?) %>
           <li><%= link_to 'Usuarios', users_path %></li>
           <li><%= link_to 'Tipos de Couches', couch_types_path %></li>
