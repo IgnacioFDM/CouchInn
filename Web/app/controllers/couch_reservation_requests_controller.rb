@@ -37,6 +37,8 @@ class CouchReservationRequestsController < ApplicationController
 
   def index
     authorize CouchReservationRequest
+    @foreign_requests = CouchReservationRequest.joins(:couch_post).where(:couch_posts => {:user_id => current_user.id})
+    @my_requests = current_user.couch_reservation_requests
   end
 
   def show
@@ -44,3 +46,4 @@ class CouchReservationRequestsController < ApplicationController
   end
 
 end
+

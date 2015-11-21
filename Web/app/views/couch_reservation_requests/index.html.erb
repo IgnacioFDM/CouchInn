@@ -1,2 +1,26 @@
-<h1>CouchReservationRequests#index</h1>
-<p>Find me in app/views/couch_reservation_requests/index.html.erb</p>
+<div class="container">
+  <h3>Pedidos de reserva</h3>
+  <h4>Pedidos hechos a mis publicaciones</h4>
+  <table class="table table-striped">
+    <tbody>
+        <% @foreign_requests.each do |foreign_request| %>
+          <tr>
+            <%= render partial: "foreign_request", object: foreign_request %>
+            <br>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+
+  <h4>Pedidos hechos por mí</h4>
+  <table class="table table-striped">
+    <tbody>
+        <% @my_requests.each do |my_request| %>
+          <tr>
+            <%= render partial: "foreign_request", object: my_request %>
+            <br>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
