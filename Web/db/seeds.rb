@@ -77,46 +77,46 @@ puts 'CREATED COUCH TYPE: ' << exterior.name
 
 
 couch_post = CouchPost.find_or_create_by!(title: 'Casa de playa', description: 'Casa a 2 cuadras de la costa', couch_type_id: casa.id , user_id: user1.id , rooms: 1, vacants: 2, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Monoambiente.jpg")
+couch_post.mainpic = File.open("app/assets/images/beachhouse.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Cabaña en el bosque', description: 'Cabaña cómoda, en la semana, barro, bichos, vos y yo, ol de nait', couch_type_id: casa.id, user_id: user2.id, rooms: 1, vacants: 1, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Choza.jpg")
+couch_post.mainpic = File.open("app/assets/images/forestcabin.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Carpa en Microcentro', description: 'Best option for humble tourists, make your reservations now!', couch_type_id: carpa.id, user_id: user3.id, rooms: 1, vacants: 4, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Cabana.jpg")
+couch_post.mainpic = File.open("app/assets/images/citytent.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Aula de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: monoambiente.id, user_id: user4.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Monoambiente.jpg")
+couch_post.mainpic = File.open("app/assets/images/uniroom.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Distorsión Espacio-Tiempo', description: 'Singularidad infinitamente amplia -literalmente-. Se está un poco apretado pero siempre hay lugar para uno más.', couch_type_id: exterior.id , user_id: user1.id, rooms: 1, vacants: 99, zone:'Sagittariius A*')
-couch_post.mainpic = File.open("app/assets/images/Cabana.jpg")
+couch_post.mainpic = File.open("app/assets/images/singo.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Garage vacío', description: 'Tuve que vender el auto así que cuento con lugar extra para los que busquen un lugar donde quedarse un tiempo. Eso sí, ojo con las manchas de aceite.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 4, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Cabana.jpg")
+couch_post.mainpic = File.open("app/assets/images/emptygarage.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Casa rodante equipada', description: 'Ofrezco alojamiento y pago a cambio de colaboración con proyecto personal de Química. Cuantas menos cosas preguntes, mejor nos vamos a llevar.', couch_type_id: trailer.id, user_id: user3.id, rooms: 1, vacants: 1, zone:'Los Hornos')
-couch_post.mainpic = File.open("app/assets/images/Monoambiente.jpg")
+couch_post.mainpic = File.open("app/assets/images/trailer.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Depósito del súpel', description: 'Chino tenel lugal. Lugal pala pelsona. No chico, glande, cole aile flesco.', couch_type_id: casa.id, user_id: user4.id, rooms: 1, vacants: 2, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Monoambiente.jpg")
+couch_post.mainpic = File.open("app/assets/images/almacen1.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/Choza.jpg")
+couch_post.mainpic = File.open("app/assets/images/infobuffet.jpg")
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
