@@ -81,3 +81,7 @@ footer {
   margin-top: 4px;
   margin-bottom: 4px;
 }
+
+div.star>img {
+    display: inline !important;
+  }
