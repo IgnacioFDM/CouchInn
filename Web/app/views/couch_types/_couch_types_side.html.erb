@@ -1,8 +1,17 @@
 ﻿<div class="col-md-3">
     <a href="/"><img class="lead"  src="<%= asset_path('logo.png') %>" alt=""></a>
     <div class="list-group">
-        <% CouchType.all.each do |couch_type| %>
-          <%= link_to(couch_type.name.capitalize, couch_posts_path, :class => "list-group-item") %>
+      <% if @showingall.present? and @showingall == true %>
+        <%= link_to("Ver todos", couch_posts_path + "?s=" + (params[:s].presence || ''), :class => "list-group-item active") %>
+      <% else %>
+        <%= link_to("Ver todos", couch_posts_path + "?s=" + (params[:s].presence || ''), :class => "list-group-item") %>
+      <% end %>
+      <% CouchType.all.each do |couch_type| %>
+        <% if @category.present? and @category == couch_type %>
+          <%= link_to(couch_type.name.capitalize, couch_posts_path + "?cat=" + couch_type.name + "&s=" + (params[:s].presence || ''), :class => "list-group-item active") %>
+        <% else %>
+          <%= link_to(couch_type.name.capitalize, couch_posts_path + "?cat=" + couch_type.name + "&s=" + (params[:s].presence || ''), :class => "list-group-item") %>
         <% end %>
+      <% end %>
     </div>
 </div>

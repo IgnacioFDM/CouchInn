@@ -1,13 +1,13 @@
 ﻿<div class="container">
     <div class="row">
-    
+
     <%= render 'couch_types/couch_types_side' %>
 
     <div class="col-md-9">
         <div class="row">
             <div class="col-lg-12">
                 <h1 >Couches disponibles
-                    <small>Mostrando todos</small>
+                    <small><%= @filter_text %></small>
                 </h1>
             </div>
         </div>
@@ -17,32 +17,13 @@
         <% end %>
 
         <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
+          <div class="col-lg-12">
+            <ul class="pagination">
+              <%= will_paginate @couch_posts, renderer: BootstrapLinkRenderer, container: false, previous_label: '&laquo;', next_label: '&raquo;' %>
+            </ul>
+          </div>
         </div>
+
         <div class="row text-center">
           <%= link_to("Publicar Couch", new_couch_post_path , :class => 'btn btn-success btn-lg pull-right post-couch')%>
         </div>
