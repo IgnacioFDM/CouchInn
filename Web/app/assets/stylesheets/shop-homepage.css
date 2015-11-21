@@ -65,3 +65,23 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.carousel-link {
+  color: white;
+  text-shadow: black 0.0em 0.0em 0.3em;
+}
+
+.carousel-link:hover {
+  color: white;
+}
+
+.mobile-button
+{
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+div.star>img {
+    display: inline !important;
+  }

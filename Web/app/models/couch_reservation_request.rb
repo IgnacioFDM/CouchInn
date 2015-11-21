@@ -4,13 +4,27 @@ class CouchReservationRequest < ActiveRecord::Base
   validates_presence_of :start_date
   validates_presence_of :end_date
   validates_presence_of :amount
+  validate :amount_is_right
   validate :state
   validate :date_difference
   validate :date
+  validate :owner
   belongs_to :user
   belongs_to :couch_post
 
   private
+  def owner
+    if self.user_id == self.couch_post.user_id
+      errors.add :base, 'Un usuario no puede reservar su propio Couch!.'
+    end
+  end
+
+  def amount_is_right
+    if self.amount > self.couch_post.vacants
+      errors.add :amount, 'no puede ser mayor que la capacidad del Couch.'
+    end
+  end
+
   def state
     if self.responded_at.nil? != self.accepted.nil?
       errors.add :base, 'Pedido inválido. accepted no nulo ssi. responded_at no nulo'

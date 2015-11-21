@@ -1,6 +1,6 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show]
-  after_action :verify_authorized
+  before_action :authenticate_user!, :except => [:index, :show, :mycouchposts]
+  after_action :verify_authorized, :except => [:mycouchposts]
 
   def new
     authorize CouchPost
@@ -19,12 +19,34 @@ class CouchPostsController < ApplicationController
 
   def index
     skip_authorization
-    @couch_posts = CouchPost.all
+    @couch_posts = CouchPost.where(nil)
+    @showingall = true
+
+    if params[:s].present?
+      @couch_posts = @couch_posts.where("title LIKE ? OR description LIKE ?", "%#{params[:s]}%", "%#{params[:s]}%")
+      @filter_text = "Buscando \"#{params[:s]}\" "
+    else
+      @filter_text = "Mostrando todos "
+    end
+    if params[:cat].present?
+      @category = CouchType.where(name: params[:cat]).first
+      if @category.present?
+        @couch_posts = @couch_posts.where({couch_type: @category })
+        @filter_text += "del tipo #{@category.name.capitalize}"
+        @showingall = false
+      end
+    end
+    @couch_posts = @couch_posts.paginate(:page => params[:page], :per_page => 5)
+  end
+
+  def mycouchposts
+    @my_couch_posts = CouchPost.where(user_id: current_user.id)
   end
 
   def show
     skip_authorization
   	@couch_post = CouchPost.find(params[:id])
+    @category = @couch_post.couch_type
   end
 
   def destroy

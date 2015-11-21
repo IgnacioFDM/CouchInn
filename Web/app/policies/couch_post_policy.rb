@@ -6,6 +6,12 @@ class CouchPostPolicy
     @user = model
   end
 
+
+  def mycouchposts?
+true
+  end
+
+
   def new?
     @current_user
   end

@@ -1,6 +1,29 @@
-﻿<h3>Usuario</h3>
-<p>Nombre: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Teléfono: <%= @user.telephone if @user.telephone %></p>
-<p>Nacimiento: <%= @user.birthdate if @user.birthdate%></p>
-<p>Género: <%= @user.gender if @user.gender %></p>
+﻿<div class="container">
+  <div class="row">
+    <h3><%= @user.name if @user.name %></h3>
+  </div>
+
+
+  <div class="row">
+    <div class="panel panel-default">
+      <!-- <div class="col-md-4"> -->
+        <div class="panel-heading">¡Dejá un comentario y/o calificación a este usuario!</div>
+        <br>
+        <div class="panel-body">
+          <%= rating_for @user, "rating" , disable_after_rate: false %>
+          <br>
+          <%= form_tag({controller: "user_feedbacks", action: "create"}) do %>
+          <div class="form-group">
+            <%= label_tag("Comentario") %>
+            <br>
+            <%= text_area_tag('user_feedback[comment]', "", placeholder: "Escribí un comentario acá ...", required: 'true') %>
+          </div>
+          <br>
+          <%= hidden_field_tag('user_feedback[user_id]', @user.id.to_s) %>
+          <%= submit_tag "Enviar", class:"btn btn-success" %>
+          <% end %>
+        </div>
+      <!--</div-->
+    </div>
+  </div>
+</div>

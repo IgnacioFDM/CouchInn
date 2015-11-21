@@ -1,0 +1,19 @@
+
+Couch: <%= link_to foreign_request.couch_post.title, couch_post_path(foreign_request.couch_post) %>
+<br>
+Solicitante:  <%= link_to foreign_request.user.name, user_path(foreign_request.couch_post.user) %>
+<br>
+Fecha de entrada: <%= foreign_request.start_date %>
+<br>
+Fecha de salida: <%= foreign_request.end_date %>
+<br>
+Cantidad: <%= foreign_request.amount %>
+<br>
+Estado: 
+<% if foreign_request.responded_at.blank? %>
+	<%= render text:"No respondido" %>
+	Aceptar/Rechazar 
+<% else %>
+	<%= render text:"Respondido" %>
+<% end %>
+<br>

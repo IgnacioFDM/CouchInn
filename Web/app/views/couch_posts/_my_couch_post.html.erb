@@ -1,0 +1,13 @@
+﻿<h3> 
+	<%= link_to my_couch_post.title, couch_post_path(my_couch_post.id) %>
+</h3>
+<br>
+Descripción: <%= my_couch_post.description %>
+<br>
+Tipo: <%= CouchType.find(my_couch_post.couch_type_id).name.capitalize %>
+<br>
+Zona: <%= my_couch_post.zone %>
+<br>
+Habitaciones: <%= my_couch_post.rooms %>
+<br>
+Vacantes: <%= my_couch_post.vacants %>
