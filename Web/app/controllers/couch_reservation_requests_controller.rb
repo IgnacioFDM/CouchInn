@@ -31,6 +31,25 @@ class CouchReservationRequestsController < ApplicationController
     authorize CouchReservationRequest
   end
 
+  def respond
+    authorize CouchReservationRequest
+    #quienes pueden y no pueden llamar a este metodo?
+    parameters = params.require(:couch_reservation_request).permit(:accepted,:id)
+    request = CouchReservationRequest.find(parameters[:id])
+    request.accepted = parameters[:accepted]
+    request.responded_at = DateTime.now
+    if request.couch_post.user_id == current_user.id 
+      if request.save
+        msg = request.accepted ? "Pedido aceptado. El usuario solicitante te podrá contactar." : "Pedido rechazado."
+        redirect_to couch_reservation_requests_path, notice: msg
+      else
+        redirect_to couch_reservation_requests_path, alert: "Error: "<< request.errors.full_messages.to_sentence
+      end
+    else
+        redirect_to couch_reservation_requests_path, alert: "El usuario logueado no es dueño de este Couch!"
+    end
+  end
+
   def destroy
     authorize CouchReservationRequest
   end

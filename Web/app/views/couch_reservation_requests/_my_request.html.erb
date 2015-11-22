@@ -1,0 +1,29 @@
+<div class="form-group">
+  <h4><%= link_to my_request.couch_post.title, couch_post_path(my_request.couch_post) %></h4>
+  <div class="form-group">
+    <%= label_tag "Fecha de entrada:" %>
+    <%= date_field_tag 'start_date', my_request.start_date, disabled: 'true', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Fecha de salida:" %>
+    <%= date_field_tag 'end_date', my_request.start_date, disabled: 'true', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Cantidad de personas:" %>
+    <%= number_field_tag 'amount', my_request.amount, disabled: 'true', class: 'form-control' %>
+  </div>
+  <% if my_request.responded_at.blank? %>
+    <div class="text-muted"><p><%= render text:"Solicitud aún no respondida." %></p></div>
+  <% else %>
+    <% if my_request.accepted %>
+      <div class="text-success"><p><%= render text:"Solicitud aceptada." %></p></div>
+      <h4> Datos de contacto del solicitante </h4>
+      <%= render partial: "users/contact", locals: {user: my_request.user} %>
+    <% else %>
+      <div class="text-danger"><p><%= render text:"Solicitud rechazada." %></p></div>
+    <% end %>
+  <% end %>
+
+</div>

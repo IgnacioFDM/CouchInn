@@ -22,6 +22,10 @@ class CouchReservationRequestPolicy
     @current_user
   end
 
+  def respond?
+    @current_user
+  end
+
   def edit?
     @current_user.admin?
   end

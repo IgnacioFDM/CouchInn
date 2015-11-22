@@ -16,7 +16,7 @@
           <div class="form-group">
             <%= label_tag("Comentario") %>
             <br>
-            <%= text_area_tag('user_feedback[comment]', "", placeholder: "Escribí un comentario acá ...", required: 'true') %>
+            <%= text_area_tag('user_feedback[comment]', "", placeholder: "Escribí un comentario acá ...", required: 'true', class: 'form-control') %>
           </div>
           <br>
           <%= hidden_field_tag('user_feedback[user_id]', @user.id.to_s) %>
