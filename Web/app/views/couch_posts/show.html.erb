@@ -26,14 +26,15 @@
 
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">3 opiniones</p>
+                        <p class="pull-right"><%= @couch_post_feedbacks.count%> opiniones</p>
                         <p>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 estrellas
+
+                           <%= @couch_post_feedback_val%>  estrellas
                         </p>
                     </div>
                 </div>
@@ -44,8 +45,8 @@
                     <div class="row hidden-xs">
                       <div class="col-md-12">
                         <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
-                        <a class="btn btn-success">¿Visitaste este Couch? ¡Deja un comentario!</a>
-                        <a class="btn btn-danger">Reportar Publicación</a>
+                        <%= link_to "¿Visitaste este Couch? ¡Deja un comentario!", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-success' %>
+                        <%= link_to "Reportar Publicación", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-danger' %>
                       </div>
                     </div>
 

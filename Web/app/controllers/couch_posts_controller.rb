@@ -47,6 +47,15 @@ class CouchPostsController < ApplicationController
   def show
   	@couch_post = CouchPost.find(params[:id])
     @category = @couch_post.couch_type
+    @couch_post_feedbacks = CouchPostFeedback.where(target_id: @couch_post.id)
+    @couch_post_feedback_val = 0
+    if @couch_post_feedbacks.count > 0
+      couch_post_feedback_scored =  @couch_post_feedbacks.score.present?
+         @couch_post_feedback_scored.each do |feed| 
+          @couch_post_feedback_val =  @couch_post_feedback_val + feed.score
+         end 
+          @couch_post_feedback_val =  @couch_post_feedback_val / couch_post_feedback_scored.count
+    end 
   end
 
   def destroy

@@ -2,6 +2,7 @@ class CouchPost < ActiveRecord::Base
   belongs_to :couch_type
   belongs_to :user
   has_many :couch_reservation_requests
+  has_many :couch_post_feedbacks
 
   has_attached_file :mainpic, styles: { frontpage: "320x150#", couchlist: "300x240#", bigpanoramic: "800x300#"}, default_url: "images/:style/missing.png"
   validates_presence_of :couch_type

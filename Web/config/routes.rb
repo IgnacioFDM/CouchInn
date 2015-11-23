@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users
   resources :couch_types
   resources :couch_posts
+  resources :couch_posts_feedbacks
   resources :couch_reservation_requests
   resources :user_feedbacks
 end
