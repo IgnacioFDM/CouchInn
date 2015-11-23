@@ -8,10 +8,11 @@
         </div>
  <table class="table table-striped">
     <tbody>
+        <div class="panel-group">
            <% @my_couch_posts.each do |own_couch_post| %>
        <%= render partial: "my_couch_post", object: own_couch_post  %>
-       <br>
         <% end %>
+         </div>
   </tbody>
   </table>
       

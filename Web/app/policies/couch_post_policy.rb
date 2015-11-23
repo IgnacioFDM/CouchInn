@@ -29,17 +29,17 @@ class CouchPostPolicy
 
   def edit?
     return true if @current_user == @user || @current_user.admin?
-    @current_user.admin?
+    @current_user
   end
 
   def update?
     return true if @current_user == @user || @current_user.admin?
-    @current_user.admin?
+    @current_user
   end
 
   def destroy?
     return true if @current_user == @user  || @current_user.admin?
-    @current_user.admin?
+    @current_user
   end
 
 end
