@@ -8,9 +8,8 @@ class CouchPostPolicy
 
 
   def mycouchposts?
-true
+    @current_user
   end
-
 
   def new?
     @current_user
@@ -25,21 +24,21 @@ true
   end
 
   def show?
-    true
+    @current_user
   end
 
   def edit?
-    # TODO
+    return true if @current_user == @user || @current_user.admin?
     @current_user.admin?
   end
 
   def update?
-    # TODO
+    return true if @current_user == @user || @current_user.admin?
     @current_user.admin?
   end
 
   def destroy?
-    # TODO
+    return true if @current_user == @user  || @current_user.admin?
     @current_user.admin?
   end
 

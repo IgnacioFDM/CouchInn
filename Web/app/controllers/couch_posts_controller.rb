@@ -1,10 +1,12 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show, :mycouchposts]
-  after_action :verify_authorized, :except => [:mycouchposts]
+  before_action :authenticate_user!, :except => []
+  after_action :verify_authorized, :except => [:index, :show, :mycouchposts]
+
+
 
   def new
-    authorize CouchPost
     @couch_post = CouchPost.new
+    authorize CouchPost
   end
 
   def create
@@ -18,7 +20,6 @@ class CouchPostsController < ApplicationController
   end
 
   def index
-    skip_authorization
     @couch_posts = CouchPost.where(nil)
     @showingall = true
 
@@ -44,18 +45,20 @@ class CouchPostsController < ApplicationController
   end
 
   def show
-    skip_authorization
   	@couch_post = CouchPost.find(params[:id])
     @category = @couch_post.couch_type
   end
 
   def destroy
+    authorize CouchPost
   end
 
   def update
+        authorize CouchPost
   end
 
   def edit
+        authorize CouchPost
   end
 
   private

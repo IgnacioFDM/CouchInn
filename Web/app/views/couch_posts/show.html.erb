@@ -18,7 +18,7 @@
                             <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
                             </strong>over at maxoffsky.com!</p> -->
                         <p><%= @couch_post.description if @couch_post.description %></p>
-                   <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name if @couch_post.couch_type_id %> </p>
+                   <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name.capitalize if @couch_post.couch_type_id %> </p>
 <p>Dueño: <%= @couch_post.user.name if @couch_post.user.name %></p>
 <p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
 <p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
