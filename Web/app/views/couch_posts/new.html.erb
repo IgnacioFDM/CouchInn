@@ -14,7 +14,7 @@
 
 	<div class="form-group">
 		<%= c.label :couch_type_id %>
-		<%= c.collection_select( :couch_type_id, CouchType.all.where(disabled: false) , :id, :name_for_select, {:prompt => 'Elegí una categoría'}, {:required => true}) %>
+		<%= c.collection_select(:couch_type_id, CouchType.all.where(disabled: false), :id, :name_for_select, {prompt: 'Elegí una categoría', class: "form-control"}, {:required => true, class: "form-control"}) %>
 	</div>
 
 
