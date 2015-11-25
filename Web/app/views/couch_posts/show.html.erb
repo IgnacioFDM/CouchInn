@@ -11,15 +11,10 @@
                     <%= image_tag(@couch_post.mainpic.url(:bigpanoramic), :class => "img-responsive") %>
                     <div class="caption-full">
 
-                        <h4><a href="#"><%= @couch_post.title if @couch_post.title %></a>
-                        </h4>
-                     <!--   <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p> -->
-                      <!--  <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p> -->
+                        <h2><a href="#"><%= @couch_post.title if @couch_post.title %></a></h2>
+                        <h4><%= link_to @couch_post.user.name, user_path(@couch_post.user) %></h4>
                         <p><%= @couch_post.description if @couch_post.description %></p>
                    <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name.capitalize if @couch_post.couch_type_id %> </p>
-<p>Dueño: <%= @couch_post.user.name if @couch_post.user.name %></p>
 <p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
 <p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
 <p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
