@@ -1,4 +1,5 @@
 class CouchPost < ActiveRecord::Base
+  ratyrate_rateable "rating"
   belongs_to :couch_type
   belongs_to :user
   has_many :couch_reservation_requests

@@ -1,1 +1,54 @@
-asd
+<div class="authform">
+	<h3>Modificar Couch</h3>
+
+	<%= form_for :couch_post, url: couch_posts_path do |c| %>
+	<div class="form-group">
+		<%= c.label :title %>
+		<%= c.text_field :title, required: :true, :value =>  @couch_post.title , class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :description %>
+		<%= c.text_area :description, required: :true, :value =>  @couch_post.description ,class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :couch_type_id %>
+		<%= c.collection_select(:couch_type_id, CouchType.all.where(disabled: false), :id, :name_for_select, {:required => true, :value =>  @couch_post.couch_type_id , class: "form-control"}) %>
+	</div>
+
+
+
+	<div class="form-group">
+		<%= c.label :zone %>
+		<%= c.text_field :zone, required: :true, :value =>  @couch_post.zone , class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :rooms %>
+		<%= c.number_field :rooms, required: :true, min: 1, :value =>  @couch_post.rooms , class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :vacants %>
+		<%= c.number_field :vacants, required: :true, min: 1, :value =>  @couch_post.vacants , class: 'form-control' %>
+	</div>
+
+	<div class="form-group" >
+	
+		<%= c.hidden_field :user_id, value: @current_user.id %>
+	</div>
+
+		<div class="form-group" >
+	
+		<%= c.hidden_field :id, value: @couch_post.id %>
+	</div>
+
+	<div class="form-group">
+		<%= c.label :mainpic %>
+		<%= c.file_field :mainpic, required: :true, class: 'form-control' %>
+	</div>
+
+	<%= c.submit 'Modificar Couch', :class => 'button right' %>
+	<% end %>
+</div>

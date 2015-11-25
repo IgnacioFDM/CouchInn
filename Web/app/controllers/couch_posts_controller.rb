@@ -61,30 +61,37 @@ class CouchPostsController < ApplicationController
   end
 
   def destroy
+    authorize CouchPost
     couch_post = CouchPost.find(params[:id])
     couch_post.destroy!
     redirect_to my_couch_posts_path , notice: "Couch eliminado"
   end
 
   def update
+    authorize CouchPost
+    @id_a_cambiar = params[:id]
     @couch_post = CouchPost.find(params[:id])
 
     if CouchPost.where(:title => params[:couch_post][:title].downcase).count > 0 && CouchPost.where(:title =>params[:couch_post][:title].downcase).first.id != params[:id].to_i
-      redirect_to @couch_posts, notice: "Nombre ya existe."
+      redirect_to @my_couch_posts_path, notice: "Nombre ya existe."
     else
-     
-      @couch_post.update_attributes(params.require(:couch_post).permit(:title,:disabled))
+      @couch_post.update_attributes(params.require(:couch_post).permit(:title,:couch_type_id,:description,:rooms,:vacants,:zone))
       if @couch_post.valid?
-        redirect_to couch_posts_path , notice: "Post actualizado"
+        redirect_to my_couch_posts_path , notice: "Post actualizado"
       else
-        redirect_to couch_posts_path , notice: "Error al actualizar" 
+        redirect_to my_couch_posts_path , notice: "Error al actualizar" 
       end
     end
 
   end
 
+
+
+
   def edit
+        authorize CouchPost
     @couch_post = CouchPost.find(params[:id])
+    @id_a_cambiar = params[:id]
   end
 
   private
