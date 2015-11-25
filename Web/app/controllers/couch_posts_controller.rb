@@ -1,6 +1,6 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => []
-  after_action :verify_authorized, :except => [:index, :show, :mycouchposts]
+  before_action :authenticate_user!, :except => [:index]
+  after_action :verify_authorized, :except => [:index]
 
 
 
@@ -45,6 +45,7 @@ class CouchPostsController < ApplicationController
   end
 
   def show
+    authorize CouchPost
   	@couch_post = CouchPost.find(params[:id])
     @category = @couch_post.couch_type
     @couch_post_feedbacks = CouchPostFeedback.where(target_id: @couch_post.id)
