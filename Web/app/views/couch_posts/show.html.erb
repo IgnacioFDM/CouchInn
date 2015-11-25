@@ -8,7 +8,7 @@
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <%= image_tag(@couch_post.mainpic.url(:bigpanoramic), :class => "img-responsive") %>
+                    <img class="img-responsive" src="<%= @couch_post.mainpic.url(:bigpanoramic) %>" alt="">
                     <div class="caption-full">
 
                         <h2><a href="#"><%= @couch_post.title if @couch_post.title %></a></h2>
