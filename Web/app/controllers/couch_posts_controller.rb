@@ -41,6 +41,7 @@ class CouchPostsController < ApplicationController
   end
 
   def mycouchposts
+    authorize CouchPost
     @my_couch_posts = CouchPost.where(user_id: current_user.id)
   end
 
