@@ -12,6 +12,14 @@ class CouchReservationRequest < ActiveRecord::Base
   belongs_to :user
   belongs_to :couch_post
 
+  def self.requests_made_by_user(user_id)
+    return User.find(user_id).couch_reservation_requests
+  end
+
+  def self.requests_made_to_user(user_id)
+    return self.joins(:couch_post).where(:couch_posts => {:user_id => user_id})
+  end
+
   private
   def owner
     if self.user_id == self.couch_post.user_id

@@ -56,8 +56,8 @@ class CouchReservationRequestsController < ApplicationController
 
   def index
     authorize CouchReservationRequest
-    @foreign_requests = CouchReservationRequest.joins(:couch_post).where(:couch_posts => {:user_id => current_user.id})
-    @my_requests = current_user.couch_reservation_requests
+    #@foreign_requests = CouchReservationRequest.requests_made_to_user(current_user.id)
+    @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
   end
 
   def show
