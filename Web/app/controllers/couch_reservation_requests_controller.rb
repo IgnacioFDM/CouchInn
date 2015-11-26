@@ -4,8 +4,14 @@ class CouchReservationRequestsController < ApplicationController
 
   def new
     authorize CouchReservationRequest
+    couch_post_id = params.require(:couch_post_id).to_i
+    if CouchPost.find(couch_post_id).user_id = current_user
+      redirect_to :back, alert: "No se puede reservar un Couch propio!"
+      return
+    end
+
     @couch_reservation_request = CouchReservationRequest.new
-    @couch_reservation_request.couch_post_id = params.require(:couch_post_id).to_i
+    @couch_reservation_request.couch_post_id = couch_post_id
   end
 
   def create
