@@ -56,8 +56,12 @@ class CouchReservationRequestsController < ApplicationController
 
   def index
     authorize CouchReservationRequest
-    #@foreign_requests = CouchReservationRequest.requests_made_to_user(current_user.id)
     @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
+  end
+
+  def foreign_requests_index
+    authorize CouchReservationRequest
+    @foreign_requests = CouchReservationRequest.requests_made_to_user(current_user.id)
   end
 
   def show

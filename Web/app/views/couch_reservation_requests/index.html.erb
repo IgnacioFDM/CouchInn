@@ -1,18 +1,5 @@
 <div class="container">
-  <h3>Solicitudes de reserva</h3>
-  <h4>Solicitudes hechas a mis publicaciones</h4>
-    <div class="row">
-        <% @foreign_requests.each do |foreign_request| %>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-body"><%= render partial: "foreign_request", object: foreign_request %></div>
-            </div>
-          </div>
-        <% end %>
-    </div>
-  </table>
-
-  <h4>Solicitudes hechas por mí</h4>
+  <h3>Solicitudes hechas por mí</h3>
     <div class="row">
         <% @my_requests.each do |my_request| %>
           <div class="col-md-6">

@@ -10,7 +10,8 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.try(:name) %> <span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><%= link_to 'Perfil', edit_user_registration_path %></li>
-        <li><%= link_to 'Reservas', couch_reservation_requests_path %></li>
+        <li><%= link_to 'Mis reservas', couch_reservation_requests_path %></li>
+        <li><%= link_to 'Solicitudes', '/foreign_requests_index' %></li>
         <li><%= link_to 'Mis Couches', my_couch_posts_path %></li>
         <% if current_user.try(:admin?) %>
           <li><%= link_to 'Usuarios', users_path %></li>
