@@ -5,7 +5,7 @@ class CouchReservationRequestsController < ApplicationController
   def new
     authorize CouchReservationRequest
     couch_post_id = params.require(:couch_post_id).to_i
-    if CouchPost.find(couch_post_id).user_id = current_user
+    if CouchPost.find(couch_post_id).user_id.equal? current_user.id
       redirect_to :back, alert: "No se puede reservar un Couch propio!"
       return
     end
@@ -17,13 +17,14 @@ class CouchReservationRequestsController < ApplicationController
   def create
     authorize CouchReservationRequest
     parameters = params.require(:couch_reservation_request).permit(:start_date,:end_date,:amount,:couch_post_id)
-    @couch_reservation_request = CouchReservationRequest.new 
-    @couch_reservation_request.user_id = current_user.id
-    @couch_reservation_request.couch_post_id = parameters[:couch_post_id]
-    @couch_reservation_request.start_date = parameters[:start_date]
-    @couch_reservation_request.end_date = parameters[:end_date]
-    @couch_reservation_request.amount = parameters[:amount]
-    success = @couch_reservation_request.save
+    r = CouchReservationRequest.new 
+    r.user_id = current_user.id
+    r.couch_post_id = parameters[:couch_post_id]
+    r.start_date = parameters[:start_date]
+    r.end_date = parameters[:end_date]
+    r.amount = parameters[:amount]
+
+    success = r.save
     if success
       redirect_to couch_reservation_requests_path, notice: "Pedido hecho." 
     else
