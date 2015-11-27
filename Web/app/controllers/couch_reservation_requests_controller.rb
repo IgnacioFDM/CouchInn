@@ -16,19 +16,15 @@ class CouchReservationRequestsController < ApplicationController
 
   def create
     authorize CouchReservationRequest
-    parameters = params.require(:couch_reservation_request).permit(:start_date,:end_date,:amount,:couch_post_id)
     r = CouchReservationRequest.new 
     r.user_id = current_user.id
-    r.couch_post_id = parameters[:couch_post_id]
-    r.start_date = parameters[:start_date]
-    r.end_date = parameters[:end_date]
-    r.amount = parameters[:amount]
+    r.attributes = params.require(:couch_reservation_request).permit(:start_date,:end_date,:amount,:couch_post_id)
 
     success = r.save
     if success
       redirect_to couch_reservation_requests_path, notice: "Pedido hecho." 
     else
-      redirect_to "/couch_reservation_requests/new?couch_post_id="<< parameters[:couch_post_id] , :alert =>"No se pudo hacer pedido: " << @couch_reservation_request.errors.full_messages.to_sentence
+      redirect_to :back , :alert =>"No se pudo hacer pedido: " << r.errors.full_messages.to_sentence
       return
     end
 
@@ -48,12 +44,12 @@ class CouchReservationRequestsController < ApplicationController
     if request.couch_post.user_id == current_user.id 
       if request.save
         msg = request.accepted ? "Pedido aceptado. El usuario solicitante te podrá contactar." : "Pedido rechazado."
-        redirect_to couch_reservation_requests_path, notice: msg
+        redirect_to "/foreign_requests_index", notice: msg
       else
-        redirect_to couch_reservation_requests_path, alert: "Error: "<< request.errors.full_messages.to_sentence
+        redirect_to "/foreign_requests_index", alert: "Error: "<< request.errors.full_messages.to_sentence
       end
     else
-        redirect_to couch_reservation_requests_path, alert: "El usuario logueado no es dueño de este Couch!"
+        redirect_to "/foreign_requests_index", alert: "El usuario logueado no es dueño de este Couch!"
     end
   end
 

@@ -13,4 +13,24 @@ class CouchPost < ActiveRecord::Base
   validates_presence_of :vacants
   validates_presence_of :zone
   validates_attachment_content_type :mainpic, :content_type =>["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+  def is_owner?(user)
+    return self.user_id = user.id
+  end
+  
+
+  def is_free?(from, to)
+    reservas_del_couch = self.couch_reservation_requests
+    reservas_confirmadas = reservas_del_couch.confirmed
+    
+    return reservas_confirmadas.where('end_date >= ? AND start_date <= ?', from,to).empty?
+  end
+  
+
+  def self.free_couches(from, to)
+    result = [] 
+    Couch.all.each do |couch|
+      result << couch if couch.is_free?(from, to)
+    end
+  end
 end

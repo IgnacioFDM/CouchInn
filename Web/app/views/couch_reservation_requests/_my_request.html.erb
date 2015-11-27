@@ -1,5 +1,6 @@
 <div class="form-group">
   <h4><%= link_to my_request.couch_post.title, couch_post_path(my_request.couch_post) %></h4>
+  <p>De: <%= link_to my_request.couch_post.user.name, user_path(my_request.couch_post.user) %></p>
   <div class="form-group">
     <%= label_tag "Fecha de entrada:" %>
     <%= date_field_tag 'start_date', my_request.start_date, disabled: 'true', class: 'form-control' %>
