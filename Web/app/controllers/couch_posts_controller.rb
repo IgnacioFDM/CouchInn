@@ -72,16 +72,13 @@ class CouchPostsController < ApplicationController
     @id_a_cambiar = params[:id]
     @couch_post = CouchPost.find(params[:id])
 
-    if CouchPost.where(:title => params[:couch_post][:title].downcase).count > 0 && CouchPost.where(:title =>params[:couch_post][:title].downcase).first.id != params[:id].to_i
-      redirect_to @my_couch_posts_path, notice: "Nombre ya existe."
-    else
-      @couch_post.update_attributes(params.require(:couch_post).permit(:title,:couch_type_id,:description,:rooms,:vacants,:zone))
+    
+      @couch_post.update_attributes(params.require(:couch_post).permit(:id, :title, :couch_type_id, :description, :rooms, :vacants, :zone))
       if @couch_post.valid?
         redirect_to my_couch_posts_path , notice: "Post actualizado"
       else
         redirect_to my_couch_posts_path , notice: "Error al actualizar" 
       end
-    end
 
   end
 
