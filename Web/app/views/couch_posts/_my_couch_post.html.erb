@@ -2,8 +2,10 @@
 
     <div class="panel panel-default">
       <div class="panel-heading"><h4><%= link_to my_couch_post.title, couch_post_path(my_couch_post.id) %></h4></div>
-        <div class="panel-body">
+
+
  <%= rating_for my_couch_post, "rating", :disable_after_rate => false, star_path: '/images/ratyrate' %>
+
  <br>
  <%= rating_for_user my_couch_post, current_user, "rating", :star => 10, :enable_half => true, :disable_after_rate => false, star_path: '/images/ratyrate'  %>
   <br>
@@ -23,10 +25,12 @@ Vacantes: <%= my_couch_post.vacants %>
 
   <div class="btn-group pull-right">
             <a href= <%= edit_couch_post_path(my_couch_post)%> class='btn btn-info btn-xs pull-left'>Modificar</a>
+     
+         <%= link_to("Cambiar Imagen", main_pic_edit_path(my_couch_post), :class => 'btn btn-success btn-xs pull-left') %>
+
   	 <% if my_couch_post.couch_reservation_requests.where(accepted: nil).empty?%>
   <%= link_to("Eliminar", couch_post_path(my_couch_post), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs pull-left') %>
   	  <% end %>
-
 
 
 </div>

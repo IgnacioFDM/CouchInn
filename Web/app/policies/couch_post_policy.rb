@@ -27,6 +27,17 @@ class CouchPostPolicy
     @current_user
   end
 
+  def mainpicedit?
+  return true if @current_user == @user 
+  @current_user
+  end
+
+    def mainpicupdate?
+  return true if @current_user == @user 
+  @current_user
+  end
+
+
   def edit?
     return true if @current_user == @user || @current_user.admin?
     @current_user

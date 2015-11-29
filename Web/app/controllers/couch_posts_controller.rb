@@ -73,7 +73,7 @@ class CouchPostsController < ApplicationController
     @couch_post = CouchPost.find(params[:id])
 
     
-      @couch_post.update_attributes(params.require(:couch_post).permit(:id, :title, :couch_type_id, :description, :rooms, :vacants, :zone))
+      @couch_post.update_attributes(params.require(:couch_post).permit(:id, :title, :couch_type_id, :description, :rooms, :vacants, :mainpic, :zone))
       if @couch_post.valid?
         redirect_to my_couch_posts_path , notice: "Post actualizado"
       else
@@ -89,6 +89,25 @@ class CouchPostsController < ApplicationController
         authorize CouchPost
     @couch_post = CouchPost.find(params[:id])
     @id_a_cambiar = params[:id]
+  end
+
+  def mainpicedit
+    authorize CouchPost
+    @couch_post = CouchPost.find(params[:id])
+    @id_a_cambiar = params[:id]
+  end
+
+  def mainpicupdate
+  authorize CouchPost
+  @id_a_cambiar = params[:id]
+  @couch_post = CouchPost.find(params[:id])
+  @couch_post.update_attributes(params.require(:couch_post).permit(:id, :mainpic))
+      if @couch_post.valid?
+        redirect_to my_couch_posts_path , notice: "Imagen actualizada"
+      else
+        redirect_to my_couch_posts_path , notice: "Error al actualizar" 
+      end
+
   end
 
   private

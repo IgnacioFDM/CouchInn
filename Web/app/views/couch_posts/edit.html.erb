@@ -44,6 +44,7 @@
 		<%= c.hidden_field :id %>
 	</div>
 
-	<%= c.submit 'Modificar Couch', :class => 'button right' %>
+	<%= c.submit 'Modificar Couch', :class => 'button left' %>
+	 <%= link_to("Volver", my_couch_posts_path, :class => 'btn btn-danger pull-right') %>
 	<% end %>
 </div>
