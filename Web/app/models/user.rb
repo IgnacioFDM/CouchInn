@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   enum gender: [:male, :female, :other]
   has_many :couch_posts
   has_many :couch_reservation_requests
-  has_many :user_feedbacks
     has_many :couch_post_feedbacks
+  has_many :received_feedbacks, class_name: "UserFeedback", foreign_key: "user_id"
+  has_many :sent_feedbacks, class_name: "UserFeedback", foreign_key: "author_id"
 
   def self.i18n_genders(hash = {})
     genders.keys.each { |key| hash[I18n.t("gender_enum.#{key}")] = key }
