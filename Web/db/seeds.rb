@@ -23,9 +23,9 @@ puts 'CREATED REGULAR USER: ' << user2.name
 
 user3 = User.new
 user3.name = "Doggo"
-user3.email = 'altoke_perro@dogchow.com'
-user3.password = 'passwoof'
-user3.password_confirmation = 'passwoof'
+user3.email = 'doggo@couchinn.com'
+user3.password = 'password'
+user3.password_confirmation = 'password'
 user3.telephone = '101'
 user3.birthdate = Date.new(1970,2,1)
 user3.save!
@@ -62,13 +62,16 @@ puts 'CREATED COUCH TYPE: ' << trailer.name
 exterior = CouchType.find_or_create_by!(name: 'Exterior', disabled: false)
 puts 'CREATED COUCH TYPE: ' << exterior.name
 
+habitacion = CouchType.find_or_create_by!(name: 'Habitacion', disabled: false)
+puts 'CREATED COUCH TYPE: ' << habitacion.name
+
 
 couch_post = CouchPost.find_or_create_by!(title: 'Casa de playa', description: 'Casa a 2 cuadras de la costa', couch_type_id: casa.id , user_id: user1.id , rooms: 1, vacants: 2, zone:'La Plata')
 couch_post.mainpic = File.open("app/assets/images/beachhouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
-couch_post3 = CouchPost.find_or_create_by!(title: 'Cabaña en el bosque', description: 'Cabaña cómoda, en la semana, barro, bichos, vos y yo, ol de nait', couch_type_id: casa.id, user_id: user2.id, rooms: 1, vacants: 1, zone:'La Plata')
+couch_post3 = CouchPost.find_or_create_by!(title: 'Cabaña en el bosque', description: 'Cabaña cómoda, en la semana, barro, bichos, vos y yo, ol de nait', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'La Plata')
 couch_post3.mainpic = File.open("app/assets/images/forestcabin.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post3.save!
 puts 'CREATED COUCH POST: ' << couch_post3.title
@@ -103,14 +106,74 @@ couch_post.mainpic = File.open("app/assets/images/almacen1.jpg") unless ENV["COU
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_post = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'Espacioso, con olor a comida, provisiones hay de sobra.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
 couch_post.mainpic = File.open("app/assets/images/infobuffet.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post7 = CouchPost.find_or_create_by!(title: 'Cucha Colonial', description: 'Necesito que alguien se quede en mi morada mientras me voy de viaje. Mi perro es amigable, le gustan las visitas y dormir. Desde que el vecino se mudó no es muy activo.', couch_type_id: casa.id, user_id: user2.id, rooms: 1, vacants: 3, zone:'Campana')
+couch_post7.mainpic = File.open("app/assets/images/cucha.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post7.save!
+puts 'CREATED COUCH POST: ' << couch_post7.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Despensa Espaciosa', description: 'Tengo una despensa con lugar para una o dos personas. Requisito excluyente que sepan respetar el orden. Cada mañana reviso todo, si algo cambia de lugar los echo. Están avisados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 3, zone:'La Plata')
+couch_post.mainpic = File.open("app/assets/images/toc.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Loft amplio', description: 'Tengo mucho lugar! Espero recibir gente divertida.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_post.mainpic = File.open("app/assets/images/minecraft.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post8 = CouchPost.find_or_create_by!(title: 'El edificio más alto', description: 'Soy el dueño del edificio más alto de Dubai. Puedo verlo todo desde acá arriba, pero me tapan las nubes y me siento solo.', couch_type_id: departamento.id, user_id: user1.id, rooms: 10, vacants: 10, zone:'Dubai')
+couch_post8.mainpic = File.open("app/assets/images/uphigh.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post8.save!
+puts 'CREATED COUCH POST: ' << couch_post8.title
+
+couch_post9 = CouchPost.find_or_create_by!(title: 'Couch sobre ruedas', description: 'Yo pongo el transporte, vos ponés la buena onda, ambos vamos a recorrer el país! Sumate ya!', couch_type_id: trailer.id, user_id: user2.id, rooms: 1, vacants: 2, zone:'La Pampa')
+couch_post9.mainpic = File.open("app/assets/images/coolvan.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post9.save!
+puts 'CREATED COUCH POST: ' << couch_post9.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Couch Literal', description: 'Tengo un ambiente que no uso mucho, si alguien quiere puede venir a quedarse unos días.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'San Telmo')
+couch_post.mainpic = File.open("app/assets/images/couchlit.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Casa lejana', description: 'Me mudé acá porque el perro de mi vecino no me dejaba tranquilo ni un minuto. Se respira paz.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 2, zone:'San Luis')
+couch_post.mainpic = File.open("app/assets/images/middlehouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Habitación vacía', description: 'Hay espacio, es luminosa. Un día de viento dejé abierta la ventana y aparecieron esas nubes, no sé como sacarlas pero no molestan.', couch_type_id: habitacion.id, user_id: user2.id, rooms: 1, vacants: 2, zone:'Aconcagua')
+couch_post.mainpic = File.open("app/assets/images/cloudroom.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Tierra lejana', description: 'Tierra de ensueño, con una fauna asombrosa, dragones sobrevuelan la pradera y todo tipo de animales merodean en los alrededores.', couch_type_id: exterior.id, user_id: user1.id, rooms: 1, vacants: 100, zone:'Skyrim')
+couch_post.mainpic = File.open("app/assets/images/skyrim.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Ruinas antiguas', description: 'Vestigios de tiempos más tranquilos. Se requiere precaución por tratarse de algo con alto valor histórico.', couch_type_id: exterior.id, user_id: user2.id, rooms: 10, vacants: 10, zone:'Zona sin nombre')
+couch_post.mainpic = File.open("app/assets/images/quetzalcoatlboard.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Casa en la precordillera andina', description: 'Casa linda, paisaje hermoso. En la foto se ven los colectivos que pasan por la zona.', couch_type_id: casa.id, user_id: user1.id, rooms: 2, vacants: 3, zone:'Salta')
+couch_post.mainpic = File.open("app/assets/images/casaprecordillera.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post.save!
+puts 'CREATED COUCH POST: ' << couch_post.title
+
+couch_post = CouchPost.find_or_create_by!(title: 'Oficina de 418', description: 'Ambiente de aprendizaje profesional y amistoso. Unite al equipo!', couch_type_id: choza.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'La Plata')
+couch_post.mainpic = File.open("app/assets/images/teacave.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
-reservation.couch_post_id = couch_post.id
+reservation.couch_post_id = couch_post7.id
 reservation.start_date = Date.new(2017,8,15)
 reservation.end_date = Date.new(2017,9,19)
 reservation.amount = 1
@@ -120,7 +183,7 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
-reservation.couch_post_id = couch_post.id
+reservation.couch_post_id = couch_post7.id
 reservation.start_date = Date.new(2017,3,7)
 reservation.end_date = Date.new(2017,3,8)
 reservation.amount = 1
@@ -130,7 +193,27 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
-reservation.couch_post_id = couch_post.id
+reservation.couch_post_id = couch_post9.id
+reservation.start_date = Date.new(2016,3,7)
+reservation.end_date = Date.new(2016,3,8)
+reservation.amount = 1
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user2.id
+reservation.couch_post_id = couch_post8.id
+reservation.start_date = Date.new(2017,2,2)
+reservation.end_date = Date.new(2017,2,5)
+reservation.amount = 1
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user2.id
+reservation.couch_post_id = couch_post2.id
 reservation.start_date = Date.new(2016,2,2)
 reservation.end_date = Date.new(2016,2,5)
 reservation.amount = 1
@@ -139,9 +222,9 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 
 reservation = CouchReservationRequest.new
 reservation.user_id = user2.id
-reservation.couch_post_id = couch_post2.id
-reservation.start_date = Date.new(2016,2,2)
-reservation.end_date = Date.new(2016,2,5)
+reservation.couch_post_id = couch_post3.id
+reservation.start_date = Date.new(2016,2,7)
+reservation.end_date = Date.new(2016,2,9)
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
