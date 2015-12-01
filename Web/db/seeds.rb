@@ -199,6 +199,18 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post9.id
+reservation.start_date = Date.new(2015,3,7)
+reservation.end_date = Date.new(2015,3,8)
+reservation.amount = 1
+reservation.accepted = true
+reservation.responded_at = Date.new(2015,3,6)
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user1.id
+reservation.couch_post_id = couch_post9.id
 reservation.start_date = Date.new(2016,3,7)
 reservation.end_date = Date.new(2016,3,8)
 reservation.amount = 1
@@ -233,6 +245,21 @@ reservation.end_date = Date.new(2016,2,9)
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user2.id
+reservation.couch_post_id = couch_post3.id
+reservation.start_date = Date.new(2015,2,17)
+reservation.end_date = Date.new(2015,2,27)
+reservation.amount = 1
+reservation.accepted = true
+reservation.responded_at = Date.new(2015,2,16)
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user1.id

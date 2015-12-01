@@ -9,8 +9,8 @@
  <table class="table table-striped">
     <tbody>
         <div class="panel-group">
-           <% @visited_couch_posts.each do |visited_couch_post| %>
-       <%= render partial: "_couch_post", object: visited_couch_post  %>
+          <% @visited_couch_posts.each do |couch_post| %>
+      <%= render partial: "couch_post", object: couch_post  %>
         <% end %>
          </div>
   </tbody>

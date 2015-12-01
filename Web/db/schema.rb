@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151130205001) do
-=======
 ActiveRecord::Schema.define(version: 20151130212215) do
->>>>>>> ef3c04bbebb71e215aa1489a19cf0aec8baf6a86
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"

@@ -47,8 +47,18 @@ class CouchPostsController < ApplicationController
 
     def visitedcouchposts
     authorize CouchPost
-    @visited_couch_posts = CouchPost.where(user_id: current_user.id)
-  end
+    couch_reqs= CouchReservationRequest.requests_made_by_user(current_user.id)
+    couch_reqs= couch_reqs.where(accepted: true)
+      @visited_couch_posts = Array.new
+      couch_reqs.each do |r|
+        if(r.start_date < Date.today)
+        c= CouchPost.find(r.couch_post_id)
+        @visited_couch_posts << c
+      end
+      end
+   
+   
+   end
 
   def show
     authorize CouchPost

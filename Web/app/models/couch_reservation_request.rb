@@ -23,6 +23,7 @@ class CouchReservationRequest < ActiveRecord::Base
     return self.joins(:couch_post).where(:couch_posts => {:user_id => user_id})
   end
 
+
   private
   # Requests from a given user on a fixed couch should NOT overlap each other.
   def doesnt_overlap_own
@@ -64,7 +65,7 @@ class CouchReservationRequest < ActiveRecord::Base
     end
   end
   def date
-    if self.start_date.past?
+    if self.accepted == nil && self.start_date.past?
       errors.add :base, 'Fecha de entrada no puede ser anterior ni hoy.'
     end
   end
