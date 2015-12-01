@@ -45,18 +45,33 @@ class CouchPostsController < ApplicationController
     @my_couch_posts = CouchPost.where(user_id: current_user.id)
   end
 
+    def visitedcouchposts
+    authorize CouchPost
+    couch_reqs= CouchReservationRequest.requests_made_by_user(current_user.id)
+    couch_reqs= couch_reqs.where(accepted: true)
+      @visited_couch_posts = Array.new
+      couch_reqs.each do |r|
+        if(r.start_date < Date.today)
+        c= CouchPost.find(r.couch_post_id)
+        @visited_couch_posts << c
+      end
+      end
+   
+   
+   end
+
   def show
     authorize CouchPost
   	@couch_post = CouchPost.find(params[:id])
     @category = @couch_post.couch_type
-    @couch_post_feedbacks = CouchPostFeedback.where(target_id: @couch_post.id)
+    @couch_post_feedbacks = CouchPostFeedback.where(couch_post_id: @couch_post.id)
     @couch_post_feedback_val = 0
     if @couch_post_feedbacks.count > 0
-      couch_post_feedback_scored =  @couch_post_feedbacks.score.present?
+      @couch_post_feedback_scored = @couch_post_feedbacks - [nil]
          @couch_post_feedback_scored.each do |feed| 
           @couch_post_feedback_val =  @couch_post_feedback_val + feed.score
          end 
-          @couch_post_feedback_val =  @couch_post_feedback_val / couch_post_feedback_scored.count
+          @couch_post_feedback_val =  @couch_post_feedback_val / @couch_post_feedback_scored.count
     end 
   end
 

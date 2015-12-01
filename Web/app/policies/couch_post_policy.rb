@@ -11,6 +11,10 @@ class CouchPostPolicy
     @current_user
   end
 
+    def visitedcouchposts?
+    @current_user
+  end
+
   def new?
     @current_user
   end

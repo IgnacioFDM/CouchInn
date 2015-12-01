@@ -41,6 +41,16 @@ user4.birthdate = Date.new(1980,2,1)
 user4.save!
 puts 'CREATED REGULAR USER: ' << user4.name
 
+user5 = User.new
+user5.name = "Ricardo"
+user5.email = 'ricardo@couchinn.com'
+user5.password = 'password'
+user5.password_confirmation = 'password'
+user5.telephone = '84574'
+user5.birthdate = Date.new(1968,11,5)
+user5.save!
+puts 'CREATED REGULAR USER: ' << user5.name
+
 choza = CouchType.find_or_create_by!(name: 'Choza', disabled: false)
 puts 'CREATED COUCH TYPE: ' << choza.name
 
@@ -136,11 +146,6 @@ couch_post9.mainpic = File.open("app/assets/images/coolvan.jpg") unless ENV["COU
 couch_post9.save!
 puts 'CREATED COUCH POST: ' << couch_post9.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Couch Literal', description: 'Tengo un ambiente que no uso mucho, si alguien quiere puede venir a quedarse unos días.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'San Telmo')
-couch_post.mainpic = File.open("app/assets/images/couchlit.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
-
 couch_post = CouchPost.find_or_create_by!(title: 'Casa lejana', description: 'Me mudé acá porque el perro de mi vecino no me dejaba tranquilo ni un minuto. Se respira paz.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 2, zone:'San Luis')
 couch_post.mainpic = File.open("app/assets/images/middlehouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post.save!
@@ -194,6 +199,18 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post9.id
+reservation.start_date = Date.new(2015,3,7)
+reservation.end_date = Date.new(2015,3,8)
+reservation.amount = 1
+reservation.accepted = true
+reservation.responded_at = Date.new(2015,3,6)
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user1.id
+reservation.couch_post_id = couch_post9.id
 reservation.start_date = Date.new(2016,3,7)
 reservation.end_date = Date.new(2016,3,8)
 reservation.amount = 1
@@ -228,3 +245,50 @@ reservation.end_date = Date.new(2016,2,9)
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+
+reservation = CouchReservationRequest.new
+reservation.user_id = user2.id
+reservation.couch_post_id = couch_post3.id
+reservation.start_date = Date.new(2015,2,17)
+reservation.end_date = Date.new(2015,2,27)
+reservation.amount = 1
+reservation.accepted = true
+reservation.responded_at = Date.new(2015,2,16)
+reservation.save!
+puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
+
+
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user1.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Estuvo re bueno, aprovechen y vivan la experiencia!"
+couchpostfeedback.score = 5
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_post8.id
+couchpostfeedback.comment = "Me dio vértigo de solo abrir la ventana. 10/10 iría de nuevo."
+couchpostfeedback.score = 5
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_post3.id
+couchpostfeedback.comment = "El bosque mas o menos zafaba pero bastante comuncito todo, un re viaje al p- en vano."
+couchpostfeedback.score = 1
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user5.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Me gustó pero prefiero manejar mi Rolls Royce."
+couchpostfeedback.score = 4
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 

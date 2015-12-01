@@ -13,6 +13,7 @@
         <li><%= link_to 'Mis reservas', couch_reservation_requests_path %></li>
         <li><%= link_to 'Solicitudes', '/foreign_requests_index' %></li>
         <li><%= link_to 'Mis Couches', my_couch_posts_path %></li>
+        <li><%= link_to 'Couches Visitados', visited_couch_posts_path %></li>
         <% if current_user.try(:admin?) %>
           <li><%= link_to 'Usuarios', users_path %></li>
           <li><%= link_to 'Tipos de Couches', couch_types_path %></li>

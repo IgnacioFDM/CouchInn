@@ -21,15 +21,21 @@
 
                     </div>
                     <div class="ratings">
-                        <p class="pull-right"><%= @couch_post_feedbacks.count%> opiniones</p>
+                        <p class="pull-right"><%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s
+                            <%end%>
+                        </p>
                         <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <% (1..5).each do |i| %>
+                           <% if( i <= @couch_post_feedback_val)%> 
+                              <span class="glyphicon glyphicon-star"></span>
+                            <%else%>
+                              <span class="glyphicon glyphicon-star-empty"></span>
+                            <% end %>     
+                            <% end %>           
+                           
 
-                           <%= @couch_post_feedback_val%>  estrellas
+                           <%= @couch_post_feedback_val%> estrella<% if(@couch_post_feedback_val != 1)%>s
+                            <%end%>
                         </p>
                     </div>
                 </div>
