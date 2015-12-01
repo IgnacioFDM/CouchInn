@@ -3,10 +3,9 @@ class UserFeedbacksController < ApplicationController
   after_action :verify_authorized
   def create
     authorize UserFeedback
-    parameters = params.require(:user_feedback).permit(:comment,:user_id)
+    parameters = params.require(:user_feedback).permit(:comment,:user_id,:author_id)
     user_feedback = UserFeedback.new
-    user_feedback.comment = parameters[:comment]
-    user_feedback.user_id = parameters[:user_id]
+    user_feedback.attributes = parameters
     success = user_feedback.save
     if success then
       redirect_to user_feedback.user , notice: "Comentario añadido."
@@ -15,12 +14,10 @@ class UserFeedbacksController < ApplicationController
     end
   end
 
-  def update
+  def index
+    authorize UserFeedback
+    @sent_feedbacks = current_user.sent_feedbacks.order(:updated_at => :asc)
+    @sent_feedbacks = @sent_feedbacks.paginate(:page => params[:page], :per_page => 5)
   end
 
-  def show
-  end
-
-  def destroy
-  end
 end

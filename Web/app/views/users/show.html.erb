@@ -19,7 +19,8 @@
             <%= text_area_tag('user_feedback[comment]', "", placeholder: "Escribí un comentario acá ...", required: 'true', class: 'form-control') %>
           </div>
           <br>
-          <%= hidden_field_tag('user_feedback[user_id]', @user.id.to_s) %>
+          <%= hidden_field_tag('user_feedback[user_id]', @user.id) %>
+          <%= hidden_field_tag('user_feedback[author_id]', current_user.id) %>
           <%= submit_tag "Enviar", class:"btn btn-success" %>
           <% end %>
         </div>

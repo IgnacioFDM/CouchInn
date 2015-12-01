@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>A:  <%= link_to feedback.user.name, users_path(feedback.user) %> </h4>
+    <%= rating_for feedback.user, "rating" , disable_after_rate: true, star_path: '/images/ratyrate' %>
+    <blockquote>
+      <p> <%= feedback.comment %></p>
+      <footer> <%= feedback.author.name %>
+    </blockquote>
+  </div>
+</div>

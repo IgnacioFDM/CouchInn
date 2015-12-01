@@ -1,0 +1,19 @@
+<div class="container">
+  <h3>Calificaciones hechas por mí</h3>
+    <div class="row">
+        <% @sent_feedbacks.each do |feedback| %>
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body"><%= render partial: "feedback", object: feedback %></div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row text-center">
+          <div class="col-lg-12">
+            <ul class="pagination">
+              <%= will_paginate @sent_feedbacks, renderer: BootstrapPagination::Rails, container: false, previous_label: '&laquo;', next_label: '&raquo;' %>
+            </ul>
+          </div>
+        </div>
+    </div>
+</div>
