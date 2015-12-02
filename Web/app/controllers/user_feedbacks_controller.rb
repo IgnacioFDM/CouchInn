@@ -3,7 +3,7 @@ class UserFeedbacksController < ApplicationController
   after_action :verify_authorized
   def create
     authorize UserFeedback
-    parameters = params.require(:user_feedback).permit(:comment,:user_id,:author_id)
+    parameters = params.require(:user_feedback).permit(:comment,:user_id,:author_id,:rating)
     user_feedback = UserFeedback.new
     user_feedback.attributes = parameters
     success = user_feedback.save

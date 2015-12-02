@@ -1,10 +1,12 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <h4>A:  <%= link_to feedback.user.name, users_path(feedback.user) %> </h4>
-    <%= rating_for feedback.user, "rating" , disable_after_rate: true, star_path: '/images/ratyrate' %>
+    <h4>A:  <%= link_to feedback.user.name, feedback.user %> </h4>
+    <div class="ratings">
+      <p><%= render partial:"stars", locals:{rating_value: feedback.rating} %></p>
+    </div>
     <blockquote>
-      <p> <%= feedback.comment %></p>
-      <footer> <%= feedback.author.name %>
+      <p><em> <%= feedback.comment %> </em></p>
+      <footer> <p><%= feedback.author.name %></p></footer>
     </blockquote>
   </div>
 </div>
