@@ -1,119 +1,89 @@
-﻿
-    <div class="container">
-
-        <div class="row">
-
-        <%= render 'couch_types/couch_types_side' %>
-
-            <div class="col-md-9">
-
-                <div class="thumbnail">
-                    <img class="img-responsive" src="<%= @couch_post.mainpic.url(:bigpanoramic) %>" alt="">
-                    <div class="caption-full">
-
-                        <h2><a href="#"><%= @couch_post.title if @couch_post.title %></a></h2>
-                        <h4><%= link_to @couch_post.user.name, user_path(@couch_post.user) %></h4>
-                        <p><%= @couch_post.description if @couch_post.description %></p>
-                   <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name.capitalize if @couch_post.couch_type_id %> </p>
-<p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
-<p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
-<p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
-
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right"><%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s
-                            <%end%>
-                        </p>
-                        <p>
-                            <% (1..5).each do |i| %>
-                           <% if( i <= @couch_post_feedback_val)%> 
-                              <span class="glyphicon glyphicon-star"></span>
-                            <%else%>
-                              <span class="glyphicon glyphicon-star-empty"></span>
-                            <% end %>     
-                            <% end %>           
-                           
-
-                           <%= @couch_post_feedback_val%> estrella<% if(@couch_post_feedback_val != 1)%>s
-                            <%end%>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="well">
-
-
-                    <div class="row hidden-xs">
-                      <div class="col-md-12">
-                        <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
-                        <%= link_to "¿Visitaste este Couch? ¡Deja un comentario!", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-success' %>
-                        <%= link_to "Reportar Publicación", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-danger' %>
-                      </div>
-                    </div>
-
-                    <div class="row hidden-sm hidden-md hidden-lg">
-                      <div class="col-md-12">
-                        <ul class="list-unstyled">
-                          <li>
-                            <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary mobile-button' %>
-                          </li>
-                          <li>
-                            <a class="btn btn-success mobile-button">Comentar</a>
-                          </li>
-                          <li>
-                            <a class="btn btn-danger mobile-button">Reportar Publicación</a>
-                          </li>
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Doggo
-                            <span class="pull-right">Hace 10 días</span>
-                            <p>Woof woof</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            santlev
-                            <span class="pull-right">Hace 12 días</span>
-                            <p>El mejor Couch al que fui en mi vida, la pasé re bien!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            RamiroRD
-                            <span class="pull-right">Hace 15 días</span>
-                            <p>Excelente lugar, muy recomendable.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+﻿<div class="container">
+  <div class="row">
+    <%= render 'couch_types/couch_types_side' %>
+    <div class="col-md-9">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= @couch_post.mainpic.url(:bigpanoramic) %>" alt="">
+        <div class="caption-full">
+          <h2><a href="#"><%= @couch_post.title if @couch_post.title %></a></h2>
+          <h4><%= link_to @couch_post.user.name, user_path(@couch_post.user) %></h4>
+          <p><%= @couch_post.description if @couch_post.description %></p>
+          <p>Tipo: <%= CouchType.find(@couch_post.couch_type_id).name.capitalize if @couch_post.couch_type_id %> </p>
+          <p>Zona: <%= @couch_post.zone if @couch_post.zone %></p>
+          <p>Cantidad de habitaciones: <%= @couch_post.rooms if @couch_post.rooms %></p>
+          <p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
         </div>
-
+        <div class="ratings">
+          <p class="pull-right"><%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s
+            <%end%>
+          </p>
+          <p> 
+            <%= render partial: "stars", locals: {rating_value: @couch_post_feedback_val} %>
+          </p>
+        </div>
+      </div>
+      <div class="well">
+        <div class="row hidden-xs">
+          <div class="col-md-12">
+            <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
+            <%= link_to "¿Visitaste este Couch? ¡Deja un comentario!", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-success' %>
+            <%= link_to "Reportar Publicación", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-danger' %>
+          </div>
+        </div>
+        <div class="row hidden-sm hidden-md hidden-lg">
+          <div class="col-md-12">
+            <ul class="list-unstyled">
+            <li>
+              <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary mobile-button' %>
+            </li>
+            <li>
+              <a class="btn btn-success mobile-button">Comentar</a>
+            </li>
+            <li>
+              <a class="btn btn-danger mobile-button">Reportar Publicación</a>
+            </li>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            Doggo
+            <span class="pull-right">Hace 10 días</span>
+            <p>Woof woof</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            santlev
+            <span class="pull-right">Hace 12 días</span>
+            <p>El mejor Couch al que fui en mi vida, la pasé re bien!</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            RamiroRD
+            <span class="pull-right">Hace 15 días</span>
+            <p>Excelente lugar, muy recomendable.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
