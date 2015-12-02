@@ -4,6 +4,7 @@ class UserFeedback < ActiveRecord::Base
 	validates_presence_of :comment
 	validates_presence_of :author
 	validates_presence_of :user
+	validates_inclusion_of :rating, in: 1..5, allow_nil: true
 	validate :not_reflexive
 
 	def not_reflexive
