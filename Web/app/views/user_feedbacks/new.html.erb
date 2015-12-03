@@ -1,0 +1,6 @@
+<div class="container">
+  <div class="authform">
+    <h4>Calificando usuario: <%= link_to @user.name, user_path(@user) %></h4>
+    <%= render partial: 'user_feedbacks/form', locals:{user: @user, feedback: UserFeedback.new} %>
+  </div>
+</div>

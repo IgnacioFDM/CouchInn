@@ -31,6 +31,11 @@ es:
         start_date: "Fecha de entrada"
         end_date: "Fecha de salida"
         amount: "Cantidad de personas"
+      user_feedback:
+        author_id: "Autor de calificación"
+        user_id: "Usuario a calificar"
+        comment: "Comentario"
+        rating: "Puntuación"
   date:
     abbr_day_names:
     - dom

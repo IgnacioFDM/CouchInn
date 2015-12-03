@@ -6,6 +6,10 @@ class UserFeedbackPolicy
     @user = model
   end
 
+  def new?
+    @current_user
+  end
+
   def index?
     @current_user
   end
