@@ -17,7 +17,7 @@ user2.email = 'santiago@couchinn.com'
 user2.password = 'password'
 user2.password_confirmation = 'password'
 user2.telephone = '0123456789'
-user2.birthdate = Date.new(1970,2,1)
+user2.birthdate = Date.new(1960,2,1)
 user2.save!
 puts 'CREATED REGULAR USER: ' << user2.name
 
@@ -47,7 +47,7 @@ user5.email = 'ricardo@couchinn.com'
 user5.password = 'password'
 user5.password_confirmation = 'password'
 user5.telephone = '84574'
-user5.birthdate = Date.new(1968,11,5)
+user5.birthdate = Date.new(1990,11,5)
 user5.save!
 puts 'CREATED REGULAR USER: ' << user5.name
 
@@ -292,3 +292,49 @@ couchpostfeedback.comment = "Me gustó pero prefiero manejar mi Rolls Royce."
 couchpostfeedback.score = 4
 couchpostfeedback.save!
 puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user
+  f.user = user1
+  f.comment = "Al cabo que ni quería dormir."
+  f.rating = "1"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user
+  f.user = user2
+  f.comment = "Me gustó bastennete la atención."
+  f.rating = "2"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user
+  f.user = user3
+  f.comment = "todo ok"
+  f.rating = "3"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user
+  f.user = user4
+  f.comment = "Muy mal usuario. Lo voy a eliminar."
+  f.rating = "4"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user
+  f.user = user5
+  f.comment = "Hm."
+  f.rating = "5"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+

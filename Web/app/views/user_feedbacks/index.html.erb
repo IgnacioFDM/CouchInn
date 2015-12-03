@@ -1,10 +1,10 @@
 <div class="container">
   <h3>Calificaciones hechas por mí</h3>
     <div class="row">
-        <% @sent_feedbacks.each do |feedback| %>
+        <% @sent_feedbacks.each do |f| %>
           <div class="col-md-12">
             <div class="panel panel-default">
-              <div class="panel-body"><%= render partial: "feedback", object: feedback %></div>
+              <div class="panel-body"><%= render partial: "sent_feedback", locals:{feedback: f} %></div>
             </div>
           </div>
         <% end %>

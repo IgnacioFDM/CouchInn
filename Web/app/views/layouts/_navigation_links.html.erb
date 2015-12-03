@@ -9,7 +9,8 @@
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.try(:name) %> <span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><%= link_to 'Perfil', edit_user_registration_path %></li>
+        <li><%= link_to 'Perfil', user_path(current_user) %></li>
+        <li><%= link_to 'Cuenta', edit_user_registration_path %></li>
         <li><%= link_to 'Mis reservas', couch_reservation_requests_path %></li>
         <li><%= link_to 'Solicitudes', '/foreign_requests_index' %></li>
         <li><%= link_to 'Mis Couches', my_couch_posts_path %></li>

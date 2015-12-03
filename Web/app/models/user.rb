@@ -34,4 +34,15 @@ class User < ActiveRecord::Base
       errors.add(:birthdate, 'Debes ser mayor de 18 años')
     end
   end
+
+  def average_rating
+    avg_rating = 0
+    self.received_feedbacks.each do |f|
+      if not f.rating.nil?
+        avg_rating = avg_rating + f.rating
+      end
+    end
+    return (avg_rating/[1,self.received_feedbacks.count].max).ceil
+  end
+
 end

@@ -1,12 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <h4>A:  <%= link_to feedback.user.name, feedback.user %> </h4>
+    <h5>A:  <%= link_to feedback.user.name, feedback.user %> </h5>
     <div class="ratings">
       <p><%= render partial:"stars", locals:{rating_value: feedback.rating} %></p>
     </div>
     <blockquote>
       <p><em> <%= feedback.comment %> </em></p>
-      <footer> <p><%= feedback.author.name %></p></footer>
     </blockquote>
   </div>
 </div>
