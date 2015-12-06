@@ -60,6 +60,17 @@ class CouchReservationRequestsController < ApplicationController
   def index
     authorize CouchReservationRequest
     @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
+    @start_date = Date.current
+    @end_date = Date.current
+    @accept = false
+  end
+
+  def date_filter_results
+    authorize CouchReservationRequest
+    @start_date = Date.parse(params[:dates][:from_date])
+    @end_date = Date.parse(params[:dates][:to_date])
+       @accept = (params[:accept])
+       @my_requests = CouchReservationRequest.requests_made_by_user_during_timespan(current_user.id, @start_date, @end_date, @accept)
   end
 
   def foreign_requests_index

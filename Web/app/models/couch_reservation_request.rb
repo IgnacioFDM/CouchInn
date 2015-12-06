@@ -19,6 +19,23 @@ class CouchReservationRequest < ActiveRecord::Base
     return User.find(user_id).couch_reservation_requests
   end
 
+  def self.requests_made_by_user_during_timespan(user_id, start_date, end_date, accepted)
+    aux =  User.find(user_id).couch_reservation_requests
+    if(accepted)
+      aux = aux.where(accepted: true)
+    end 
+    fin = Array.new
+    if not(Date.valid_date?(start_date.year, start_date.month, start_date.day) && Date.valid_date?(end_date.year, end_date.month, end_date.day))
+return aux
+    end
+  aux.each do |a|
+ if (a.end_date <= end_date && a.start_date >= start_date)
+fin << a
+ end
+  end
+    return fin
+  end
+
   def self.requests_made_to_user(user_id)
     return self.joins(:couch_post).where(:couch_posts => {:user_id => user_id})
   end

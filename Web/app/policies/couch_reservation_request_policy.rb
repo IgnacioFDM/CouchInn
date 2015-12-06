@@ -22,6 +22,14 @@ class CouchReservationRequestPolicy
     @current_user
   end
 
+  def date_filter?
+    @current_user
+  end
+
+  def date_filter_results?
+    @current_user
+  end
+
   def show?
     @current_user
   end

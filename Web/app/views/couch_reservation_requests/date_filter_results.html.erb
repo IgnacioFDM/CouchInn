@@ -45,10 +45,11 @@
           </div>
     </div>
  
+ 
 
 
   <br> 
-  <h4> Mostrando todas las solicitudes</h4>
+    <h4> Mostrando <%= @my_requests.count %> resultado<% if(@my_requests.count != 1)%>s<%end%> <% if(@accept)%>aceptado<% if(@my_requests.count != 1)%>s<%end%> <%end%></h4>
   <br>
  
     <div class="row">

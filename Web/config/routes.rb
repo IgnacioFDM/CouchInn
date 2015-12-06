@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/visited_couch_posts' => 'couch_posts#visitedcouchposts', as: 'visited_couch_posts'
   get '/main_pic_edit/:id', to: 'couch_posts#mainpicedit', as: 'main_pic_edit'
   get '/foreign_requests_index' => 'couch_reservation_requests#foreign_requests_index', as: 'foreign_requests_index'
-
+  get '/couch_reservation_requests/date_filter_results' => 'couch_reservation_requests#date_filter_results', as: 'date_filter_results'
   match 'couch_reservation_requests/respond', to: 'couch_reservation_requests#respond', via: 'post'
 
   devise_for :users
