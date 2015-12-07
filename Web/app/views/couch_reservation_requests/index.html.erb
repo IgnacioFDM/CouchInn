@@ -8,7 +8,7 @@
   <!-- Start of search panel -->
   <div class="col-md-3">
     <div class="panel panel-default">
-      <div class="panel-heading">Filtrar por fechas</div>
+      <div class="panel-heading"> <h4>Filtrar por fechas </h4></div>
       <div class="panel-body">
         <%= form_tag couch_reservation_requests_path, method: 'get', multipart: :true  do %>
           <div class="horizonal-form">
@@ -21,7 +21,11 @@
               <%= date_field :dates, :to_date, value: @end_date, required: :true, class: "form-control" %>
             </div>
             <div class="form-group"> 
-              <%= check_box_tag :accept, 'yes', @accept %> <%= label_tag "Sólo aceptadas" %>
+              <div class="checkbox">
+                        <label>
+                           <%= check_box_tag :accept, 'yes', @accept %> <b>Sólo aceptadas </b>
+                        </label>
+              </div>
             </div>
             <div class="form-group"> 
               <%= submit_tag 'Filtrar resultados', :class => 'btn btn-info' %>
