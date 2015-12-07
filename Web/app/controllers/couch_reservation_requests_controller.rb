@@ -36,7 +36,6 @@ class CouchReservationRequestsController < ApplicationController
 
   def respond
     authorize CouchReservationRequest
-    #quienes pueden y no pueden llamar a este metodo?
     parameters = params.require(:couch_reservation_request).permit(:accepted,:id)
     request = CouchReservationRequest.find(parameters[:id])
     request.accepted = parameters[:accepted]
@@ -59,18 +58,22 @@ class CouchReservationRequestsController < ApplicationController
 
   def index
     authorize CouchReservationRequest
-    @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
-    @start_date = Date.current
-    @end_date = Date.current
-    @accept = false
-  end
-
-  def date_filter_results
-    authorize CouchReservationRequest
-    @start_date = Date.parse(params[:dates][:from_date])
-    @end_date = Date.parse(params[:dates][:to_date])
-       @accept = (params[:accept])
-       @my_requests = CouchReservationRequest.requests_made_by_user_during_timespan(current_user.id, @start_date, @end_date, @accept)
+    @filtering = params.has_key?(:dates) and params.has_key?(:accept) and params[:dates].has_key?(:from_date) and params[:dates].has_key?(:to_date)
+    if @filtering
+      @start_date = Date.parse(params[:dates][:from_date])
+      @end_date = Date.parse(params[:dates][:to_date])
+      @accept = params[:accept] == "yes"
+      if @start_date > @end_date
+        redirect_to couch_reservation_requests_path, alert: "Fechas inválidas!"
+      else
+        @my_requests = CouchReservationRequest.requests_made_by_user_during_timespan(current_user.id, @start_date, @end_date, @accept)
+      end
+    else
+      @start_date = Date.current
+      @end_date = Date.current
+      @accept = false
+      @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
+    end
   end
 
   def foreign_requests_index

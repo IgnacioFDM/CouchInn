@@ -20,7 +20,7 @@
   <% else %>
     <% if my_request.accepted %>
       <div class="text-success"><p><%= render text:"Solicitud aceptada." %></p></div>
-      <h4> Datos de contacto del solicitante </h4>
+      <h4> Datos de contacto del dueño </h4>
       <%= render partial: "users/contact", locals: {user: my_request.user} %>
     <% else %>
       <div class="text-danger"><p><%= render text:"Solicitud rechazada." %></p></div>

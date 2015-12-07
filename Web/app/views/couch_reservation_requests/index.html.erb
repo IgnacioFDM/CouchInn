@@ -1,63 +1,50 @@
 <div class="container">
-
-  <h3>Solicitudes hechas por m&iacute; </h3>
-    <br>
-
- <div class="row">
-          <div class="col-xs-12 col-md-12">
-
-            <div class="panel panel-default">
-              <div class="panel-heading">Filtrar por fechas</div>
-              <div class="panel-body">
-                 <%= form_tag(date_filter_results_path, :method=>'get', :multipart => true) do %>                
-                  <div class="form-group">
-                   <table>
-                    <tr>
-                    <td class="col-md-1 text-center">
-                       <tr>
-                         <td class="col-md-1 text-center">
-                        <%= date_field(:dates, :from_date, :value => @start_date, :required => true) %>
-                    </td>
-               
-                   <td class="col-md-1 text-center">
-                        <%= date_field(:dates, :to_date, :value => @end_date, :required => true) %>
-                   </td>
-                
-                   <td class="col-md-1 text-center">
-                     <div class="checkbox">
-                        <label>
-                           <%= check_box_tag :accept, 'yes', @accept %> Mostrar solo aceptadas
-                        </label>
-                      </div>
-                   </td>
-                  
-                   <td class="col-md-1 text-center">
-                   <%= submit_tag 'Filtrar resultados', :class => 'btn btn-success btn-lg post-couch' %>
-                       </td>
-             
-
-                        </tr>
-                   </table>
-                    </div>
-                  <%end%>
-              </div>
+  <h3>Solicitudes hechas por mí </h3>
+  <% if @filtering then %>
+    <h4>Mostrando <%= @my_requests.count %> resultado<% if(@my_requests.count != 1)%>s<%end%><% if(@accept)%> aceptado<% if(@my_requests.count != 1)%>s<%end%> <%end%></h4>
+  <% else %>
+    <h4>Mostrando todos</h4>
+  <% end %>
+  <!-- Start of search panel -->
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Filtrar por fechas</div>
+      <div class="panel-body">
+        <%= form_tag couch_reservation_requests_path, method: 'get', multipart: :true  do %>
+          <div class="horizonal-form">
+            <div class="form-group"> 
+              <%= label_tag "Desde" %>
+              <%= date_field :dates, :from_date, value: @start_date, required: :true, class: "form-control" %>
+            </div>
+            <div class="form-group"> 
+              <%= label_tag "Hasta" %>
+              <%= date_field :dates, :to_date, value: @end_date, required: :true, class: "form-control" %>
+            </div>
+            <div class="form-group"> 
+              <%= check_box_tag :accept, 'yes', @accept %> <%= label_tag "Sólo aceptadas" %>
+            </div>
+            <div class="form-group"> 
+              <%= submit_tag 'Filtrar resultados', :class => 'btn btn-info' %>
             </div>
           </div>
+          <% if @filtering %>
+            <%= link_to "Mostrar todos",couch_reservation_requests_path , :class => 'btn btn-info' %>
+          <% end %>
+        <%end%>  
+      </div>
     </div>
- 
-
-
-  <br> 
-  <h4> Mostrando todas las solicitudes</h4>
-  <br>
- 
+  </div>
+  <!-- End of search panel -->
+  <!-- Requests start showing here -->
+  <div class="col-md-9">
     <div class="row">
-        <% @my_requests.each do |my_request| %>
-          <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-body"><%= render partial: "my_request", object: my_request %></div>
-            </div>
+      <% @my_requests.each do |my_request| %>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body"><%= render partial: "my_request", object: my_request %></div>
           </div>
-        <% end %>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>
