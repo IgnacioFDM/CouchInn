@@ -14,8 +14,8 @@
           <p>Cantidad de lugares disponibles: <%= @couch_post.vacants if @couch_post.vacants %></p>
         </div>
         <div class="ratings">
-          <p class="pull-right"><%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s
-            <%end%>
+          <p class="pull-right">
+            <%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s<%end%>
           </p>
           <p> 
             <%= render partial: "stars", locals: {rating_value: @couch_post_feedback_val} %>
@@ -26,8 +26,8 @@
         <div class="row hidden-xs">
           <div class="col-md-12">
             <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary' %>
-            <%= link_to "¿Visitaste este Couch? ¡Deja un comentario!", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-success' %>
-            <%= link_to "Reportar Publicación", {controller: 'couch_posts', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-danger' %>
+            <%= link_to "¿Visitaste este Couch? ¡Deja un comentario!", {controller: 'couch_post_feedbacks', action: 'new' , couch_post_id: @couch_post.id },class: 'btn btn-success' %>
+            <%= link_to "Reportar Publicación", {controller: 'couch_post_feedbacks', action: 'new' , couch_post_id: @couch_post.id },class: 'btn btn-danger' %>
           </div>
         </div>
         <div class="row hidden-sm hidden-md hidden-lg">
@@ -37,52 +37,31 @@
               <%= link_to "Reservar", {controller: 'couch_reservation_requests', action: 'new' , couch_post_id: @couch_post.id.to_s },class: 'btn btn-primary mobile-button' %>
             </li>
             <li>
-              <a class="btn btn-success mobile-button">Comentar</a>
+                <%= link_to "Comentar", {controller: 'couch_post_feedbacks', action: 'new' , couch_post_id: @couch_post.id }, class: 'btn btn-success mobile-button' %>
             </li>
             <li>
               <a class="btn btn-danger mobile-button">Reportar Publicación</a>
             </li>
           </div>
         </div>
+
+          <% @couch_post_feedbacks.each do |cpf| %>
+
         <hr>
         <div class="row">
           <div class="col-md-12">
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            Doggo
-            <span class="pull-right">Hace 10 días</span>
-            <p>Woof woof</p>
+             <p> 
+            <%= render partial: "stars", locals: {rating_value: cpf.score} %>
+          </p>
+          <%= User.find(cpf.user_id).name %>
+           <% if(Time.now.to_date - cpf.created_at.to_date <= 0)%>  <span class="pull-right"> Hace unos minutos </span> <%end%>
+             <% if(Time.now.to_date - cpf.created_at.to_date > 0)%> <span class="pull-right">Hace <%= (Time.now.to_date - cpf.created_at.to_date).to_i %> día<% if( (Time.now.to_date - cpf.created_at.to_date).to_i != 1)%>s<%end%></span> <%end%>
+            
+            <p> <%= cpf.comment %></p>
           </div>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-12">
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            santlev
-            <span class="pull-right">Hace 12 días</span>
-            <p>El mejor Couch al que fui en mi vida, la pasé re bien!</p>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-12">
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            RamiroRD
-            <span class="pull-right">Hace 15 días</span>
-            <p>Excelente lugar, muy recomendable.</p>
-          </div>
-        </div>
+         <% end %>
+
       </div>
     </div>
   </div>

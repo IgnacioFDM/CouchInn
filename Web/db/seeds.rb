@@ -265,7 +265,7 @@ couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user1.id
 couchpostfeedback.couch_post_id = couch_post9.id
 couchpostfeedback.comment = "Estuvo re bueno, aprovechen y vivan la experiencia!"
-couchpostfeedback.score = 5
+couchpostfeedback.score = 4
 couchpostfeedback.save!
 puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
 
@@ -289,7 +289,7 @@ couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user5.id
 couchpostfeedback.couch_post_id = couch_post9.id
 couchpostfeedback.comment = "Me gustó pero prefiero manejar mi Rolls Royce."
-couchpostfeedback.score = 4
+couchpostfeedback.score = 2
 couchpostfeedback.save!
 puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
 
