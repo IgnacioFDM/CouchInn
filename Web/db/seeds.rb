@@ -22,8 +22,8 @@ user2.save!
 puts 'CREATED REGULAR USER: ' << user2.name
 
 user3 = User.new
-user3.name = "Doggo"
-user3.email = 'doggo@couchinn.com'
+user3.name = "TheDog"
+user3.email = 'mynameisthedog@couchinn.com'
 user3.password = 'password'
 user3.password_confirmation = 'password'
 user3.telephone = '101'
@@ -131,10 +131,10 @@ couch_post.mainpic = File.open("app/assets/images/toc.jpg") unless ENV["COUCHINN
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Loft amplio', description: 'Tengo mucho lugar! Espero recibir gente divertida.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/minecraft.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_postx = CouchPost.find_or_create_by!(title: 'Loft amplio', description: 'Tengo mucho lugar! Espero recibir gente divertida.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_postx.mainpic = File.open("app/assets/images/minecraft.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_postx.save!
+puts 'CREATED COUCH POST: ' << couch_postx.title
 
 couch_post8 = CouchPost.find_or_create_by!(title: 'El edificio más alto', description: 'Soy el dueño del edificio más alto de Dubai. Puedo verlo todo desde acá arriba, pero me tapan las nubes y me siento solo.', couch_type_id: departamento.id, user_id: user1.id, rooms: 10, vacants: 10, zone:'Dubai')
 couch_post8.mainpic = File.open("app/assets/images/uphigh.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
@@ -156,10 +156,10 @@ couch_post.mainpic = File.open("app/assets/images/cloudroom.jpg") unless ENV["CO
 couch_post.save!
 puts 'CREATED COUCH POST: ' << couch_post.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Tierra lejana', description: 'Tierra de ensueño, con una fauna asombrosa, dragones sobrevuelan la pradera y todo tipo de animales merodean en los alrededores.', couch_type_id: exterior.id, user_id: user1.id, rooms: 1, vacants: 100, zone:'Skyrim')
-couch_post.mainpic = File.open("app/assets/images/skyrim.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_postt = CouchPost.find_or_create_by!(title: 'Tierra lejana', description: 'Tierra de ensueño, con una fauna asombrosa, dragones sobrevuelan la pradera y todo tipo de animales merodean en los alrededores.', couch_type_id: exterior.id, user_id: user1.id, rooms: 1, vacants: 100, zone:'Skyrim')
+couch_postt.mainpic = File.open("app/assets/images/skyrim.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_postt.save!
+puts 'CREATED COUCH POST: ' << couch_postt.title
 
 couch_post = CouchPost.find_or_create_by!(title: 'Ruinas antiguas', description: 'Vestigios de tiempos más tranquilos. Se requiere precaución por tratarse de algo con alto valor histórico.', couch_type_id: exterior.id, user_id: user2.id, rooms: 10, vacants: 10, zone:'Zona sin nombre')
 couch_post.mainpic = File.open("app/assets/images/quetzalcoatlboard.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
@@ -261,13 +261,6 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 
 
 
-couchpostfeedback = CouchPostFeedback.new
-couchpostfeedback.user_id = user1.id
-couchpostfeedback.couch_post_id = couch_post9.id
-couchpostfeedback.comment = "Estuvo re bueno, aprovechen y vivan la experiencia!"
-couchpostfeedback.score = 4
-couchpostfeedback.save!
-puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user2.id
@@ -276,6 +269,38 @@ couchpostfeedback.comment = "Me dio vértigo de solo abrir la ventana. 10/10 ir�
 couchpostfeedback.score = 5
 couchpostfeedback.save!
 puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_post2.id
+couchpostfeedback.comment = "Me quedé encerrado porque se trabó la puerta y no supe qué hacer."
+couchpostfeedback.score = 2
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user1.id
+couchpostfeedback.couch_post_id = couch_post2.id
+couchpostfeedback.comment = "No había WiFi."
+couchpostfeedback.score = 1
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user3.id
+couchpostfeedback.couch_post_id = couch_post5.id
+couchpostfeedback.comment = "No estoy seguro de si volví al mismo universo del cuál vengo."
+couchpostfeedback.score = 5
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user3.id
+couchpostfeedback.couch_post_id = couch_post7.id
+couchpostfeedback.comment = "Nos re divertimos!"
+couchpostfeedback.score = 5
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user2.id
@@ -290,6 +315,96 @@ couchpostfeedback.user_id = user5.id
 couchpostfeedback.couch_post_id = couch_post9.id
 couchpostfeedback.comment = "Me gustó pero prefiero manejar mi Rolls Royce."
 couchpostfeedback.score = 2
+couchpostfeedback.created_at = DateTime.new(2015,12,1,17)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Bueno, la próxima traelo y organizamos una caravana."
+couchpostfeedback.created_at = DateTime.new(2015,12,1,18)
+couchpostfeedback.score = nil
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user5.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Ok pero solo si vamos a Miami."
+couchpostfeedback.score = nil
+couchpostfeedback.created_at =DateTime.new(2015,12,2,19)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user4.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Puedo ir cuando vaya Ricardo?"
+couchpostfeedback.score = nil
+couchpostfeedback.created_at =DateTime.new(2015,12,3,20)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user5.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Basta chicos."
+couchpostfeedback.score = nil
+couchpostfeedback.created_at = DateTime.new(2015,12,3,20)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user5.id
+couchpostfeedback.couch_post_id = couch_post4.id
+couchpostfeedback.comment = "Por este Couch llegué tarde a mi mansión. Basta chicos."
+couchpostfeedback.score = 1
+couchpostfeedback.created_at = DateTime.new(2015,12,4,20)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_post4.id
+couchpostfeedback.comment = "Inaguantable, los bocinazos no dejan dormir."
+couchpostfeedback.score = 1
+couchpostfeedback.created_at = DateTime.new(2015,12,4,20)
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user1.id
+couchpostfeedback.couch_post_id = couch_post9.id
+couchpostfeedback.comment = "Estuvo re bueno, aprovechen y vivan la experiencia!"
+couchpostfeedback.score = 4
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user1.id
+couchpostfeedback.couch_post_id = couch_postx.id
+couchpostfeedback.comment = "Lindo lugar pero muy cuadrado, la cama medio incómoda."
+couchpostfeedback.score = 4
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user2.id
+couchpostfeedback.couch_post_id = couch_postt.id
+couchpostfeedback.comment = "Wow, era verdad lo de los dragones.."
+couchpostfeedback.created_at = DateTime.new(2015,6,1,18)
+couchpostfeedback.score = 5
+couchpostfeedback.save!
+puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
+
+couchpostfeedback = CouchPostFeedback.new
+couchpostfeedback.user_id = user5.id
+couchpostfeedback.couch_post_id = couch_postt.id
+couchpostfeedback.comment = "Me hice un abrigo de piel con las criaturas que pudimos cazar."
+couchpostfeedback.created_at = DateTime.new(2015,9,1,18)
+couchpostfeedback.score = 5
 couchpostfeedback.save!
 puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " << couchpostfeedback.couch_post.title 
 
@@ -303,10 +418,46 @@ user_feedback = UserFeedback.new do |f|
 end
 
 user_feedback = UserFeedback.new do |f|
+  f.author = user2
+  f.user = user
+  f.comment = "Irrespetuoso total. Me tocó la jalea."
+  f.rating = "1"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user2
+  f.user = user1
+  f.comment = "Agradable, voy a ir a futuros Couches con él."
+  f.rating = "5"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user5
+  f.user = user1
+  f.comment = "Su nombre se parece al mío, me reí mucho con eso."
+  f.rating = "5"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
   f.author = user
   f.user = user2
   f.comment = "Me gustó bastennete la atención."
   f.rating = "2"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user3
+  f.user = user4
+  f.comment = "Quiero dar las gracias."
+  f.rating = "4"
   f.save!
   puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
 end
@@ -337,4 +488,24 @@ user_feedback = UserFeedback.new do |f|
   f.save!
   puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
 end
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user5
+  f.user = user2
+  f.comment = "Te quedaste con mi cutu-cuchillo. La próxima salida me lo devolvés."
+  f.rating = "5"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
+
+user_feedback = UserFeedback.new do |f|
+  f.author = user3
+  f.user = user2
+  f.comment = "He came up over the horizon in my sky, unacceptable."
+  f.rating = "1"
+  f.save!
+  puts 'CREATED USER FEEDBACK ' << "WRITTEN BY " << f.author.name << " TO " << f.user.name 
+end
+
 
