@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   ratyrate_rater
   ratyrate_rateable "rating"
-  enum role: [:user, :premium, :admin]
+  enum role: [:user, :admin]
   enum gender: [:male, :female, :other]
   has_many :couch_posts
   has_many :couch_reservation_requests
