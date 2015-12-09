@@ -4,16 +4,20 @@ class CouchPostFeedbacksController < ApplicationController
 
     def new
     authorize CouchPostFeedback
-    @couch_post_feedback = CouchPostFeedback.new
+    couch_post_id = params[:couch_post_id]
+      @couch_post = CouchPost.find(couch_post_id)
   end
 
-  def create
+    def create
     authorize CouchPostFeedback
-    @couch_post_feedback = CouchPostFeedback.create(couch_post_feedback_params)
-    if @couch_post_feedback.valid?
-      redirect_to CouchPost.find(@couch_post_feedback.target_id), :notice => "Comentario creado."
+    parameters = params.require(:couch_post_feedback).permit(:comment, :score, :user_id, :couch_post_id)
+    couch_post_feedback = CouchPostFeedback.new
+    couch_post_feedback.attributes = parameters
+    success = couch_post_feedback.save
+    if success then
+      redirect_to couch_post_feedback.couch_post , notice: "Comentario añadido."
     else
-      redirect_to CouchPost.find(@couch_post_feedback.target_id), :alert => "No se pudo crear el comentario. " << @couch_post_feedback.errors.full_messages.to_sentence
+      redirect_to couch_post_feedback.couch_post , alert: "No se pudo publicar el comentario: " << couch_post_feedback.errors.full_messages.to_sentence
     end
   end
 
@@ -42,3 +46,4 @@ def show
   end
 
 end
+

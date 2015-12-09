@@ -8,9 +8,12 @@ class CouchPostPolicy
 
 
   def mycouchposts?
-true
+    @current_user
   end
 
+    def visitedcouchposts?
+    @current_user
+  end
 
   def new?
     @current_user
@@ -25,22 +28,33 @@ true
   end
 
   def show?
-    true
+    @current_user
   end
 
+  def mainpicedit?
+  return true if @current_user == @user 
+  @current_user
+  end
+
+    def mainpicupdate?
+  return true if @current_user == @user 
+  @current_user
+  end
+
+
   def edit?
-    # TODO
-    @current_user.admin?
+    return true if @current_user == @user || @current_user.admin?
+    @current_user
   end
 
   def update?
-    # TODO
-    @current_user.admin?
+    return true if @current_user == @user || @current_user.admin?
+    @current_user
   end
 
   def destroy?
-    # TODO
-    @current_user.admin?
+    return true if @current_user == @user  || @current_user.admin?
+    @current_user
   end
 
 end

@@ -1,19 +1,45 @@
+<div class="form-group">
+  <h4><%= link_to foreign_request.couch_post.title, couch_post_path(foreign_request.couch_post) %></h4>
+  <p>Solicitante:  <%= link_to foreign_request.user.name, user_path(foreign_request.couch_post.user) %> </p>
 
-Couch: <%= link_to foreign_request.couch_post.title, couch_post_path(foreign_request.couch_post) %>
-<br>
-Solicitante:  <%= link_to foreign_request.user.name, user_path(foreign_request.couch_post.user) %>
-<br>
-Fecha de entrada: <%= foreign_request.start_date %>
-<br>
-Fecha de salida: <%= foreign_request.end_date %>
-<br>
-Cantidad: <%= foreign_request.amount %>
-<br>
-Estado: 
-<% if foreign_request.responded_at.blank? %>
-	<%= render text:"No respondido" %>
-	Aceptar/Rechazar 
-<% else %>
-	<%= render text:"Respondido" %>
-<% end %>
-<br>
+  <div class="form-group">
+    <%= label_tag "Fecha de entrada:" %>
+    <%= date_field_tag 'start_date', foreign_request.start_date, disabled: 'true', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Fecha de salida:" %>
+    <%= date_field_tag 'end_date', foreign_request.start_date, disabled: 'true', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag "Cantidad de personas:" %>
+    <%= number_field_tag 'amount', foreign_request.amount, disabled: 'true', class: 'form-control' %>
+  </div>
+
+  <% if foreign_request.responded_at.blank? %>
+  <div class="row">
+    <div class="col-xs-6 col-md-6 text-center">
+      <%= form_for(foreign_request, as: 'couch_reservation_request', url: 'couch_reservation_requests/respond' , method: 'post') do |r| %>
+      <%= r.hidden_field 'id', value: foreign_request.id %>
+      <%= r.hidden_field 'accepted', value: 'true' %>
+      <%= r.submit("Aceptar", data: { confirm: '¿Estás seguro/a?' }, class: 'btn btn-success') %>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-md-6 text-center">
+      <%= form_for(foreign_request, as: 'couch_reservation_request', url: 'couch_reservation_requests/respond' , method: 'post') do |r| %>
+      <%= r.hidden_field 'id', value: foreign_request.id %>
+      <%= r.hidden_field 'accepted', value: 'false' %>
+      <%= r.submit("Rechazar", data: { confirm: '¿Estás seguro/a?' }, class: 'btn btn-danger') %>
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+    <% if foreign_request.accepted %>
+     <div class='text-success'> <%= render text:"Solicitud aceptada" %> </div>
+    <% else %>
+      <div class='text-danger'> <%= render text:"Solicitud rechazada" %> </div>
+    <% end %>
+  <% end %>
+  <br>
+</div>

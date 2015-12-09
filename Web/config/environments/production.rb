@@ -77,12 +77,29 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
+  if ENV["COUCHINN_HEROKU"] == "YES"
+    config.action_mailer.default_url_options = { :host => ENV["DOMAIN_NAME"] }  
+    config.action_mailer.delivery_method = :smtp  
+    config.action_mailer.perform_deliveries = true  
+    config.action_mailer.raise_delivery_errors = false  
+    config.action_mailer.default :charset => "utf-8"  
+    config.action_mailer.smtp_settings = {  
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: ENV["DOMAIN_NAME"],
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
+    }
+  else
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
     address: 'localhost',
     port: 25
-  }
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {host: Rails.application.secrets.domain_name}
+    }
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.raise_delivery_errors = true
+    config.action_mailer.default_url_options = {host: Rails.application.secrets.domain_name}
+  end
 end

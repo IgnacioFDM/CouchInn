@@ -1,26 +1,54 @@
 <div class="container">
-  <h3>Pedidos de reserva</h3>
-  <h4>Pedidos hechos a mis publicaciones</h4>
-  <table class="table table-striped">
-    <tbody>
-        <% @foreign_requests.each do |foreign_request| %>
-          <tr>
-            <%= render partial: "foreign_request", object: foreign_request %>
-            <br>
-          </tr>
-        <% end %>
-    </tbody>
-  </table>
-
-  <h4>Pedidos hechos por mí</h4>
-  <table class="table table-striped">
-    <tbody>
-        <% @my_requests.each do |my_request| %>
-          <tr>
-            <%= render partial: "foreign_request", object: my_request %>
-            <br>
-          </tr>
-        <% end %>
-    </tbody>
-  </table>
+  <h3>Solicitudes hechas por mí </h3>
+  <% if @filtering then %>
+    <h4>Mostrando <%= @my_requests.count %> resultado<% if(@my_requests.count != 1)%>s<%end%><% if(@accept)%> aceptado<% if(@my_requests.count != 1)%>s<%end%> <%end%></h4>
+  <% else %>
+    <h4>Mostrando todos</h4>
+  <% end %>
+  <!-- Start of search panel -->
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading"> <h4>Filtrar por fechas </h4></div>
+      <div class="panel-body">
+        <%= form_tag couch_reservation_requests_path, method: 'get', multipart: :true  do %>
+          <div class="horizonal-form">
+            <div class="form-group"> 
+              <%= label_tag "Desde" %>
+              <%= date_field :dates, :from_date, value: @start_date, required: :true, class: "form-control" %>
+            </div>
+            <div class="form-group"> 
+              <%= label_tag "Hasta" %>
+              <%= date_field :dates, :to_date, value: @end_date, required: :true, class: "form-control" %>
+            </div>
+            <div class="form-group"> 
+              <div class="checkbox">
+                        <label>
+                           <%= check_box_tag :accept, 'yes', @accept %> <b>Sólo aceptadas </b>
+                        </label>
+              </div>
+            </div>
+            <div class="form-group"> 
+              <%= submit_tag 'Filtrar resultados', :class => 'btn btn-info' %>
+            </div>
+          </div>
+          <% if @filtering %>
+            <%= link_to "Mostrar todos",couch_reservation_requests_path , :class => 'btn btn-info' %>
+          <% end %>
+        <%end%>  
+      </div>
+    </div>
+  </div>
+  <!-- End of search panel -->
+  <!-- Requests start showing here -->
+  <div class="col-md-9">
+    <div class="row">
+      <% @my_requests.each do |my_request| %>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body"><%= render partial: "my_request", object: my_request %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

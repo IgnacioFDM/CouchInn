@@ -6,19 +6,15 @@ class UserFeedbackPolicy
     @user = model
   end
 
+  def new?
+    @current_user
+  end
+
+  def index?
+    @current_user
+  end
+
   def create?
-    @current_user
-  end
-
-  def show?
-    @current_user
-  end
-
-  def update?
-    @current_user
-  end
-
-  def destroy?
     @current_user
   end
 

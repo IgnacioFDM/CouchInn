@@ -1,7 +1,8 @@
-﻿<h3> 
-	<%= link_to my_couch_post.title, couch_post_path(my_couch_post.id) %>
-</h3>
-<br>
+﻿
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4><%= link_to my_couch_post.title, couch_post_path(my_couch_post.id) %></h4></div>
+         <div class="panel-body">
 Descripción: <%= my_couch_post.description %>
 <br>
 Tipo: <%= CouchType.find(my_couch_post.couch_type_id).name.capitalize %>
@@ -11,3 +12,20 @@ Zona: <%= my_couch_post.zone %>
 Habitaciones: <%= my_couch_post.rooms %>
 <br>
 Vacantes: <%= my_couch_post.vacants %>
+<br>
+
+
+
+  <div class="btn-group pull-right">
+            <a href= <%= edit_couch_post_path(my_couch_post)%> class='btn btn-info btn-xs pull-left'>Modificar</a>
+     
+         <%= link_to("Cambiar Imagen", main_pic_edit_path(my_couch_post), :class => 'btn btn-success btn-xs pull-left') %>
+
+  	 <% if my_couch_post.couch_reservation_requests.where(accepted: nil).empty?%>
+  <%= link_to("Eliminar", couch_post_path(my_couch_post), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs pull-left') %>
+  	  <% end %>
+
+</div>
+</div>
+</div>
+</div>

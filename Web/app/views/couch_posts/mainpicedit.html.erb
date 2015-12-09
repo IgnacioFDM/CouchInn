@@ -1,0 +1,32 @@
+<div class="authform">
+
+
+	<%= form_for @couch_post, :html => { :multipart => true }  do |c| %>
+		<h3><%= @couch_post.title %></h3>
+
+<h4>Imagen actual</h4>
+
+    <div>
+     <img class="img-responsive" src="<%= @couch_post.mainpic.url %>" alt="">
+	</div>
+
+	<div class="form-group">
+		<%= c.label :mainpic %>
+		<%= c.file_field :mainpic, required: :true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group" >
+	
+		<%= c.hidden_field :user_id %>
+	</div>
+
+		<div class="form-group" >
+	
+		<%= c.hidden_field :id %>
+	</div>
+
+	<%= c.submit 'Modificar Couch', :class => 'button left' %>
+	 <%= link_to("Volver", my_couch_posts_path, :class => 'btn btn-danger pull-right') %>
+	<% end %>
+
+</div>

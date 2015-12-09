@@ -1,0 +1,12 @@
+<div class="container">
+  <h3>Solicitudes hechas a mis publicaciones</h3>
+    <div class="row">
+        <% @foreign_requests.each do |foreign_request| %>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body"><%= render partial: "foreign_request", object: foreign_request %></div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+</div>

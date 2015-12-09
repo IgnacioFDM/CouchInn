@@ -1,23 +1,33 @@
-﻿<% if couch_type.disabled? %>
-  <td class="text-muted">
-    <%= couch_type.name.capitalize %> (Deshabilitado)
-  </td>
-<% else %>
-  <td>
-    <%= couch_type.name.capitalize %>
-  </td>
-<% end %>
-
-<td class="col-md-1 text-right text-muted">
-
-</td>
-
-<td class="col-md-1 text-right">
-  <% if couch_type.couch_posts.empty?%>
-  <%= link_to("Eliminar", couch_type_path(couch_type), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs pull-left') %>
+﻿<td class="col-md-9 text-left">
+  <% if couch_type.disabled? %>
+      <div class="text-muted"><%= couch_type.name.capitalize %> (Deshabilitado)</div>
+  <% else %>
+      <%= couch_type.name.capitalize %>
   <% end %>
 </td>
 
-<td class="col-md-1 text-right">
-  <%= link_to("Modificar", edit_couch_type_path(couch_type), :method => :get, :class => 'btn btn-info btn-xs pull-right') %>
+<td class="col-md-1 text-center">
+  <% if couch_type.couch_posts.empty?%>
+  <%= link_to("Eliminar", couch_type_path(couch_type), :data => { :confirm => "¿Estás seguro/a?" }, :method => :delete, :class => 'btn btn-danger btn-xs') %>
+  <% end %>
+</td>
+
+<% if couch_type.disabled %>
+  <td class="col-md-1 text-center">
+    <%= form_for couch_type do |t| %>
+      <%= t.hidden_field :disabled, value: :false %>
+      <%= t.submit "Habilitar", :class => 'btn btn-success btn-xs'%>
+    <% end %>
+  </td>
+<% else %>
+  <td class="col-md-1 text-center">
+    <%= form_for couch_type do |t| %>
+      <%= t.hidden_field :disabled, value: :true %>
+      <%= t.submit "Deshabilitar", :class => 'btn btn-xs'%>
+    <% end %>
+  </td>
+<% end %>
+
+<td class="col-md-1 text-center">
+  <%= link_to("Modificar", edit_couch_type_path(couch_type), :method => :get, :class => 'btn btn-info btn-xs') %>
 </td>

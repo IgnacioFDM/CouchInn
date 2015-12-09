@@ -1,0 +1,30 @@
+﻿<div class="authform">
+	<h3>Usuario Premium</h3>
+
+	<%= form_tag(user_premium_index_path, method: "post") do %>
+    <% if current_user.is_premium? then %>
+      <p><b>Ya eres usuario premium!</b> Tu suscripción vencerá en la siguiente fecha</p>
+	  <div class="form-group">
+	 	<label>Vencimiento</label>
+		<input class="form-control" disabled="disabled" type="text" value="<%= current_user.premium_expiration%>" />
+  	  </div>
+      <p>Si lo deseas puedes agregar un mes a tu fecha de vencimiento por tan solo $100</p>
+      <p>Ser usuario premium proriza tus publicaciones sobre las demás, y mostrará una miniatura con la foto de tus publicaciones en el listado</p>
+    <% else %>
+	  <p>Puedes convertirte en usuario premium a tan solo $100 por mes</p>
+	  <p>Esto priorizará tus publicaciones sobre las demás, y mostrará una miniatura con la foto de tus publicaciones en el listado</p>
+    <% end %>
+
+	<p>Puedes efectuar el pago a través de Pago Facil, RapiPago, y otras sucursales adheridas.</p>
+	<div class="form-group">
+	  <label>Costo mensual</label>
+	  <input class="form-control" disabled="disabled" type="text" value="$100" />
+	</div>
+
+    <% if current_user.is_premium? then %>
+      <%= submit_tag 'Extender mi suscripción', :class => 'button right' %>
+    <% else %>
+      <%= submit_tag 'Convertirme en Premium', :class => 'button right' %>
+    <% end %>
+	<% end %>
+</div>

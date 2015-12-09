@@ -13,12 +13,20 @@ class CouchReservationRequestPolicy
   def index?
     @current_user
   end
+
+  def foreign_requests_index?
+    @current_user
+  end
   
   def create?
     @current_user
   end
 
   def show?
+    @current_user
+  end
+
+  def respond?
     @current_user
   end
 

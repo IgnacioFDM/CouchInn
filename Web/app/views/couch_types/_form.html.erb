@@ -3,8 +3,7 @@
     <%= f.label :name %>
     <%= f.text_field :name, :required => true, :autofocus => true, class: 'form-control' %>
     <br>
-    <%= f.check_box :disabled , class:'check_box' %>
-    <%= f.label :disabled %> 
+    <%= f.hidden_field :disabled , value:false %>
   </div>
   <%= f.submit 'Guardar', class: 'button right' %>
  <% end %>

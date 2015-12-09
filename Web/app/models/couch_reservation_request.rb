@@ -1,4 +1,5 @@
 class CouchReservationRequest < ActiveRecord::Base
+  default_scope -> { order("start_date desc") }
   validates_presence_of :user_id
   validates_presence_of :couch_post_id
   validates_presence_of :start_date
@@ -9,19 +10,64 @@ class CouchReservationRequest < ActiveRecord::Base
   validate :date_difference
   validate :date
   validate :owner
+  validate :doesnt_overlap_own
+  validate :availability
   belongs_to :user
   belongs_to :couch_post
 
+  def self.requests_made_by_user(user_id)
+    return User.find(user_id).couch_reservation_requests
+  end
+
+  def self.requests_made_by_user_during_timespan(user_id, start_date, end_date, accepted)
+    aux =  User.find(user_id).couch_reservation_requests
+    if(accepted)
+      aux = aux.where(accepted: true)
+    end 
+    fin = Array.new
+    if not(Date.valid_date?(start_date.year, start_date.month, start_date.day) && Date.valid_date?(end_date.year, end_date.month, end_date.day))
+return aux
+    end
+  aux.each do |a|
+ if (a.end_date <= end_date && a.start_date >= start_date)
+fin << a
+ end
+  end
+    return fin
+  end
+
+  def self.requests_made_to_user(user_id)
+    return self.joins(:couch_post).where(:couch_posts => {:user_id => user_id})
+  end
+
+
   private
+  # Requests from a given user on a fixed couch should NOT overlap each other.
+  def doesnt_overlap_own
+    other_reservations = CouchReservationRequest.where(user_id: self.user_id).where.not(id: self.id)
+    other_reservations.each do |r|
+      if not (r.end_date < self.start_date or self.end_date < r.start_date)
+        errors.add :base, 'un usuario no puede hacer reservas en un Couch que se superpongan'
+        return
+      end
+    end
+  end
+
+  def availability
+    if not self.couch_post.is_free?(self.start_date,self.end_date) and self.accepted
+      errors.add :base, 'el Couch no está disponible en ese período'
+    end   
+  end
+
   def owner
     if self.user_id == self.couch_post.user_id
-      errors.add :base, 'Un usuario no puede reservar su propio Couch!.'
+      errors.add :base, 'un usuario no puede reservar su propio Couch'
     end
   end
 
   def amount_is_right
     if self.amount > self.couch_post.vacants
-      errors.add :amount, 'no puede ser mayor que la capacidad del Couch.'
+      errors.add :amount, 'no puede ser mayor que la capacidad del Couch '
     end
   end
 
@@ -36,8 +82,10 @@ class CouchReservationRequest < ActiveRecord::Base
     end
   end
   def date
-    if self.start_date.past?
+    if self.accepted == nil && self.start_date.past?
       errors.add :base, 'Fecha de entrada no puede ser anterior ni hoy.'
     end
   end
+
+  scope :confirmed, -> {where(:accepted => true)}
 end

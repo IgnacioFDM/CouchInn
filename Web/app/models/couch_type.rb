@@ -9,4 +9,9 @@ class CouchType < ActiveRecord::Base
   def downcase_name
   	self.name = self.name.downcase
   end
+
+  def name_for_select
+  name.capitalize
+  end
+
 end

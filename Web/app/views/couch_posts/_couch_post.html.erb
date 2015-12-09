@@ -1,25 +1,50 @@
 ﻿<div class="panel panel-body">
+    <% @couch_post_feedbacks = CouchPostFeedback.where(couch_post_id: couch_post.id)  %>
+   <%    @couch_post_feedback_val = 0  %>
+   <%    if @couch_post_feedbacks.count > 0  %>
+   <%         @couch_post_feedback_scored = 0 %>
+   <%         @couch_post_feedbacks.each do |feed|   %>
+   <%  if(feed.score != nil) %>
+    <%         @couch_post_feedback_val =  @couch_post_feedback_val + feed.score  %>
+    <%   @couch_post_feedback_scored += 1 %>
+    <%        end   %>
+      <%        end   %>
+       <%   if (@couch_post_feedback_scored > 0)  %>
+    <%         @couch_post_feedback_val =  @couch_post_feedback_val / @couch_post_feedback_scored   %>
+    <% end %>
+      <% end %>
+
+
     <div class="row">
         <div class="col-md-4">
             <%= link_to(couch_post_path(couch_post.id), :method => :get) do%>
+              <% if couch_post.user.is_premium? then %>
                 <img class="img-responsive" src= <%=couch_post.mainpic.url(:couchlist)%> alt="">
+              <% else %>
+                <img class="img-responsive" src="/images/couchlist/missing.png" alt="">
+              <% end %>
             <% end %>
         </div>
         <div class="col-md-8">
             <h3><%= link_to couch_post.title, couch_post_path(couch_post.id) %></h3>
-            <h4><%= couch_post.user.name %></h4>
+            <h4><%= link_to couch_post.user.name, user_path(couch_post.user) %></h4>
             <p class="truncate-post"><%= couch_post.description %> </p>
             <div class="row">
                 <div class="col-md-5">
                     <div class="ratings-list">
-                        <p class="pull-right">18 opiniones</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        </p>
+                         <p class="pull-right">
+                           <%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s<%end%>
+                         </p>
+                         <p> 
+                            <% (1..5).each do |i| %>
+                                <%  @couch_post_feedback_val ||= 0 %>
+                                <% if( i <=  @couch_post_feedback_val)%> 
+                                  <span class="glyphicon glyphicon-star"></span>
+                                <% else %>
+                                  <span class="glyphicon glyphicon-star-empty"></span>
+                                <% end %>     
+                            <% end %>       
+                         </p>
                     </div>
                 </div>
 

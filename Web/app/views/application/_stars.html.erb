@@ -1,0 +1,9 @@
+<% (1..5).each do |i| %>
+	<% rating_value ||= 0 %>
+  <% if( i <= rating_value)%> 
+    <span class="glyphicon glyphicon-star"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-star-empty"></span>
+  <% end %>     
+<% end %>           
+<%= rating_value %> estrella<% if((rating_value != 1))%>s <% end %>

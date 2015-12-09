@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+    @received_feedbacks = @user.received_feedbacks.order(created_at: :desc)
+    @received_feedbacks = @received_feedbacks.paginate(:page => params[:page], :per_page => 5)
   end
 
   def update

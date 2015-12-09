@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120150446) do
+ActiveRecord::Schema.define(version: 20151209080405) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20151120150446) do
   end
 
   create_table "couch_post_feedbacks", force: :cascade do |t|
-    t.integer  "owner_id"
     t.text     "comment"
     t.integer  "score"
-    t.integer  "target_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+    t.integer  "couch_post_id"
   end
 
   create_table "couch_posts", force: :cascade do |t|
@@ -105,6 +105,18 @@ ActiveRecord::Schema.define(version: 20151120150446) do
     t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "author_id"
+    t.integer  "rating"
+  end
+
+  create_table "user_premia", force: :cascade do |t|
+    t.integer  "buyer_id"
+    t.boolean  "paid"
+    t.datetime "paidtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "coupon_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -125,6 +137,7 @@ ActiveRecord::Schema.define(version: 20151120150446) do
     t.integer  "gender"
     t.string   "telephone"
     t.date     "birthdate"
+    t.date     "premium_expiration"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

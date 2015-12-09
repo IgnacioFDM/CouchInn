@@ -15,12 +15,11 @@ class CouchTypesController < ApplicationController
   def create
     authorize CouchType
     parameters = params.require(:couch_type).permit(:name,:disabled)
-    @couch_type = CouchType.find_or_initialize_by(parameters.permit(:name))
-    @couch_type.disabled = parameters[:disabled]
+    @couch_type = CouchType.new(parameters)
     if @couch_type.save
-      redirect_to couch_types_path , notice: "Tipo creado o ya existente."
+      redirect_to couch_types_path , notice: "Tipo creado."
     else
-      redirect_to couch_types_path , alert: "No se pudo crear tipo."
+      redirect_to couch_types_path , alert: "No se pudo crear tipo: " << @couch_type.errors.full_messages.to_sentence
     end
   end
 
@@ -31,31 +30,25 @@ class CouchTypesController < ApplicationController
 
   def update
     authorize CouchType
-    @couch_type = CouchType.find(params[:id])
-
-    if CouchType.where(:name => params[:couch_type][:name].downcase).count > 0 && CouchType.where(:name =>params[:couch_type][:name].downcase).first.id != params[:id].to_i
-      redirect_to @couch_types, notice: "Nombre tomado."
+    
+    @couch_type = CouchType.find(params[:id]) 
+    if @couch_type.update(params.require(:couch_type).permit(:name,:disabled))
+      redirect_to couch_types_path , notice: "Tipo actualizado"
     else
-     
-      @couch_type.update_attributes(params.require(:couch_type).permit(:name,:disabled))
-      if @couch_type.valid?
-        redirect_to couch_types_path , notice: "Tipo actualizado"
-      else
-        redirect_to couch_types_path , notice: "Error al actualizar" 
-      end
+      redirect_to couch_types_path , alert: "Error al actualizar: " << @couch_type.errors.full_messages.to_sentence
     end
-
   end
 
   def destroy
     authorize CouchType
 
-    couch_type = CouchType.find(params[:id])
-    couch_type.destroy!
-    redirect_to couch_types_path , notice: "Tipo eliminado"
+    @couch_type = CouchType.find(params[:id])
+    if @couch_type.destroy
+      redirect_to couch_types_path , notice: "Tipo eliminado"
+    else
+      redirect_to couch_types_path , alert: "Error al eliminar" << @couch_type.errors.full_messages.to_sentence
+    end
   end
-
-
 end
 
 

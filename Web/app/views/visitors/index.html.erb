@@ -19,7 +19,7 @@
                         </ol>
                         <div class="carousel-inner">
 
-                          <% @couch_posts.shuffle.take(3).each_with_index do |couch_post, i| %>
+                          <% @couch_posts.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').where('users.premium_expiration > ?', DateTime.current).shuffle.take(3).each_with_index do |couch_post, i| %>
                           <% if i == 0 %>
                             <div class="item active">
                           <% else %>
@@ -45,7 +45,22 @@
             </div>
 
             <div class="row">
-<% @couch_posts.shuffle.take(9).each do |couch_post| %>
+<% @couch_posts.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').where('users.premium_expiration > ?', DateTime.current).shuffle.take(9).each do |couch_post| %>
+<% @couch_post_feedbacks = CouchPostFeedback.where(couch_post_id: couch_post.id)  %>
+   <%    @couch_post_feedback_val = 0  %>
+   <%    if @couch_post_feedbacks.count > 0  %>
+   <%         @couch_post_feedback_scored = 0 %>
+   <%         @couch_post_feedbacks.each do |feed|   %>
+   <%  if(feed.score != nil) %>
+    <%         @couch_post_feedback_val =  @couch_post_feedback_val + feed.score  %>
+    <%   @couch_post_feedback_scored += 1 %>
+    <%        end   %>
+      <%        end   %>
+       <%   if (@couch_post_feedback_scored > 0)  %>
+    <%         @couch_post_feedback_val =  @couch_post_feedback_val / @couch_post_feedback_scored   %>
+    <% end %>
+      <% end %>
+
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <%= link_to(couch_post_path(couch_post.id), :method => :get) do %>
@@ -56,13 +71,18 @@
                           <p class="truncate-post"><%= couch_post.description %> </p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
+                            <p class="pull-right">  
+                                <%= @couch_post_feedbacks.count%> comentario<% if(@couch_post_feedbacks.count != 1)%>s<%end%>
+                            </p>
                             <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
+                            <% (1..5).each do |i| %>
+                                <%  @couch_post_feedback_val ||= 0 %>
+                                <% if( i <=  @couch_post_feedback_val)%> 
+                                  <span class="glyphicon glyphicon-star"></span>
+                                <% else %>
+                                  <span class="glyphicon glyphicon-star-empty"></span>
+                                <% end %>     
+                            <% end %>  
                             </p>
                         </div>
                     </div>

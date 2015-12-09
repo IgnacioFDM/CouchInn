@@ -30,8 +30,9 @@ end
 group :production do
   gem 'pg'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 gem 'hirb'
 gem 'ratyrate'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'

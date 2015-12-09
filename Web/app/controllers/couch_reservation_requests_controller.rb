@@ -4,24 +4,27 @@ class CouchReservationRequestsController < ApplicationController
 
   def new
     authorize CouchReservationRequest
+    couch_post_id = params.require(:couch_post_id).to_i
+    if CouchPost.find(couch_post_id).user_id.equal? current_user.id
+      redirect_to :back, alert: "No se puede reservar un Couch propio!"
+      return
+    end
+
     @couch_reservation_request = CouchReservationRequest.new
-    @couch_reservation_request.couch_post_id = params.require(:couch_post_id).to_i
+    @couch_reservation_request.couch_post_id = couch_post_id
   end
 
   def create
     authorize CouchReservationRequest
-    parameters = params.require(:couch_reservation_request).permit(:start_date,:end_date,:amount,:couch_post_id)
-    @couch_reservation_request = CouchReservationRequest.new 
-    @couch_reservation_request.user_id = current_user.id
-    @couch_reservation_request.couch_post_id = parameters[:couch_post_id]
-    @couch_reservation_request.start_date = parameters[:start_date]
-    @couch_reservation_request.end_date = parameters[:end_date]
-    @couch_reservation_request.amount = parameters[:amount]
-    success = @couch_reservation_request.save
+    r = CouchReservationRequest.new 
+    r.user_id = current_user.id
+    r.attributes = params.require(:couch_reservation_request).permit(:start_date,:end_date,:amount,:couch_post_id)
+
+    success = r.save
     if success
       redirect_to couch_reservation_requests_path, notice: "Pedido hecho." 
     else
-      redirect_to "/couch_reservation_requests/new?couch_post_id="<< parameters[:couch_post_id] , :alert =>"No se pudo hacer pedido: " << @couch_reservation_request.errors.full_messages.to_sentence
+      redirect_to :back , :alert =>"No se pudo hacer pedido: " << r.errors.full_messages.to_sentence
       return
     end
 
@@ -31,14 +34,51 @@ class CouchReservationRequestsController < ApplicationController
     authorize CouchReservationRequest
   end
 
+  def respond
+    authorize CouchReservationRequest
+    parameters = params.require(:couch_reservation_request).permit(:accepted,:id)
+    request = CouchReservationRequest.find(parameters[:id])
+    request.accepted = parameters[:accepted]
+    request.responded_at = DateTime.now
+    if request.couch_post.user_id == current_user.id 
+      if request.save
+        msg = request.accepted ? "Pedido aceptado. El usuario solicitante te podrá contactar." : "Pedido rechazado."
+        redirect_to "/foreign_requests_index", notice: msg
+      else
+        redirect_to "/foreign_requests_index", alert: "Error: "<< request.errors.full_messages.to_sentence
+      end
+    else
+        redirect_to "/foreign_requests_index", alert: "El usuario logueado no es dueño de este Couch!"
+    end
+  end
+
   def destroy
     authorize CouchReservationRequest
   end
 
   def index
     authorize CouchReservationRequest
-    @foreign_requests = CouchReservationRequest.joins(:couch_post).where(:couch_posts => {:user_id => current_user.id})
-    @my_requests = current_user.couch_reservation_requests
+    @filtering = params.has_key?(:dates) and params.has_key?(:accept) and params[:dates].has_key?(:from_date) and params[:dates].has_key?(:to_date)
+    if @filtering
+      @start_date = Date.parse(params[:dates][:from_date])
+      @end_date = Date.parse(params[:dates][:to_date])
+      @accept = params[:accept] == "yes"
+      if @start_date > @end_date
+        redirect_to couch_reservation_requests_path, alert: "Fechas inválidas!"
+      else
+        @my_requests = CouchReservationRequest.requests_made_by_user_during_timespan(current_user.id, @start_date, @end_date, @accept)
+      end
+    else
+      @start_date = Date.current
+      @end_date = Date.current
+      @accept = false
+      @my_requests = CouchReservationRequest.requests_made_by_user(current_user.id)
+    end
+  end
+
+  def foreign_requests_index
+    authorize CouchReservationRequest
+    @foreign_requests = CouchReservationRequest.requests_made_to_user(current_user.id)
   end
 
   def show

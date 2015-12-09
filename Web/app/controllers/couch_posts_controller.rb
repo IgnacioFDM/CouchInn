@@ -1,10 +1,12 @@
 class CouchPostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show, :mycouchposts]
-  after_action :verify_authorized, :except => [:mycouchposts]
+  before_action :authenticate_user!, :except => [:index]
+  after_action :verify_authorized, :except => [:index]
+
+
 
   def new
-    authorize CouchPost
     @couch_post = CouchPost.new
+    authorize CouchPost
   end
 
   def create
@@ -18,8 +20,7 @@ class CouchPostsController < ApplicationController
   end
 
   def index
-    skip_authorization
-    @couch_posts = CouchPost.where(nil)
+    @couch_posts = CouchPost.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').order('users.premium_expiration DESC')
     @showingall = true
 
     if params[:s].present?
@@ -40,22 +41,93 @@ class CouchPostsController < ApplicationController
   end
 
   def mycouchposts
+    authorize CouchPost
     @my_couch_posts = CouchPost.where(user_id: current_user.id)
   end
 
+    def visitedcouchposts
+    authorize CouchPost
+    couch_reqs= CouchReservationRequest.requests_made_by_user(current_user.id)
+    couch_reqs= couch_reqs.where(accepted: true)
+      @visited_couch_posts = Array.new
+      couch_reqs.each do |r|
+        if(r.start_date < Date.today)
+        c= CouchPost.find(r.couch_post_id)
+        @visited_couch_posts << c
+      end
+      end
+   
+   
+   end
+
   def show
-    skip_authorization
+    authorize CouchPost
   	@couch_post = CouchPost.find(params[:id])
     @category = @couch_post.couch_type
+    @couch_post_feedbacks = CouchPostFeedback.where(couch_post_id: @couch_post.id)
+    @couch_post_feedback_val = 0
+    if @couch_post_feedbacks.count > 0
+      @couch_post_feedback_scored = 0
+         @couch_post_feedbacks.each do |feed| 
+          if(feed.score != nil)
+          @couch_post_feedback_val =  @couch_post_feedback_val + feed.score
+            @couch_post_feedback_scored += 1
+          end
+         end 
+        if (@couch_post_feedback_scored > 0)
+           @couch_post_feedback_val =  @couch_post_feedback_val / @couch_post_feedback_scored
+        end
+    end 
   end
 
   def destroy
+    authorize CouchPost
+    couch_post = CouchPost.find(params[:id])
+    couch_post.destroy!
+    redirect_to my_couch_posts_path , notice: "Couch eliminado"
   end
 
   def update
+    authorize CouchPost
+    @id_a_cambiar = params[:id]
+    @couch_post = CouchPost.find(params[:id])
+
+    
+      @couch_post.update_attributes(params.require(:couch_post).permit(:id, :title, :couch_type_id, :description, :rooms, :vacants, :mainpic, :zone))
+      if @couch_post.valid?
+        redirect_to my_couch_posts_path , notice: "Post actualizado"
+      else
+        redirect_to my_couch_posts_path , notice: "Error al actualizar" 
+      end
+
   end
 
+
+
+
   def edit
+        authorize CouchPost
+    @couch_post = CouchPost.find(params[:id])
+    @id_a_cambiar = params[:id]
+  end
+
+  def mainpicedit
+    authorize CouchPost
+    @couch_post = CouchPost.find(params[:id])
+    @id_a_cambiar = params[:id]
+  end
+
+  def mainpicupdate
+  authorize CouchPost
+  @id_a_cambiar = params[:id]
+  @couch_post = CouchPost.find(params[:id])
+  @couch_post.update_attributes(params.require(:couch_post).permit(:id, :mainpic))
+      if @couch_post.valid?
+        redirect_to my_couch_posts_path , notice: "Imagen actualizada"
+      else
+        redirect_to my_couch_posts_path , notice: "Error al actualizar" 
+      end
+
   end
 
   private

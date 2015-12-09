@@ -1,0 +1,12 @@
+﻿<div class="authform">
+	<h3>Marcar boleta como paga</h3>
+
+	<%= form_tag(setpaid_path, method: "post") do %>
+	<div class="form-group">
+		<%= label_tag(:id, "ID de la boleta") %>
+		<%= text_field_tag(:id, "", class: 'form-control') %>
+	</div>
+
+	<%= submit_tag 'Marcar Paga', :class => 'button right' %>
+	<% end %>
+</div>

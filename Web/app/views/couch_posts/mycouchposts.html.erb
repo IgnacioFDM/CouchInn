@@ -8,15 +8,21 @@
         </div>
  <table class="table table-striped">
     <tbody>
+        <div class="panel-group">
            <% @my_couch_posts.each do |own_couch_post| %>
        <%= render partial: "my_couch_post", object: own_couch_post  %>
-       <br>
         <% end %>
+         </div>
   </tbody>
   </table>
       
         <div class="row text-center">
+          <td class="col-md-1 text-center">
+                    <%= link_to("Volver", root_path , :class => 'btn btn-danger btn-lg pull-right post-couch')%>
+                  </td>
+                    <td class="col-md-1 text-center">
           <%= link_to("Publicar Couch", new_couch_post_path , :class => 'btn btn-success btn-lg pull-right post-couch')%>
+          </td>
         </div>
         <hr>
 
