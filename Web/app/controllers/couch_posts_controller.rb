@@ -20,7 +20,7 @@ class CouchPostsController < ApplicationController
   end
 
   def index
-    @couch_posts = CouchPost.where(nil)
+    @couch_posts = CouchPost.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').order('users.premium_expiration DESC')
     @showingall = true
 
     if params[:s].present?

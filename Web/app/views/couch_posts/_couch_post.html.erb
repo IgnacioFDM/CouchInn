@@ -18,7 +18,11 @@
     <div class="row">
         <div class="col-md-4">
             <%= link_to(couch_post_path(couch_post.id), :method => :get) do%>
+              <% if couch_post.user.is_premium? then %>
                 <img class="img-responsive" src= <%=couch_post.mainpic.url(:couchlist)%> alt="">
+              <% else %>
+                <img class="img-responsive" src="/images/couchlist/missing.png" alt="">
+              <% end %>
             <% end %>
         </div>
         <div class="col-md-8">

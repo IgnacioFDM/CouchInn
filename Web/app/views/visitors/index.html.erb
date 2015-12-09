@@ -19,7 +19,7 @@
                         </ol>
                         <div class="carousel-inner">
 
-                          <% @couch_posts.shuffle.take(3).each_with_index do |couch_post, i| %>
+                          <% @couch_posts.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').where('users.premium_expiration > ?', DateTime.current).shuffle.take(3).each_with_index do |couch_post, i| %>
                           <% if i == 0 %>
                             <div class="item active">
                           <% else %>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="row">
-<% @couch_posts.shuffle.take(9).each do |couch_post| %>
+<% @couch_posts.joins('LEFT OUTER JOIN users ON couch_posts.user_id = users.id').where('users.premium_expiration > ?', DateTime.current).shuffle.take(9).each do |couch_post| %>
 <% @couch_post_feedbacks = CouchPostFeedback.where(couch_post_id: couch_post.id)  %>
    <%    @couch_post_feedback_val = 0  %>
    <%    if @couch_post_feedbacks.count > 0  %>

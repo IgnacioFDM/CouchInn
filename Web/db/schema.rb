@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202004643) do
+ActiveRecord::Schema.define(version: 20151209080405) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -109,6 +109,16 @@ ActiveRecord::Schema.define(version: 20151202004643) do
     t.integer  "rating"
   end
 
+  create_table "user_premia", force: :cascade do |t|
+    t.integer  "buyer_id"
+    t.boolean  "paid"
+    t.datetime "paidtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "coupon_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -127,6 +137,7 @@ ActiveRecord::Schema.define(version: 20151202004643) do
     t.integer  "gender"
     t.string   "telephone"
     t.date     "birthdate"
+    t.date     "premium_expiration"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

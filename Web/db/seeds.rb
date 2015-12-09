@@ -8,8 +8,13 @@ user1.password = 'password'
 user1.password_confirmation = 'password'
 user1.telephone = '0123456789'
 user1.birthdate = Date.new(1970,2,1)
+user1.premium_expiration = DateTime.current + 2.months
 user1.save!
 puts 'CREATED REGULAR USER: ' << user1.name
+UserPremium.create(user_id: user1.id, coupon_id: 1, paid: true, paidtime: (DateTime.current - 1.month))
+UserPremium.create(user_id: user1.id, coupon_id: 2, paid: true, paidtime: DateTime.current)
+UserPremium.create(user_id: user1.id, coupon_id: 3, paid: true, paidtime: DateTime.current)
+
 
 user2 = User.new
 user2.name = "Santiago"
@@ -28,8 +33,11 @@ user3.password = 'password'
 user3.password_confirmation = 'password'
 user3.telephone = '101'
 user3.birthdate = Date.new(1970,2,1)
+user1.premium_expiration = DateTime.current + 1.months - 5.days
 user3.save!
 puts 'CREATED REGULAR USER: ' << user3.name
+UserPremium.create(user_id: user3.id, coupon_id: 4, paid: true, paidtime: (DateTime.current - 5.days))
+
 
 user4 = User.new
 user4.name = "Coach Finn"

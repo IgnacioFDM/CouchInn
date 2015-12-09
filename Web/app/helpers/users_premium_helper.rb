@@ -1,0 +1,2 @@
+module UsersPremiumHelper
+end

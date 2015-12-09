@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
       errors.add(:birthdate, 'Debes ser mayor de 18 años')
     end
   end
+  
+  def is_premium?
+    return (!premium_expiration.nil?) && (premium_expiration > DateTime.current)
+  end
 
   def average_rating
     avg_rating = 0

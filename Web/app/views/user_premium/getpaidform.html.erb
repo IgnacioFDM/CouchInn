@@ -1,0 +1,17 @@
+﻿<div class="authform">
+	<h3>Ingresos</h3>
+
+	<%= form_tag(getpaid_path, method: "post") do %>
+	<div class="form-group">
+		<%= label_tag(:start_date, "Fecha inicio") %>
+		<%= date_field(:dates, :start_date, class: "form-control") %>
+	</div>	
+    
+    <div class="form-group">
+		<%= label_tag(:end_date, "Fecha fin") %>
+		<%= date_field(:dates, :end_date, class: "form-control") %>
+	</div>
+
+	<%= submit_tag 'Calcular Ingresos', :class => 'button right' %>
+	<% end %>
+</div>
