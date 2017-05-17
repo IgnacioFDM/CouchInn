@@ -187,8 +187,8 @@ puts 'CREATED COUCH POST: ' << couch_post.title
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post7.id
-reservation.start_date = Date.new(2017,8,15)
-reservation.end_date = Date.new(2017,9,19)
+reservation.start_date = Date.today + 80.days
+reservation.end_date = Date.today + 90.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -197,8 +197,8 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post7.id
-reservation.start_date = Date.new(2017,3,7)
-reservation.end_date = Date.new(2017,3,8)
+reservation.start_date = Date.today + 101.days
+reservation.end_date = Date.today + 102.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -207,11 +207,11 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post9.id
-reservation.start_date = Date.new(2015,3,7)
-reservation.end_date = Date.new(2015,3,8)
+reservation.start_date = Date.today + 10.days
+reservation.end_date = Date.today + 11.days
 reservation.amount = 1
 reservation.accepted = true
-reservation.responded_at = Date.new(2015,3,6)
+reservation.responded_at = Date.today + 9.days
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
 
@@ -219,8 +219,8 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
 reservation.couch_post_id = couch_post9.id
-reservation.start_date = Date.new(2016,3,7)
-reservation.end_date = Date.new(2016,3,8)
+reservation.start_date = Date.today + 31.days
+reservation.end_date = Date.today + 32.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -229,8 +229,8 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user2.id
 reservation.couch_post_id = couch_post8.id
-reservation.start_date = Date.new(2017,2,2)
-reservation.end_date = Date.new(2017,2,5)
+reservation.start_date = Date.today + 42.days
+reservation.end_date = Date.today + 45.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -239,8 +239,8 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user2.id
 reservation.couch_post_id = couch_post2.id
-reservation.start_date = Date.new(2016,2,2)
-reservation.end_date = Date.new(2016,2,5)
+reservation.start_date = Date.today + 11.days
+reservation.end_date = Date.today + 15.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -248,8 +248,8 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user2.id
 reservation.couch_post_id = couch_post3.id
-reservation.start_date = Date.new(2016,2,7)
-reservation.end_date = Date.new(2016,2,9)
+reservation.start_date = Date.today + 69.days
+reservation.end_date = Date.today + 71.days
 reservation.amount = 1
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
@@ -259,11 +259,11 @@ puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch
 reservation = CouchReservationRequest.new
 reservation.user_id = user2.id
 reservation.couch_post_id = couch_post3.id
-reservation.start_date = Date.new(2015,2,17)
-reservation.end_date = Date.new(2015,2,27)
+reservation.start_date = Date.today + 80.days
+reservation.end_date = Date.today + 90.days
 reservation.amount = 1
 reservation.accepted = true
-reservation.responded_at = Date.new(2015,2,16)
+reservation.responded_at = Date.today + 79.days
 reservation.save!
 puts 'CREATED REQUEST: ' << reservation.user.name << " => " << reservation.couch_post.title 
 
