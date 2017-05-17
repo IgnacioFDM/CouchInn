@@ -84,10 +84,15 @@ habitacion = CouchType.find_or_create_by!(name: 'Habitacion', disabled: false)
 puts 'CREATED COUCH TYPE: ' << habitacion.name
 
 
-couch_post = CouchPost.find_or_create_by!(title: 'Casa de playa', description: 'Casa a 2 cuadras de la costa', couch_type_id: casa.id , user_id: user1.id , rooms: 1, vacants: 2, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/beachhouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post1 = CouchPost.find_or_create_by!(title: 'Casa de playa', description: 'Casa a 2 cuadras de la costa', couch_type_id: casa.id , user_id: user1.id , rooms: 1, vacants: 2, zone:'La Plata')
+couch_post1.mainpic = File.open("app/assets/images/beachhouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post1.save!
+puts 'CREATED COUCH POST: ' << couch_post1.title
+
+couch_post2 = CouchPost.find_or_create_by!(title: 'Aula de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_post2.mainpic = File.open("app/assets/images/uniroom.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post2.save!
+puts 'CREATED COUCH POST: ' << couch_post2.title
 
 couch_post3 = CouchPost.find_or_create_by!(title: 'Cabaña en el bosque', description: 'Cabaña cómoda, en la semana, barro, bichos, vos y yo, ol de nait', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'La Plata')
 couch_post3.mainpic = File.open("app/assets/images/forestcabin.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
@@ -99,50 +104,20 @@ couch_post4.mainpic = File.open("app/assets/images/citytent.jpg") unless ENV["CO
 couch_post4.save!
 puts 'CREATED COUCH POST: ' << couch_post4.title
 
-couch_post2 = CouchPost.find_or_create_by!(title: 'Aula de Informática', description: 'No cierra la puerta así que duermo ahí por las noches, están todos invitados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_post2.mainpic = File.open("app/assets/images/uniroom.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post2.save!
-puts 'CREATED COUCH POST: ' << couch_post2.title
-
 couch_post5 = CouchPost.find_or_create_by!(title: 'Distorsión Espacio-Tiempo', description: 'Singularidad infinitamente amplia -literalmente-. Se está un poco apretado pero siempre hay lugar para uno más.', couch_type_id: exterior.id , user_id: user1.id, rooms: 1, vacants: 99, zone:'Sagittariius A*')
 couch_post5.mainpic = File.open("app/assets/images/singo.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post5.save!
 puts 'CREATED COUCH POST: ' << couch_post5.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Garage vacío', description: 'Tuve que vender el auto así que cuento con lugar extra para los que busquen un lugar donde quedarse un tiempo. Eso sí, ojo con las manchas de aceite.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 4, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/emptygarage.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
-
-couch_post = CouchPost.find_or_create_by!(title: 'Casa rodante equipada', description: 'Ofrezco alojamiento y pago a cambio de colaboración con proyecto personal de Química. Cuantas menos cosas preguntes, mejor nos vamos a llevar.', couch_type_id: trailer.id, user_id: user3.id, rooms: 1, vacants: 1, zone:'Los Hornos')
-couch_post.mainpic = File.open("app/assets/images/trailer.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
-
-couch_post = CouchPost.find_or_create_by!(title: 'Depósito del súpel', description: 'Chino tenel lugal. Lugal pala pelsona. No chico, glande, cole aile flesco.', couch_type_id: casa.id, user_id: user4.id, rooms: 1, vacants: 2, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/almacen1.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
-
-couch_post = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'Espacioso, con olor a comida, provisiones hay de sobra.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/infobuffet.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post6 = CouchPost.find_or_create_by!(title: 'Garage vacío', description: 'Tuve que vender el auto así que cuento con lugar extra para los que busquen un lugar donde quedarse un tiempo. Eso sí, ojo con las manchas de aceite.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 4, zone:'La Plata')
+couch_post6.mainpic = File.open("app/assets/images/emptygarage.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post6.save!
+puts 'CREATED COUCH POST: ' << couch_post6.title
 
 couch_post7 = CouchPost.find_or_create_by!(title: 'Cucha Colonial', description: 'Necesito que alguien se quede en mi morada mientras me voy de viaje. Mi perro es amigable, le gustan las visitas y dormir. Desde que el vecino se mudó no es muy activo.', couch_type_id: casa.id, user_id: user2.id, rooms: 1, vacants: 3, zone:'Campana')
 couch_post7.mainpic = File.open("app/assets/images/cucha.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
 couch_post7.save!
 puts 'CREATED COUCH POST: ' << couch_post7.title
-
-couch_post = CouchPost.find_or_create_by!(title: 'Despensa Espaciosa', description: 'Tengo una despensa con lugar para una o dos personas. Requisito excluyente que sepan respetar el orden. Cada mañana reviso todo, si algo cambia de lugar los echo. Están avisados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 3, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/toc.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
-
-couch_postx = CouchPost.find_or_create_by!(title: 'Loft amplio', description: 'Tengo mucho lugar! Espero recibir gente divertida.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
-couch_postx.mainpic = File.open("app/assets/images/minecraft.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_postx.save!
-puts 'CREATED COUCH POST: ' << couch_postx.title
 
 couch_post8 = CouchPost.find_or_create_by!(title: 'El edificio más alto', description: 'Soy el dueño del edificio más alto de Dubai. Puedo verlo todo desde acá arriba, pero me tapan las nubes y me siento solo.', couch_type_id: departamento.id, user_id: user1.id, rooms: 10, vacants: 10, zone:'Dubai')
 couch_post8.mainpic = File.open("app/assets/images/uphigh.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
@@ -154,35 +129,60 @@ couch_post9.mainpic = File.open("app/assets/images/coolvan.jpg") unless ENV["COU
 couch_post9.save!
 puts 'CREATED COUCH POST: ' << couch_post9.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Casa lejana', description: 'Me mudé acá porque el perro de mi vecino no me dejaba tranquilo ni un minuto. Se respira paz.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 2, zone:'San Luis')
-couch_post.mainpic = File.open("app/assets/images/middlehouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post10 = CouchPost.find_or_create_by!(title: 'Loft amplio', description: 'Tengo mucho lugar! Espero recibir gente divertida.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_post10.mainpic = File.open("app/assets/images/minecraft.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post10.save!
+puts 'CREATED COUCH POST: ' << couch_post10.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Habitación vacía', description: 'Hay espacio, es luminosa. Un día de viento dejé abierta la ventana y aparecieron esas nubes, no sé como sacarlas pero no molestan.', couch_type_id: habitacion.id, user_id: user2.id, rooms: 1, vacants: 2, zone:'Aconcagua')
-couch_post.mainpic = File.open("app/assets/images/cloudroom.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post11 = CouchPost.find_or_create_by!(title: 'Tierra lejana', description: 'Tierra de ensueño, con una fauna asombrosa, dragones sobrevuelan la pradera y todo tipo de animales merodean en los alrededores.', couch_type_id: exterior.id, user_id: user1.id, rooms: 1, vacants: 100, zone:'Skyrim')
+couch_post11.mainpic = File.open("app/assets/images/skyrim.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post11.save!
+puts 'CREATED COUCH POST: ' << couch_post11.title
 
-couch_postt = CouchPost.find_or_create_by!(title: 'Tierra lejana', description: 'Tierra de ensueño, con una fauna asombrosa, dragones sobrevuelan la pradera y todo tipo de animales merodean en los alrededores.', couch_type_id: exterior.id, user_id: user1.id, rooms: 1, vacants: 100, zone:'Skyrim')
-couch_postt.mainpic = File.open("app/assets/images/skyrim.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_postt.save!
-puts 'CREATED COUCH POST: ' << couch_postt.title
+couch_post12 = CouchPost.find_or_create_by!(title: 'Casa lejana', description: 'Me mudé acá porque el perro de mi vecino no me dejaba tranquilo ni un minuto. Se respira paz.', couch_type_id: casa.id, user_id: user1.id, rooms: 1, vacants: 2, zone:'San Luis')
+couch_post12.mainpic = File.open("app/assets/images/middlehouse.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post12.save!
+puts 'CREATED COUCH POST: ' << couch_post12.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Ruinas antiguas', description: 'Vestigios de tiempos más tranquilos. Se requiere precaución por tratarse de algo con alto valor histórico.', couch_type_id: exterior.id, user_id: user2.id, rooms: 10, vacants: 10, zone:'Zona sin nombre')
-couch_post.mainpic = File.open("app/assets/images/quetzalcoatlboard.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post13 = CouchPost.find_or_create_by!(title: 'Casa rodante equipada', description: 'Ofrezco alojamiento y pago a cambio de colaboración con proyecto personal de Química. Cuantas menos cosas preguntes, mejor nos vamos a llevar.', couch_type_id: trailer.id, user_id: user3.id, rooms: 1, vacants: 1, zone:'Los Hornos')
+couch_post13.mainpic = File.open("app/assets/images/trailer.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post13.save!
+puts 'CREATED COUCH POST: ' << couch_post13.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Casa en la precordillera andina', description: 'Casa linda, paisaje hermoso. En la foto se ven los colectivos que pasan por la zona.', couch_type_id: casa.id, user_id: user1.id, rooms: 2, vacants: 3, zone:'Salta')
-couch_post.mainpic = File.open("app/assets/images/casaprecordillera.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post14 = CouchPost.find_or_create_by!(title: 'Depósito del súpel', description: 'Chino tenel lugal. Lugal pala pelsona. No chico, glande, cole aile flesco.', couch_type_id: casa.id, user_id: user4.id, rooms: 1, vacants: 2, zone:'La Plata')
+couch_post14.mainpic = File.open("app/assets/images/almacen1.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post14.save!
+puts 'CREATED COUCH POST: ' << couch_post14.title
 
-couch_post = CouchPost.find_or_create_by!(title: 'Oficina de 418', description: 'Ambiente de aprendizaje profesional y amistoso. Unite al equipo!', couch_type_id: choza.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'La Plata')
-couch_post.mainpic = File.open("app/assets/images/teacave.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
-couch_post.save!
-puts 'CREATED COUCH POST: ' << couch_post.title
+couch_post15 = CouchPost.find_or_create_by!(title: 'Buffet de Informática', description: 'Espacioso, con olor a comida, provisiones hay de sobra.', couch_type_id: monoambiente.id, user_id: user2.id, rooms: 1, vacants: 10, zone:'La Plata')
+couch_post15.mainpic = File.open("app/assets/images/infobuffet.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post15.save!
+puts 'CREATED COUCH POST: ' << couch_post15.title
+
+couch_post16 = CouchPost.find_or_create_by!(title: 'Despensa Espaciosa', description: 'Tengo una despensa con lugar para una o dos personas. Requisito excluyente que sepan respetar el orden. Cada mañana reviso todo, si algo cambia de lugar los echo. Están avisados.', couch_type_id: monoambiente.id, user_id: user1.id, rooms: 1, vacants: 3, zone:'La Plata')
+couch_post16.mainpic = File.open("app/assets/images/toc.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post16.save!
+puts 'CREATED COUCH POST: ' << couch_post16.title
+
+couch_post17 = CouchPost.find_or_create_by!(title: 'Habitación vacía', description: 'Hay espacio, es luminosa. Un día de viento dejé abierta la ventana y aparecieron esas nubes, no sé como sacarlas pero no molestan.', couch_type_id: habitacion.id, user_id: user2.id, rooms: 1, vacants: 2, zone:'Aconcagua')
+couch_post17.mainpic = File.open("app/assets/images/cloudroom.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post17.save!
+puts 'CREATED COUCH POST: ' << couch_post17.title
+
+couch_post18 = CouchPost.find_or_create_by!(title: 'Ruinas antiguas', description: 'Vestigios de tiempos más tranquilos. Se requiere precaución por tratarse de algo con alto valor histórico.', couch_type_id: exterior.id, user_id: user2.id, rooms: 10, vacants: 10, zone:'Zona sin nombre')
+couch_post18.mainpic = File.open("app/assets/images/quetzalcoatlboard.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post18.save!
+puts 'CREATED COUCH POST: ' << couch_post18.title
+
+couch_post19 = CouchPost.find_or_create_by!(title: 'Casa en la precordillera andina', description: 'Casa linda, paisaje hermoso. En la foto se ven los colectivos que pasan por la zona.', couch_type_id: casa.id, user_id: user1.id, rooms: 2, vacants: 3, zone:'Salta')
+couch_post19.mainpic = File.open("app/assets/images/casaprecordillera.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post19.save!
+puts 'CREATED COUCH POST: ' << couch_post19.title
+
+couch_post20 = CouchPost.find_or_create_by!(title: 'Oficina de 418', description: 'Ambiente de aprendizaje profesional y amistoso. Unite al equipo!', couch_type_id: choza.id, user_id: user1.id, rooms: 1, vacants: 1, zone:'La Plata')
+couch_post20.mainpic = File.open("app/assets/images/teacave.jpg") unless ENV["COUCHINN_HEROKU"] == "YES"
+couch_post20.save!
+puts 'CREATED COUCH POST: ' << couch_post20.title
 
 reservation = CouchReservationRequest.new
 reservation.user_id = user1.id
@@ -392,7 +392,7 @@ puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " <<
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user1.id
-couchpostfeedback.couch_post_id = couch_postx.id
+couchpostfeedback.couch_post_id = couch_post10.id
 couchpostfeedback.comment = "Lindo lugar pero muy cuadrado, la cama medio incómoda."
 couchpostfeedback.score = 4
 couchpostfeedback.save!
@@ -400,7 +400,7 @@ puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " <<
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user2.id
-couchpostfeedback.couch_post_id = couch_postt.id
+couchpostfeedback.couch_post_id = couch_post11.id
 couchpostfeedback.comment = "Wow, era verdad lo de los dragones.."
 couchpostfeedback.created_at = DateTime.new(2015,6,1,18)
 couchpostfeedback.score = 5
@@ -409,7 +409,7 @@ puts 'CREATED COUCH POST FEEDBACK: ' << couchpostfeedback.user.name << " => " <<
 
 couchpostfeedback = CouchPostFeedback.new
 couchpostfeedback.user_id = user5.id
-couchpostfeedback.couch_post_id = couch_postt.id
+couchpostfeedback.couch_post_id = couch_post11.id
 couchpostfeedback.comment = "Me hice un abrigo de piel con las criaturas que pudimos cazar."
 couchpostfeedback.created_at = DateTime.new(2015,9,1,18)
 couchpostfeedback.score = 5
